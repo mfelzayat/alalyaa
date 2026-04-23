@@ -108,6 +108,12 @@
     color: var(--ink-mute);
   }
 
+  .header-right {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
   .meta {
     text-align: right;
     font-family: 'JetBrains Mono', monospace;
@@ -117,6 +123,35 @@
     color: var(--ink-mute);
     line-height: 1.8;
   }
+
+  /* Fullscreen toggle (header) */
+  .fs-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(42,38,33,0.18);
+    border-radius: 999px;
+    background: rgba(255,253,247,0.55);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: background 240ms var(--ease-out), border-color 240ms var(--ease-out), color 240ms var(--ease-out);
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 0;
+    backdrop-filter: blur(4px);
+  }
+  .fs-toggle:hover, .fs-toggle:focus-visible {
+    background: var(--ink-warm);
+    color: var(--linen-100);
+    border-color: var(--ink-warm);
+    outline: none;
+  }
+  .fs-toggle svg { width: 16px; height: 16px; display: block; }
+  .fs-toggle .icon-exit { display: none; }
+  body.is-fs .fs-toggle .icon-enter { display: none; }
+  body.is-fs .fs-toggle .icon-exit  { display: block; }
 
   /* ───────────────────── hero ───────────────────── */
   .hero {
@@ -717,9 +752,22 @@
       <span class="mark__ar">العليـــــاء</span>
       <span class="mark__en">ALALYAA · DEVELOPMENTS</span>
     </div>
-    <div class="meta">
-      Brand Book<br/>
-      Presentation · MMXXVI
+    <div class="header-right">
+      <div class="meta">
+        Brand Book<br/>
+        Presentation · MMXXVI
+      </div>
+      <button type="button" class="fs-toggle" id="fsToggle"
+              aria-label="Toggle full-screen" title="Toggle full-screen (F)">
+        <svg class="icon-enter" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/>
+        </svg>
+        <svg class="icon-exit" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 2v4H2M10 2v4h4M6 14v-4H2M10 14v-4h4"/>
+        </svg>
+      </button>
     </div>
   </header>
 
@@ -893,6 +941,69 @@
   </footer>
 
 </main>
+
+<script>
+  (function () {
+    const docEl = document.documentElement;
+    const body  = document.body;
+    const btn   = document.getElementById('fsToggle');
+
+    function fsElement() {
+      return document.fullscreenElement || document.webkitFullscreenElement || null;
+    }
+    function requestFs(el) {
+      const fn = el.requestFullscreen || el.webkitRequestFullscreen;
+      return fn ? fn.call(el) : Promise.reject(new Error('Fullscreen unsupported'));
+    }
+    function exitFs() {
+      const fn = document.exitFullscreen || document.webkitExitFullscreen;
+      return fn ? fn.call(document) : Promise.reject(new Error('Fullscreen unsupported'));
+    }
+    function syncBodyState() {
+      body.classList.toggle('is-fs', !!fsElement());
+    }
+
+    // Toggle button
+    if (btn) {
+      btn.addEventListener('click', () => {
+        if (fsElement()) {
+          exitFs().catch(() => {});
+        } else {
+          requestFs(docEl).catch(() => {});
+        }
+      });
+    }
+
+    // Keyboard shortcut: F
+    window.addEventListener('keydown', (e) => {
+      const t = e.target;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        if (fsElement()) exitFs().catch(() => {});
+        else requestFs(docEl).catch(() => {});
+      }
+    });
+
+    document.addEventListener('fullscreenchange', syncBodyState);
+    document.addEventListener('webkitfullscreenchange', syncBodyState);
+
+    // Option cards: append ?fs=1 so the new tab knows to auto-enter
+    // fullscreen on its first user gesture (browsers won't grant
+    // fullscreen to a tab that has no gesture of its own yet).
+    document.querySelectorAll('.choices a.card').forEach((a) => {
+      a.addEventListener('click', (e) => {
+        // Allow modifier-clicks (cmd/ctrl/middle) to behave normally.
+        if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
+        const href = a.getAttribute('href');
+        if (!href) return;
+        const sep = href.includes('?') ? '&' : '?';
+        a.setAttribute('href', href + sep + 'fs=1');
+      });
+    });
+  })();
+</script>
 
 </body>
 </html>

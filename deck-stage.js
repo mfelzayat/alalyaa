@@ -200,6 +200,9 @@
       background: rgba(255,255,255,0.12);
       border-radius: 4px;
     }
+    .btn.fs .ic-exit  { display: none; }
+    .btn.fs.is-on .ic-enter { display: none; }
+    .btn.fs.is-on .ic-exit  { display: block; }
 
     .count {
       font-variant-numeric: tabular-nums;
@@ -284,6 +287,55 @@
       this._onMouseMove = this._onMouseMove.bind(this);
       this._onTapBack = this._onTapBack.bind(this);
       this._onTapForward = this._onTapForward.bind(this);
+      this._onFsChange = this._onFsChange.bind(this);
+      this._armedAutoFs = null;
+    }
+
+    // ── Fullscreen helpers ────────────────────────────────────────────
+    _fsElement() {
+      return document.fullscreenElement || document.webkitFullscreenElement || null;
+    }
+    _requestFs(el) {
+      const fn = el.requestFullscreen || el.webkitRequestFullscreen;
+      return fn ? fn.call(el) : Promise.reject(new Error('Fullscreen unsupported'));
+    }
+    _exitFs() {
+      const fn = document.exitFullscreen || document.webkitExitFullscreen;
+      return fn ? fn.call(document) : Promise.reject(new Error('Fullscreen unsupported'));
+    }
+    _toggleFs() {
+      if (this._fsElement()) this._exitFs().catch(() => {});
+      else this._requestFs(document.documentElement).catch(() => {});
+    }
+    _onFsChange() {
+      const fsBtn = this._overlay && this._overlay.querySelector('.btn.fs');
+      if (fsBtn) fsBtn.classList.toggle('is-on', !!this._fsElement());
+    }
+    /** When the landing opens an option with ?fs=1 in a new tab, the
+     *  new tab carries no user gesture — so we cannot request fullscreen
+     *  on its own. Arm a one-shot listener on the next pointer/key
+     *  gesture and request fullscreen then. */
+    _armAutoFsFromUrl() {
+      try {
+        const params = new URLSearchParams(location.search);
+        if (params.get('fs') !== '1') return;
+        if (this._fsElement()) return;
+        const handler = () => {
+          window.removeEventListener('pointerdown', handler, true);
+          window.removeEventListener('keydown', handler, true);
+          this._armedAutoFs = null;
+          this._requestFs(document.documentElement).catch(() => {});
+        };
+        this._armedAutoFs = handler;
+        window.addEventListener('pointerdown', handler, { capture: true, once: false });
+        window.addEventListener('keydown', handler, { capture: true, once: false });
+      } catch (_) { /* noop */ }
+    }
+    _disarmAutoFs() {
+      if (!this._armedAutoFs) return;
+      window.removeEventListener('pointerdown', this._armedAutoFs, true);
+      window.removeEventListener('keydown', this._armedAutoFs, true);
+      this._armedAutoFs = null;
     }
 
     get designWidth() {
@@ -300,6 +352,10 @@
       window.addEventListener('keydown', this._onKey);
       window.addEventListener('resize', this._onResize);
       window.addEventListener('mousemove', this._onMouseMove, { passive: true });
+      document.addEventListener('fullscreenchange', this._onFsChange);
+      document.addEventListener('webkitfullscreenchange', this._onFsChange);
+      this._onFsChange();
+      this._armAutoFsFromUrl();
       // Initial collection + layout happens via slotchange, which fires on mount.
     }
 
@@ -307,6 +363,9 @@
       window.removeEventListener('keydown', this._onKey);
       window.removeEventListener('resize', this._onResize);
       window.removeEventListener('mousemove', this._onMouseMove);
+      document.removeEventListener('fullscreenchange', this._onFsChange);
+      document.removeEventListener('webkitfullscreenchange', this._onFsChange);
+      this._disarmAutoFs();
       if (this._hideTimer) clearTimeout(this._hideTimer);
       if (this._mouseIdleTimer) clearTimeout(this._mouseIdleTimer);
     }
@@ -371,11 +430,17 @@
         </button>
         <span class="divider"></span>
         <button class="btn reset" type="button" aria-label="Reset to first slide" title="Reset (R)">Reset<span class="kbd">R</span></button>
+        <span class="divider"></span>
+        <button class="btn fs" type="button" aria-label="Toggle full-screen" title="Full-screen (F)">
+          <svg class="ic-enter" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/></svg>
+          <svg class="ic-exit" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 2v4H2M10 2v4h4M6 14v-4H2M10 14v-4h4"/></svg>
+        </button>
       `;
 
       overlay.querySelector('.prev').addEventListener('click', () => this._go(this._index - 1, 'click'));
       overlay.querySelector('.next').addEventListener('click', () => this._go(this._index + 1, 'click'));
       overlay.querySelector('.reset').addEventListener('click', () => this._go(0, 'click'));
+      overlay.querySelector('.fs').addEventListener('click', () => this._toggleFs());
 
       this._root.append(style, stage, tapzones, overlay);
       this._canvas = canvas;
@@ -577,6 +642,8 @@
         this._go(this._slides.length - 1, 'keyboard');
       } else if (key === 'r' || key === 'R') {
         this._go(0, 'keyboard');
+      } else if (key === 'f' || key === 'F') {
+        this._toggleFs();
       } else if (/^[0-9]$/.test(key)) {
         // 1..9 jump to that slide; 0 jumps to 10.
         const n = key === '0' ? 9 : parseInt(key, 10) - 1;
