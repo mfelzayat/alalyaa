@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALALYAA · Option A — Heritage</title>
+  <meta name="description" content="ALALYAA brand guidelines — Option A, Heritage (Brass &amp; Ebony)." />
+
+  <link rel="stylesheet" href="styles/emaar.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+  <link rel="stylesheet" href="styles/guideline.css" />
+
+  <style>
+    html, body { background: var(--a-ebony); color: var(--a-ivory); }
+    .deck { background: var(--a-ebony); }
+
+    .s-cover {
+      background:
+        radial-gradient(ellipse at 15% 10%, rgba(184, 146, 42, 0.14), transparent 55%),
+        radial-gradient(ellipse at 85% 90%, rgba(184, 146, 42, 0.08), transparent 55%),
+        var(--a-ebony);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: var(--sp-5);
+    }
+
+    .s-cover .label { color: var(--a-brass); opacity: 0.9; }
+
+    .s-cover .title {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-size: clamp(3rem, 10vw, 7.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      background: var(--a-foil);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmer 10s linear infinite;
+    }
+
+    .s-cover .title-ar {
+      font-family: var(--font-arabic);
+      font-weight: 300;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      direction: rtl;
+    }
+
+    .s-cover .sub {
+      max-width: 48ch;
+      opacity: 0.7;
+      font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+      line-height: 1.75;
+    }
+
+    .s-palette .slide__pad { gap: var(--sp-8); }
+    .s-palette .grid-swatches {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: clamp(12px, 2vw, 32px);
+    }
+    @media (max-width: 680px) {
+      .s-palette .grid-swatches { grid-template-columns: 1fr 1fr; }
+    }
+
+    .s-type .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-12);
+      align-items: start;
+    }
+    @media (max-width: 680px) {
+      .s-type .pair { grid-template-columns: 1fr; }
+    }
+    .s-type .spec {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.1;
+    }
+    .s-type .spec-ar {
+      font-family: var(--font-arabic);
+      direction: rtl;
+    }
+    .s-type .meta {
+      font-size: 0.6875rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-top: var(--sp-4);
+    }
+
+    .s-end { text-align: center; }
+    .s-end .title {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3rem);
+      opacity: 0.9;
+    }
+  </style>
+</head>
+<body>
+  <a class="deck-back" href="index.html">Back</a>
+
+  <main class="deck" aria-label="ALALYAA Option A deck">
+
+    <section class="slide s-cover">
+      <span class="label anim-fade-in">Option A · Heritage</span>
+      <h1 class="title anim-fade-up anim-d1">ALALYAA</h1>
+      <p class="title-ar anim-fade-up anim-d2">العلياء</p>
+      <p class="sub anim-fade-up anim-d3">
+        Brass &amp; ebony. A grounded, archival register — Cairo Play in Arabic,
+        Cormorant Garamond in Latin, with brass-foil accents.
+      </p>
+    </section>
+
+    <section class="slide s-palette">
+      <div class="slide__pad">
+        <span class="label">01 · Palette</span>
+        <h2 class="slide__title">A living archive of brass, ebony, and ivory.</h2>
+        <div class="slide__content">
+          <div class="grid-swatches">
+            <div class="swatch">
+              <div class="swatch__block" style="background: var(--a-ebony); border: 1px solid rgba(245,240,232,.08)"></div>
+              <div class="swatch__label">
+                <span class="swatch__name-ar">الأبنوس</span>
+                <span class="swatch__name-en">Ebony</span>
+                <span class="swatch__hex">#1A1410</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background: var(--a-brass)"></div>
+              <div class="swatch__label">
+                <span class="swatch__name-ar">النحاس</span>
+                <span class="swatch__name-en">Brass</span>
+                <span class="swatch__hex">#B8922A</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background: var(--a-brass-light)"></div>
+              <div class="swatch__label">
+                <span class="swatch__name-ar">النحاس الفاتح</span>
+                <span class="swatch__name-en">Brass · Light</span>
+                <span class="swatch__hex">#D4AA4A</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background: var(--a-ivory)"></div>
+              <div class="swatch__label">
+                <span class="swatch__name-ar">العاج</span>
+                <span class="swatch__name-en">Ivory</span>
+                <span class="swatch__hex">#F5F0E8</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide s-type">
+      <div class="slide__pad">
+        <span class="label">02 · Typography</span>
+        <h2 class="slide__title">A bilingual pairing, set in stone.</h2>
+        <div class="slide__content">
+          <div class="pair">
+            <div>
+              <p class="spec spec-ar">العلياء</p>
+              <p class="meta">Cairo Play · 300</p>
+            </div>
+            <div>
+              <p class="spec">Alalyaa</p>
+              <p class="meta">Cormorant Garamond · 300</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide s-end">
+      <div class="slide__pad">
+        <div class="slide__content" style="align-items: center;">
+          <span class="label">Fin</span>
+          <p class="title">More slides coming — this is the foundation preview.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="motion.js"></script>
+  <script src="deck-stage.js"></script>
+</body>
+</html>

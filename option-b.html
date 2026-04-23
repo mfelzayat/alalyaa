@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALALYAA · Option B — Dunes at Dawn</title>
+  <meta name="description" content="ALALYAA brand guidelines — Option B, Dunes at Dawn (Rose &amp; Sand)." />
+
+  <link rel="stylesheet" href="styles/emaar.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+  <link rel="stylesheet" href="styles/guideline.css" />
+
+  <style>
+    html, body { background: var(--b-umber); color: var(--b-sand); }
+    .deck { background: var(--b-umber); }
+
+    .deck-progress { background: var(--b-gold); }
+
+    .s-cover {
+      background:
+        radial-gradient(ellipse at 20% 20%, rgba(201, 168, 76, 0.12), transparent 55%),
+        radial-gradient(ellipse at 80% 80%, rgba(196, 133, 106, 0.14), transparent 55%),
+        var(--b-umber);
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: var(--sp-5);
+    }
+
+    .s-cover .label { color: var(--b-gold); opacity: 0.9; }
+
+    .s-cover .title {
+      font-family: var(--font-en-arabic);
+      font-weight: 200;
+      font-size: clamp(3rem, 10vw, 7.5rem);
+      line-height: 1;
+      letter-spacing: -0.01em;
+      color: var(--b-sand);
+    }
+
+    .s-cover .title-ar {
+      font-family: var(--font-arabic);
+      font-weight: 300;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      direction: rtl;
+      color: var(--b-rose-lt);
+    }
+
+    .s-cover .sub {
+      max-width: 48ch;
+      opacity: 0.72;
+      font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+      line-height: 1.75;
+    }
+
+    .s-palette .slide__pad { gap: var(--sp-8); }
+    .s-palette .grid-swatches {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: clamp(10px, 1.8vw, 28px);
+    }
+    @media (max-width: 880px) {
+      .s-palette .grid-swatches { grid-template-columns: repeat(3, 1fr); }
+    }
+    @media (max-width: 520px) {
+      .s-palette .grid-swatches { grid-template-columns: 1fr 1fr; }
+    }
+
+    .s-type .pair {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-12);
+      align-items: start;
+    }
+    @media (max-width: 680px) {
+      .s-type .pair { grid-template-columns: 1fr; }
+    }
+    .s-type .spec {
+      font-family: var(--font-en-arabic);
+      font-weight: 200;
+      font-size: clamp(2rem, 5vw, 4rem);
+      line-height: 1.1;
+    }
+    .s-type .spec-ar {
+      font-family: var(--font-arabic);
+      direction: rtl;
+    }
+    .s-type .meta {
+      font-size: 0.6875rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      margin-top: var(--sp-4);
+      font-family: var(--font-serif);
+    }
+
+    .s-horizon {
+      background:
+        linear-gradient(180deg,
+          var(--b-umber) 0%,
+          var(--b-umber-lt) 40%,
+          var(--b-rose) 70%,
+          var(--b-sand) 100%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding-bottom: var(--sp-20);
+    }
+    .s-horizon .slide__pad { padding: var(--sp-16) var(--slide-pad-x); }
+    .s-horizon .title {
+      font-family: var(--font-serif);
+      font-style: italic;
+      font-weight: 300;
+      font-size: clamp(2rem, 5vw, 4rem);
+      color: var(--b-umber);
+      max-width: 20ch;
+    }
+
+    .s-end { text-align: center; }
+    .s-end .title {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(2rem, 4vw, 3rem);
+      opacity: 0.85;
+    }
+
+    .label { color: var(--b-gold); }
+    .slide__title, .swatch__name-ar, .swatch__name-en { color: var(--b-sand); }
+  </style>
+</head>
+<body>
+  <a class="deck-back" href="index.html">Back</a>
+
+  <main class="deck" aria-label="ALALYAA Option B deck">
+
+    <section class="slide s-cover">
+      <span class="label anim-fade-in">Option B · Dunes at Dawn</span>
+      <h1 class="title anim-fade-up anim-d1">ALALYAA</h1>
+      <p class="title-ar anim-fade-up anim-d2">العلياء</p>
+      <p class="sub anim-fade-up anim-d3">
+        Rose &amp; sand. A softer, atmospheric register — Alexandria sans
+        with Cormorant Garamond accents, over dunes lit at first light.
+      </p>
+    </section>
+
+    <section class="slide s-palette">
+      <div class="slide__pad">
+        <span class="label">01 · Palette</span>
+        <h2 class="slide__title">Dawn over the dunes, held in five tones.</h2>
+        <div class="slide__content">
+          <div class="grid-swatches">
+            <div class="swatch">
+              <div class="swatch__block" style="background: var(--b-umber); border: 1px solid rgba(232,213,183,.10)"></div>
+              <div class="swatch__label">
+                <span class="swatch__name-ar">العنبر</span>
+                <span class="swatch__name-en">Umber</span>
+                <span class="swatch__hex">#3D2B1F</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background: var(--b-rose)"></div>
+              <div class="swatch__label">
+                <span class="swatch__name-ar">الورد</span>
+                <span class="swatch__name-en">Rose</span>
+                <span class="swatch__hex">#C4856A</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background: var(--b-sand)"></div>
+              <div class="swatch__label">
+                <span class="swatch__name-ar">الرمل</span>
+                <span class="swatch__name-en">Sand</span>
+                <span class="swatch__hex">#E8D5B7</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background: var(--b-gold)"></div>
+              <div class="swatch__label">
+                <span class="swatch__name-ar">الذهب</span>
+                <span class="swatch__name-en">Gold</span>
+                <span class="swatch__hex">#C9A84C</span>
+              </div>
+            </div>
+            <div class="swatch">
+              <div class="swatch__block" style="background: var(--b-mauve)"></div>
+              <div class="swatch__label">
+                <span class="swatch__name-ar">البنفسج</span>
+                <span class="swatch__name-en">Mauve</span>
+                <span class="swatch__hex">#8B6B7A</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide s-type">
+      <div class="slide__pad">
+        <span class="label">02 · Typography</span>
+        <h2 class="slide__title">Alexandria &amp; Cairo Play, drawn from the same sky.</h2>
+        <div class="slide__content">
+          <div class="pair">
+            <div>
+              <p class="spec spec-ar">العلياء</p>
+              <p class="meta">Cairo Play · 300</p>
+            </div>
+            <div>
+              <p class="spec">Alalyaa</p>
+              <p class="meta">Alexandria · 200</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="slide s-horizon">
+      <div class="slide__pad">
+        <p class="title">Light breaks across the dune, and the brand begins to breathe.</p>
+      </div>
+    </section>
+
+    <section class="slide s-end">
+      <div class="slide__pad">
+        <div class="slide__content" style="align-items: center;">
+          <span class="label">Fin</span>
+          <p class="title">More slides coming — this is the foundation preview.</p>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <script src="motion.js"></script>
+  <script src="deck-stage.js"></script>
+</body>
+</html>

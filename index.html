@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ALALYAA · Brand Guidelines</title>
+  <meta name="description" content="ALALYAA brand guidelines — two design directions." />
+
+  <link rel="stylesheet" href="styles/emaar.css" />
+  <link rel="stylesheet" href="styles/animations.css" />
+  <link rel="stylesheet" href="styles/guideline.css" />
+
+  <style>
+    html, body {
+      background: var(--a-ebony);
+      color: var(--a-ivory);
+      font-family: var(--font-serif);
+      min-height: 100dvh;
+    }
+
+    .cover {
+      min-height: 100dvh;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      padding: var(--slide-pad-y) var(--slide-pad-x);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cover::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(184, 146, 42, 0.12), transparent 55%),
+        radial-gradient(ellipse at 80% 100%, rgba(184, 146, 42, 0.08), transparent 55%);
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    .cover > * { position: relative; z-index: 1; }
+
+    .cover__head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: var(--sp-6);
+      flex-wrap: wrap;
+    }
+
+    .cover__mark {
+      font-family: var(--font-arabic);
+      font-weight: 300;
+      font-size: clamp(1.125rem, 2vw, 1.5rem);
+      direction: rtl;
+      letter-spacing: 0;
+    }
+
+    .cover__meta {
+      font-size: 0.6875rem;
+      letter-spacing: 0.25em;
+      text-transform: uppercase;
+      opacity: 0.55;
+      font-family: var(--font-serif);
+    }
+
+    .cover__center {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: var(--sp-6);
+      padding: var(--sp-16) 0;
+    }
+
+    .cover__eyebrow {
+      font-size: 0.6875rem;
+      letter-spacing: 0.4em;
+      text-transform: uppercase;
+      opacity: 0.5;
+    }
+
+    .cover__title {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-size: clamp(3rem, 10vw, 7.5rem);
+      line-height: 1;
+      letter-spacing: -0.02em;
+      background: var(--a-foil);
+      background-size: 200% auto;
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      animation: shimmer 8s linear infinite;
+    }
+
+    .cover__title-ar {
+      font-family: var(--font-arabic);
+      font-weight: 300;
+      font-size: clamp(1.5rem, 4vw, 3rem);
+      direction: rtl;
+      opacity: 0.85;
+    }
+
+    .cover__sub {
+      max-width: 52ch;
+      font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+      opacity: 0.72;
+      line-height: 1.75;
+    }
+
+    .choice {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: var(--sp-6);
+      max-width: 1040px;
+      margin: 0 auto;
+      width: 100%;
+    }
+
+    .choice__card {
+      display: flex;
+      flex-direction: column;
+      gap: var(--sp-4);
+      padding: var(--sp-10) var(--sp-8);
+      border-radius: var(--radius-lg);
+      border: 1px solid rgba(245, 240, 232, 0.12);
+      background: rgba(245, 240, 232, 0.025);
+      transition:
+        border-color var(--dur-mid) var(--ease-out),
+        background var(--dur-mid) var(--ease-out),
+        transform var(--dur-mid) var(--ease-out);
+      text-decoration: none;
+      color: inherit;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .choice__card::after {
+      content: '';
+      position: absolute;
+      left: 0; right: 0; bottom: 0;
+      height: 3px;
+      transform: scaleX(0);
+      transform-origin: left;
+      transition: transform var(--dur-mid) var(--ease-out);
+    }
+
+    .choice__card--a::after { background: var(--a-foil); }
+    .choice__card--b::after {
+      background: linear-gradient(90deg, var(--b-rose), var(--b-gold), var(--b-sand));
+    }
+
+    .choice__card:hover {
+      border-color: rgba(245, 240, 232, 0.28);
+      background: rgba(245, 240, 232, 0.05);
+      transform: translateY(-4px);
+    }
+
+    .choice__card:hover::after { transform: scaleX(1); }
+
+    .choice__tag {
+      font-size: 0.625rem;
+      letter-spacing: 0.3em;
+      text-transform: uppercase;
+      opacity: 0.55;
+    }
+
+    .choice__name {
+      font-family: var(--font-serif);
+      font-weight: 300;
+      font-style: italic;
+      font-size: clamp(1.75rem, 3vw, 2.5rem);
+      line-height: 1.1;
+    }
+
+    .choice__desc {
+      font-size: 0.9375rem;
+      line-height: 1.7;
+      opacity: 0.72;
+      max-width: 38ch;
+    }
+
+    .choice__swatches {
+      display: flex;
+      gap: var(--sp-2);
+      margin-top: auto;
+      padding-top: var(--sp-4);
+    }
+
+    .choice__swatch {
+      width: 22px;
+      height: 22px;
+      border-radius: var(--radius-full);
+      border: 1px solid rgba(245, 240, 232, 0.18);
+    }
+
+    .choice__cta {
+      margin-top: var(--sp-3);
+      font-size: 0.75rem;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      opacity: 0.75;
+      display: flex;
+      align-items: center;
+      gap: var(--sp-2);
+    }
+
+    .choice__cta::after {
+      content: '→';
+      transition: transform var(--dur-fast) var(--ease-out);
+    }
+
+    .choice__card:hover .choice__cta::after {
+      transform: translateX(4px);
+    }
+
+    .cover__foot {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: var(--sp-4);
+      flex-wrap: wrap;
+      font-size: 0.6875rem;
+      letter-spacing: 0.2em;
+      text-transform: uppercase;
+      opacity: 0.4;
+    }
+
+    @media (max-width: 680px) {
+      .choice { grid-template-columns: 1fr; }
+      .cover__center { padding: var(--sp-10) 0; }
+    }
+  </style>
+</head>
+<body>
+  <main class="cover">
+    <header class="cover__head anim-fade-in">
+      <span class="cover__mark">العلياء</span>
+      <span class="cover__meta">Brand Guidelines · 2026</span>
+    </header>
+
+    <section class="cover__center">
+      <span class="cover__eyebrow anim-fade-in anim-d1">Identity System</span>
+      <h1 class="cover__title anim-fade-up anim-d2">ALALYAA</h1>
+      <p class="cover__title-ar anim-fade-up anim-d3">دليل الهوية البصرية</p>
+      <p class="cover__sub anim-fade-up anim-d4">
+        Two design directions, one heritage. Choose a path to explore the brand system —
+        typography, palette, motion, and voice — as a sequenced presentation.
+      </p>
+    </section>
+
+    <nav class="choice anim-fade-up anim-d5" aria-label="Choose a brand direction">
+      <a class="choice__card choice__card--a" href="option-a.html">
+        <span class="choice__tag">Option A</span>
+        <span class="choice__name">Heritage · Brass &amp; Ebony</span>
+        <span class="choice__desc">
+          A grounded, archival voice. Cairo Play in Arabic paired with Cormorant
+          Garamond. Brass foil accents on deep ebony. Seventeen slides.
+        </span>
+        <div class="choice__swatches" aria-hidden="true">
+          <span class="choice__swatch" style="background: var(--a-ebony)"></span>
+          <span class="choice__swatch" style="background: var(--a-brass)"></span>
+          <span class="choice__swatch" style="background: var(--a-brass-light)"></span>
+          <span class="choice__swatch" style="background: var(--a-ivory)"></span>
+        </div>
+        <span class="choice__cta">Open deck</span>
+      </a>
+
+      <a class="choice__card choice__card--b" href="option-b.html">
+        <span class="choice__tag">Option B</span>
+        <span class="choice__name">Dunes at Dawn · Rose &amp; Sand</span>
+        <span class="choice__desc">
+          A softer, atmospheric register. Alexandria sans with Cormorant accents.
+          Sand, rose, and muted gold across twenty-five slides.
+        </span>
+        <div class="choice__swatches" aria-hidden="true">
+          <span class="choice__swatch" style="background: var(--b-umber)"></span>
+          <span class="choice__swatch" style="background: var(--b-rose)"></span>
+          <span class="choice__swatch" style="background: var(--b-sand)"></span>
+          <span class="choice__swatch" style="background: var(--b-gold)"></span>
+        </div>
+        <span class="choice__cta">Open deck</span>
+      </a>
+    </nav>
+
+    <footer class="cover__foot anim-fade-in anim-d6">
+      <span>ALALYAA · العلياء</span>
+      <span>v0.1 · Foundation</span>
+    </footer>
+  </main>
+</body>
+</html>
