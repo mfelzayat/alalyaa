@@ -1,0 +1,96 @@
+/* ============================================================
+   ALALYAA · SLIDE MOTION TRIGGERS
+   styles/guideline-motion.css
+
+   All motion classes are invisible by default (opacity:0 /
+   translateY) and animate in only when the parent slide
+   carries the .slide--active class.
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   BASE HIDDEN STATE
+---------------------------------------------------------- */
+
+[class*="motion-"] {
+  opacity: 0;
+}
+
+/* ----------------------------------------------------------
+   FADE-UP  (motion-1 … motion-8)
+   Stagger: 0, 0.12, 0.24, 0.36, 0.48, 0.60, 0.72, 0.84 s
+---------------------------------------------------------- */
+
+.slide--active .motion-1,
+.slide--active .motion-2,
+.slide--active .motion-3,
+.slide--active .motion-4,
+.slide--active .motion-5,
+.slide--active .motion-6,
+.slide--active .motion-7,
+.slide--active .motion-8 {
+  animation: fadeUp 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.slide--active .motion-1 { animation-delay: 0.00s; }
+.slide--active .motion-2 { animation-delay: 0.12s; }
+.slide--active .motion-3 { animation-delay: 0.24s; }
+.slide--active .motion-4 { animation-delay: 0.36s; }
+.slide--active .motion-5 { animation-delay: 0.48s; }
+.slide--active .motion-6 { animation-delay: 0.60s; }
+.slide--active .motion-7 { animation-delay: 0.72s; }
+.slide--active .motion-8 { animation-delay: 0.84s; }
+
+/* ----------------------------------------------------------
+   FADE-IN  (motion-fade-1 … motion-fade-4)
+---------------------------------------------------------- */
+
+.slide--active .motion-fade-1,
+.slide--active .motion-fade-2,
+.slide--active .motion-fade-3,
+.slide--active .motion-fade-4 {
+  animation: fadeIn 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.slide--active .motion-fade-1 { animation-delay: 0.00s; }
+.slide--active .motion-fade-2 { animation-delay: 0.18s; }
+.slide--active .motion-fade-3 { animation-delay: 0.36s; }
+.slide--active .motion-fade-4 { animation-delay: 0.54s; }
+
+/* ----------------------------------------------------------
+   CURTAIN REVEAL  (motion-curtain-1 … motion-curtain-3)
+---------------------------------------------------------- */
+
+.slide--active .motion-curtain-1,
+.slide--active .motion-curtain-2,
+.slide--active .motion-curtain-3 {
+  animation: curtainReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.slide--active .motion-curtain-1 { animation-delay: 0.00s; }
+.slide--active .motion-curtain-2 { animation-delay: 0.20s; }
+.slide--active .motion-curtain-3 { animation-delay: 0.40s; }
+
+/* ----------------------------------------------------------
+   SCALE-IN  (motion-scale-1 … motion-scale-3)
+---------------------------------------------------------- */
+
+.slide--active .motion-scale-1,
+.slide--active .motion-scale-2,
+.slide--active .motion-scale-3 {
+  animation: scaleIn 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.slide--active .motion-scale-1 { animation-delay: 0.00s; }
+.slide--active .motion-scale-2 { animation-delay: 0.20s; }
+.slide--active .motion-scale-3 { animation-delay: 0.40s; }
+
+/* ----------------------------------------------------------
+   REDUCED MOTION OVERRIDE
+---------------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  .slide--active [class*="motion-"] {
+    animation: fadeIn 0.01ms linear both;
+    animation-delay: 0ms !important;
+  }
+}

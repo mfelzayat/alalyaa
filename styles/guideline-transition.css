@@ -1,0 +1,78 @@
+/* ============================================================
+   ALALYAA · DECK TRANSITION VARIANTS
+   styles/guideline-transition.css
+   ============================================================ */
+
+/* ----------------------------------------------------------
+   DEFAULT: HORIZONTAL SLIDE  (.deck--slide-h)
+   Slides enter from right (+60px), exit to left (-60px)
+---------------------------------------------------------- */
+
+.deck--slide-h .slide {
+  transform: translateX(60px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.deck--slide-h .slide--active {
+  transform: translateX(0);
+}
+
+.deck--slide-h .slide--exit {
+  transform: translateX(-60px);
+}
+
+/* ----------------------------------------------------------
+   VARIANT: FADE  (.deck--fade)
+   No transform, pure opacity crossfade
+---------------------------------------------------------- */
+
+.deck--fade .slide {
+  transform: none;
+  transition: opacity 0.55s ease;
+}
+
+.deck--fade .slide--active {
+  transform: none;
+}
+
+.deck--fade .slide--exit {
+  transform: none;
+  opacity: 0;
+}
+
+/* ----------------------------------------------------------
+   VARIANT: VERTICAL SLIDE  (.deck--slide-v)
+   Slides enter from below (+60px Y), exit to top (-60px Y)
+---------------------------------------------------------- */
+
+.deck--slide-v .slide {
+  transform: translateY(60px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.deck--slide-v .slide--active {
+  transform: translateY(0);
+}
+
+.deck--slide-v .slide--exit {
+  transform: translateY(-60px);
+}
+
+/* ----------------------------------------------------------
+   VARIANT: SCALE  (.deck--scale)
+   Entering slides scale from 0.94, exiting scale to 1.04
+---------------------------------------------------------- */
+
+.deck--scale .slide {
+  transform: scale(0.94);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+.deck--scale .slide--active {
+  transform: scale(1);
+}
+
+.deck--scale .slide--exit {
+  transform: scale(1.04);
+  opacity: 0;
+}
