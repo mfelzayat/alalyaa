@@ -1,294 +1,649 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALALYAA · Brand Guidelines</title>
-  <meta name="description" content="ALALYAA brand guidelines — two design directions." />
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ALALYAA Developments · Brand Book Presentation</title>
+<meta name="description" content="ALALYAA Developments — brand book presentation. Two design directions."/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Cairo+Play:wght@300;400;500;600;700&family=Alexandria:wght@200;300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --ink:        #0C0A08;
+    --ink-2:      #17130E;
+    --ivory:      #F5F0E8;
+    --ivory-dim:  #CFC7B6;
+    --brass:      #B8922A;
+    --brass-lt:   #D4AA4A;
+    --brass-foil: linear-gradient(105deg,#8C6D1F 0%,#B8922A 22%,#D4AA4A 38%,#F0D070 50%,#D4AA4A 62%,#B8922A 78%,#8C6D1F 100%);
+    --dune-umber: #3D2B1F;
+    --dune-rose:  #C4856A;
+    --dune-sand:  #E8D5B7;
+    --dune-gold:  #C9A84C;
+    --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  }
 
-  <link rel="stylesheet" href="styles/emaar.css" />
-  <link rel="stylesheet" href="styles/animations.css" />
-  <link rel="stylesheet" href="styles/guideline.css" />
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100dvh; }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
 
-  <style>
-    html, body {
-      background: var(--a-ebony);
-      color: var(--a-ivory);
-      font-family: var(--font-serif);
-      min-height: 100dvh;
-    }
+  body {
+    font-family: 'Cormorant Garamond', serif;
+    background: radial-gradient(ellipse at 20% 0%, #1a140c 0%, var(--ink) 55%, #050404 100%);
+    color: var(--ivory);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
 
-    .cover {
-      min-height: 100dvh;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-      padding: var(--slide-pad-y) var(--slide-pad-x);
-      position: relative;
-      overflow: hidden;
-    }
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background:
+      radial-gradient(circle at 15% 10%, rgba(184,146,42,0.10), transparent 45%),
+      radial-gradient(circle at 85% 85%, rgba(196,133,106,0.08), transparent 45%);
+    pointer-events: none;
+    z-index: 0;
+  }
 
-    .cover::before {
-      content: '';
-      position: absolute;
-      inset: 0;
-      background:
-        radial-gradient(ellipse at 20% 0%, rgba(184, 146, 42, 0.12), transparent 55%),
-        radial-gradient(ellipse at 80% 100%, rgba(184, 146, 42, 0.08), transparent 55%);
-      pointer-events: none;
-      z-index: 0;
-    }
+  .page {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(24px, 4vw, 56px) clamp(20px, 5vw, 80px);
+    gap: clamp(40px, 6vh, 80px);
+  }
 
-    .cover > * { position: relative; z-index: 1; }
+  /* --- header --- */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+    animation: fadeIn 1s var(--ease-out) both;
+  }
 
-    .cover__head {
-      display: flex;
-      justify-content: space-between;
-      align-items: baseline;
-      gap: var(--sp-6);
-      flex-wrap: wrap;
-    }
+  .mark {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
 
-    .cover__mark {
-      font-family: var(--font-arabic);
-      font-weight: 300;
-      font-size: clamp(1.125rem, 2vw, 1.5rem);
-      direction: rtl;
-      letter-spacing: 0;
-    }
+  .mark__ar {
+    font-family: 'Cairo Play', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+    direction: rtl;
+    color: var(--ivory);
+    letter-spacing: 0.02em;
+  }
 
-    .cover__meta {
-      font-size: 0.6875rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      opacity: 0.55;
-      font-family: var(--font-serif);
-    }
+  .mark__en {
+    font-family: 'Play', sans-serif;
+    font-weight: 700;
+    font-size: 0.6875rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--brass-lt);
+  }
 
-    .cover__center {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      gap: var(--sp-6);
-      padding: var(--sp-16) 0;
-    }
+  .meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    line-height: 1.8;
+  }
 
-    .cover__eyebrow {
-      font-size: 0.6875rem;
-      letter-spacing: 0.4em;
-      text-transform: uppercase;
-      opacity: 0.5;
-    }
+  /* --- hero --- */
+  .hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    gap: clamp(14px, 2vh, 24px);
+    padding: clamp(16px, 4vh, 40px) 0;
+  }
 
-    .cover__title {
-      font-family: var(--font-serif);
-      font-weight: 300;
-      font-size: clamp(3rem, 10vw, 7.5rem);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      background: var(--a-foil);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shimmer 8s linear infinite;
-    }
+  .hero__eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--brass-lt);
+    opacity: 0.85;
+    animation: fadeUp 0.9s var(--ease-out) 0.1s both;
+  }
 
-    .cover__title-ar {
-      font-family: var(--font-arabic);
-      font-weight: 300;
-      font-size: clamp(1.5rem, 4vw, 3rem);
-      direction: rtl;
-      opacity: 0.85;
-    }
+  .hero__title {
+    font-family: 'Play', sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 9vw, 7.5rem);
+    line-height: 0.92;
+    letter-spacing: 0.02em;
+    background: var(--brass-foil);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation:
+      fadeUp 1.2s var(--ease-out) 0.2s both,
+      shimmer 12s linear infinite;
+  }
 
-    .cover__sub {
-      max-width: 52ch;
-      font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
-      opacity: 0.72;
-      line-height: 1.75;
-    }
+  .hero__sub {
+    font-family: 'Cairo Play', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.25rem, 3vw, 2rem);
+    direction: rtl;
+    color: var(--ivory);
+    opacity: 0.88;
+    animation: fadeUp 1.2s var(--ease-out) 0.35s both;
+  }
 
-    .choice {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--sp-6);
-      max-width: 1040px;
-      margin: 0 auto;
-      width: 100%;
-    }
+  .hero__kicker {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ivory-dim);
+    opacity: 0.7;
+    animation: fadeUp 1.2s var(--ease-out) 0.5s both;
+  }
 
-    .choice__card {
-      display: flex;
-      flex-direction: column;
-      gap: var(--sp-4);
-      padding: var(--sp-10) var(--sp-8);
-      border-radius: var(--radius-lg);
-      border: 1px solid rgba(245, 240, 232, 0.12);
-      background: rgba(245, 240, 232, 0.025);
-      transition:
-        border-color var(--dur-mid) var(--ease-out),
-        background var(--dur-mid) var(--ease-out),
-        transform var(--dur-mid) var(--ease-out);
-      text-decoration: none;
-      color: inherit;
-      position: relative;
-      overflow: hidden;
-    }
+  .hero__lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.4vw, 1.1875rem);
+    color: var(--ivory);
+    opacity: 0.72;
+    line-height: 1.7;
+    max-width: 54ch;
+    margin: 0 auto;
+    animation: fadeUp 1.2s var(--ease-out) 0.65s both;
+  }
 
-    .choice__card::after {
-      content: '';
-      position: absolute;
-      left: 0; right: 0; bottom: 0;
-      height: 3px;
-      transform: scaleX(0);
-      transform-origin: left;
-      transition: transform var(--dur-mid) var(--ease-out);
-    }
+  /* --- choice cards --- */
+  .choices {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(20px, 3vw, 40px);
+    max-width: 1280px;
+    width: 100%;
+    margin: 0 auto;
+  }
 
-    .choice__card--a::after { background: var(--a-foil); }
-    .choice__card--b::after {
-      background: linear-gradient(90deg, var(--b-rose), var(--b-gold), var(--b-sand));
-    }
+  @media (max-width: 860px) {
+    .choices { grid-template-columns: 1fr; }
+  }
 
-    .choice__card:hover {
-      border-color: rgba(245, 240, 232, 0.28);
-      background: rgba(245, 240, 232, 0.05);
-      transform: translateY(-4px);
-    }
+  .card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(28px, 3vw, 48px);
+    border-radius: 18px;
+    border: 1px solid rgba(245, 240, 232, 0.12);
+    background: linear-gradient(180deg, rgba(245,240,232,0.03), rgba(245,240,232,0.005));
+    overflow: hidden;
+    isolation: isolate;
+    transition:
+      border-color 420ms var(--ease-out),
+      background 420ms var(--ease-out),
+      transform 420ms var(--ease-out),
+      box-shadow 420ms var(--ease-out);
+    cursor: pointer;
+    min-height: 520px;
+  }
 
-    .choice__card:hover::after { transform: scaleX(1); }
+  .card::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    opacity: 0.55;
+    z-index: -1;
+    transition: opacity 420ms var(--ease-out);
+  }
 
-    .choice__tag {
-      font-size: 0.625rem;
-      letter-spacing: 0.3em;
-      text-transform: uppercase;
-      opacity: 0.55;
-    }
+  .card--a::before {
+    background:
+      radial-gradient(ellipse at 80% 0%, rgba(184,146,42,0.22), transparent 60%),
+      radial-gradient(ellipse at 20% 100%, rgba(26,20,16,0.6), transparent 60%),
+      linear-gradient(140deg, #1a1410 0%, #0c0906 100%);
+  }
 
-    .choice__name {
-      font-family: var(--font-serif);
-      font-weight: 300;
-      font-style: italic;
-      font-size: clamp(1.75rem, 3vw, 2.5rem);
-      line-height: 1.1;
-    }
+  .card--b::before {
+    background:
+      radial-gradient(ellipse at 80% 0%, rgba(196,133,106,0.25), transparent 60%),
+      radial-gradient(ellipse at 20% 100%, rgba(201,168,76,0.18), transparent 60%),
+      linear-gradient(140deg, #3d2b1f 0%, #2a1d14 100%);
+  }
 
-    .choice__desc {
-      font-size: 0.9375rem;
-      line-height: 1.7;
-      opacity: 0.72;
-      max-width: 38ch;
-    }
+  .card:hover,
+  .card:focus-visible {
+    transform: translateY(-6px);
+    border-color: rgba(245, 240, 232, 0.32);
+    box-shadow:
+      0 24px 60px -20px rgba(0,0,0,0.6),
+      0 0 0 1px rgba(212, 170, 74, 0.15);
+    outline: none;
+  }
 
-    .choice__swatches {
-      display: flex;
-      gap: var(--sp-2);
-      margin-top: auto;
-      padding-top: var(--sp-4);
-    }
+  .card:hover::before,
+  .card:focus-visible::before { opacity: 0.85; }
 
-    .choice__swatch {
-      width: 22px;
-      height: 22px;
-      border-radius: var(--radius-full);
-      border: 1px solid rgba(245, 240, 232, 0.18);
-    }
+  .card__tag {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--brass-lt);
+    opacity: 0.9;
+    margin-bottom: 20px;
+  }
 
-    .choice__cta {
-      margin-top: var(--sp-3);
-      font-size: 0.75rem;
-      letter-spacing: 0.22em;
-      text-transform: uppercase;
-      opacity: 0.75;
-      display: flex;
-      align-items: center;
-      gap: var(--sp-2);
-    }
+  .card--b .card__tag { color: var(--dune-gold); }
 
-    .choice__cta::after {
-      content: '→';
-      transition: transform var(--dur-fast) var(--ease-out);
-    }
+  .card__name-ar {
+    font-family: 'Cairo Play', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.5rem, 2.8vw, 2.25rem);
+    direction: rtl;
+    margin-bottom: 10px;
+    opacity: 0.95;
+  }
 
-    .choice__card:hover .choice__cta::after {
-      transform: translateX(4px);
-    }
+  .card__name-en {
+    font-family: 'Play', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 3.2vw, 2.75rem);
+    line-height: 1;
+    letter-spacing: 0.01em;
+    margin-bottom: 14px;
+  }
 
-    .cover__foot {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: var(--sp-4);
-      flex-wrap: wrap;
-      font-size: 0.6875rem;
-      letter-spacing: 0.2em;
-      text-transform: uppercase;
-      opacity: 0.4;
-    }
+  .card--a .card__name-en {
+    background: var(--brass-foil);
+    background-size: 220% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
 
-    @media (max-width: 680px) {
-      .choice { grid-template-columns: 1fr; }
-      .cover__center { padding: var(--sp-10) 0; }
-    }
-  </style>
+  .card--b .card__name-en {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 300;
+    color: var(--dune-sand);
+  }
+
+  .card__title {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+    color: var(--ivory);
+    opacity: 0.88;
+    margin-bottom: 18px;
+    line-height: 1.3;
+  }
+
+  .card__desc {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(0.9375rem, 1.1vw, 1.0625rem);
+    line-height: 1.7;
+    opacity: 0.72;
+    margin-bottom: 26px;
+    max-width: 42ch;
+  }
+
+  .card__rule {
+    height: 1px;
+    background: linear-gradient(90deg, rgba(245,240,232,0.22), transparent);
+    margin: 8px 0 20px;
+  }
+
+  .card__specs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px 24px;
+    margin-bottom: 22px;
+  }
+
+  .spec {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+  }
+
+  .spec__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    opacity: 0.5;
+  }
+
+  .spec__value {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 400;
+    font-size: 0.9375rem;
+    opacity: 0.92;
+  }
+
+  .card--a .spec__value { font-family: 'Play', sans-serif; font-weight: 400; font-size: 0.875rem; letter-spacing: 0.02em; }
+  .card--b .spec__value { font-family: 'Alexandria', sans-serif; font-weight: 300; font-size: 0.9375rem; }
+
+  .swatches {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .sw {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    border: 1px solid rgba(245,240,232,0.2);
+    box-shadow: 0 2px 12px rgba(0,0,0,0.35);
+  }
+
+  .cta {
+    margin-top: auto;
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 14px 22px;
+    border: 1px solid rgba(245,240,232,0.25);
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ivory);
+    width: fit-content;
+    transition: all 320ms var(--ease-out);
+    background: rgba(245,240,232,0.04);
+  }
+
+  .card--a:hover .cta,
+  .card--a:focus-visible .cta {
+    background: var(--brass);
+    border-color: var(--brass-lt);
+    color: var(--ink);
+  }
+
+  .card--b:hover .cta,
+  .card--b:focus-visible .cta {
+    background: var(--dune-gold);
+    border-color: var(--dune-gold);
+    color: var(--dune-umber);
+  }
+
+  .cta__arrow {
+    display: inline-block;
+    transition: transform 320ms var(--ease-out);
+  }
+
+  .card:hover .cta__arrow,
+  .card:focus-visible .cta__arrow { transform: translateX(6px); }
+
+  .card__newtab {
+    position: absolute;
+    top: 24px;
+    right: 24px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.45;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  /* --- card entrance stagger --- */
+  .card { animation: fadeUp 1s var(--ease-out) both; }
+  .card--a { animation-delay: 0.8s; }
+  .card--b { animation-delay: 0.95s; }
+
+  /* --- footer --- */
+  footer {
+    margin-top: auto;
+    padding-top: clamp(24px, 4vh, 48px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    animation: fadeIn 1.4s var(--ease-out) 1.2s both;
+  }
+
+  .copyright {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    opacity: 0.42;
+  }
+
+  .poweredby {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .poweredby__label {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 0.8125rem;
+    opacity: 0.55;
+    letter-spacing: 0.04em;
+  }
+
+  .poweredby__brand {
+    display: flex;
+    flex-direction: column;
+    line-height: 1.1;
+  }
+
+  .poweredby__brand .top {
+    font-family: 'Play', sans-serif;
+    font-weight: 700;
+    font-size: 0.875rem;
+    letter-spacing: 0.08em;
+  }
+
+  .poweredby__brand .top .strike { color: #E3342F; }
+  .poweredby__brand .top .media { color: var(--ivory); }
+
+  .poweredby__brand .bottom {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    opacity: 0.55;
+    margin-top: 4px;
+  }
+
+  /* Optional: if assets/strike-media.png exists, replace the text mark */
+  .poweredby__img {
+    height: 34px;
+    width: auto;
+    display: none;
+  }
+
+  /* --- keyframes --- */
+  @keyframes fadeIn {
+    from { opacity: 0; }
+    to   { opacity: 1; }
+  }
+
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  @keyframes shimmer {
+    0%   { background-position: 0% center; }
+    100% { background-position: 200% center; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; }
+  }
+</style>
 </head>
 <body>
-  <main class="cover">
-    <header class="cover__head anim-fade-in">
-      <span class="cover__mark">العلياء</span>
-      <span class="cover__meta">Brand Guidelines · 2026</span>
-    </header>
 
-    <section class="cover__center">
-      <span class="cover__eyebrow anim-fade-in anim-d1">Identity System</span>
-      <h1 class="cover__title anim-fade-up anim-d2">ALALYAA</h1>
-      <p class="cover__title-ar anim-fade-up anim-d3">دليل الهوية البصرية</p>
-      <p class="cover__sub anim-fade-up anim-d4">
-        Two design directions, one heritage. Choose a path to explore the brand system —
-        typography, palette, motion, and voice — as a sequenced presentation.
+<main class="page">
+
+  <header>
+    <div class="mark">
+      <span class="mark__ar">العليـــــاء</span>
+      <span class="mark__en">ALALYAA · DEVELOPMENTS</span>
+    </div>
+    <div class="meta">
+      Brand Book<br/>
+      Presentation · 2026
+    </div>
+  </header>
+
+  <section class="hero">
+    <span class="hero__eyebrow">Brand Book · Presentation</span>
+    <h1 class="hero__title">ALALYAA</h1>
+    <p class="hero__sub">العليـــــاء للتطويــــر العقــــاري</p>
+    <span class="hero__kicker">Choose a direction</span>
+    <p class="hero__lede">
+      Two brand directions have been developed for ALALYAA Developments.
+      Select an option below to open the full brand book presentation in a new tab.
+    </p>
+  </section>
+
+  <section class="choices" aria-label="Brand book options">
+
+    <a class="card card--a" href="option-a.html" target="_blank" rel="noopener">
+      <span class="card__newtab">↗ Opens in new tab</span>
+      <span class="card__tag">Option A · Volume III</span>
+      <span class="card__name-ar">العليــــاء</span>
+      <span class="card__name-en">ALALYAA</span>
+      <span class="card__title">Brand Guidelines — Heritage &amp; Brass</span>
+
+      <p class="card__desc">
+        A grounded, archival register set in deep ebony with brass-foil accents.
+        Seventeen chapters: identity, clear-zone, dual lockup, colour, typography,
+        stationery, signage.
       </p>
-    </section>
 
-    <nav class="choice anim-fade-up anim-d5" aria-label="Choose a brand direction">
-      <a class="choice__card choice__card--a" href="option-a.html">
-        <span class="choice__tag">Option A</span>
-        <span class="choice__name">Heritage · Brass &amp; Ebony</span>
-        <span class="choice__desc">
-          A grounded, archival voice. Cairo Play in Arabic paired with Cormorant
-          Garamond. Brass foil accents on deep ebony. Seventeen slides.
-        </span>
-        <div class="choice__swatches" aria-hidden="true">
-          <span class="choice__swatch" style="background: var(--a-ebony)"></span>
-          <span class="choice__swatch" style="background: var(--a-brass)"></span>
-          <span class="choice__swatch" style="background: var(--a-brass-light)"></span>
-          <span class="choice__swatch" style="background: var(--a-ivory)"></span>
+      <div class="card__rule"></div>
+
+      <div class="card__specs">
+        <div class="spec">
+          <span class="spec__label">Typeface</span>
+          <span class="spec__value">Play · Cairo Play</span>
         </div>
-        <span class="choice__cta">Open deck</span>
-      </a>
-
-      <a class="choice__card choice__card--b" href="option-b.html">
-        <span class="choice__tag">Option B</span>
-        <span class="choice__name">Dunes at Dawn · Rose &amp; Sand</span>
-        <span class="choice__desc">
-          A softer, atmospheric register. Alexandria sans with Cormorant accents.
-          Sand, rose, and muted gold across twenty-five slides.
-        </span>
-        <div class="choice__swatches" aria-hidden="true">
-          <span class="choice__swatch" style="background: var(--b-umber)"></span>
-          <span class="choice__swatch" style="background: var(--b-rose)"></span>
-          <span class="choice__swatch" style="background: var(--b-sand)"></span>
-          <span class="choice__swatch" style="background: var(--b-gold)"></span>
+        <div class="spec">
+          <span class="spec__label">Slides</span>
+          <span class="spec__value">17</span>
         </div>
-        <span class="choice__cta">Open deck</span>
-      </a>
-    </nav>
+        <div class="spec">
+          <span class="spec__label">Palette</span>
+          <span class="spec__value">Ebony · Brass · Ivory</span>
+        </div>
+        <div class="spec">
+          <span class="spec__label">Motion</span>
+          <span class="spec__value">The Ascent · Curtain</span>
+        </div>
+      </div>
 
-    <footer class="cover__foot anim-fade-in anim-d6">
-      <span>ALALYAA · العلياء</span>
-      <span>v0.1 · Foundation</span>
-    </footer>
-  </main>
+      <div class="swatches" aria-hidden="true">
+        <span class="sw" style="background:#1A1410"></span>
+        <span class="sw" style="background:#2A2118"></span>
+        <span class="sw" style="background:#B8922A"></span>
+        <span class="sw" style="background:#D4AA4A"></span>
+        <span class="sw" style="background:#F5F0E8"></span>
+      </div>
+
+      <span class="cta">
+        View Option A
+        <span class="cta__arrow">→</span>
+      </span>
+    </a>
+
+    <a class="card card--b" href="option-b.html" target="_blank" rel="noopener">
+      <span class="card__newtab">↗ Opens in new tab</span>
+      <span class="card__tag">Option B · Volume II</span>
+      <span class="card__name-ar">العليــــاء</span>
+      <span class="card__name-en">Al Alyaa</span>
+      <span class="card__title">Brand Book — Dunes at Dawn</span>
+
+      <p class="card__desc">
+        A softer, atmospheric register. Alexandria sans with Cormorant Garamond
+        accents across a rose, sand, and umber palette. Twenty-five pages spanning
+        identity, voice, bilingual lockup, and applications.
+      </p>
+
+      <div class="card__rule"></div>
+
+      <div class="card__specs">
+        <div class="spec">
+          <span class="spec__label">Typeface</span>
+          <span class="spec__value">Alexandria · Cormorant</span>
+        </div>
+        <div class="spec">
+          <span class="spec__label">Pages</span>
+          <span class="spec__value">25</span>
+        </div>
+        <div class="spec">
+          <span class="spec__label">Palette</span>
+          <span class="spec__value">Umber · Rose · Sand · Gold</span>
+        </div>
+        <div class="spec">
+          <span class="spec__label">Motion</span>
+          <span class="spec__value">Dunes · Horizon</span>
+        </div>
+      </div>
+
+      <div class="swatches" aria-hidden="true">
+        <span class="sw" style="background:#3D2B1F"></span>
+        <span class="sw" style="background:#C4856A"></span>
+        <span class="sw" style="background:#E8D5B7"></span>
+        <span class="sw" style="background:#C9A84C"></span>
+        <span class="sw" style="background:#8B6B7A"></span>
+      </div>
+
+      <span class="cta">
+        View Option B
+        <span class="cta__arrow">→</span>
+      </span>
+    </a>
+
+  </section>
+
+  <footer>
+    <span class="copyright">© 2026 ALALYAA Developments · All Rights Reserved</span>
+    <div class="poweredby">
+      <span class="poweredby__label">Powered by</span>
+      <img class="poweredby__img" src="assets/strike-media.png" alt="Strike Media"
+           onload="this.style.display='block'; this.nextElementSibling.style.display='none';"/>
+      <span class="poweredby__brand">
+        <span class="top"><span class="strike">Strike</span><span class="media">media</span></span>
+        <span class="bottom">PR &amp; Advertising Agency</span>
+      </span>
+    </div>
+  </footer>
+
+</main>
+
 </body>
 </html>

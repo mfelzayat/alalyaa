@@ -1,78 +1,280 @@
-/* ============================================================
-   ALALYAA · DECK TRANSITION VARIANTS
-   styles/guideline-transition.css
-   ============================================================ */
+/* ── THE ASCENT · Cinematic Curtain ─────────────────────────────
+   A theatrical vertical slit of brass light splits the screen and
+   widens to reveal the next slide. Outgoing slide rises + blurs +
+   desaturates. Incoming slide parallaxes up from below. A massive
+   Arabic numeral ghosts through the seam. Ambient grain pulses.
+   ~1400ms total.
+*/
 
-/* ----------------------------------------------------------
-   DEFAULT: HORIZONTAL SLIDE  (.deck--slide-h)
-   Slides enter from right (+60px), exit to left (-60px)
----------------------------------------------------------- */
-
-.deck--slide-h .slide {
-  transform: translateX(60px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.deck--slide-h .slide--active {
-  transform: translateX(0);
-}
-
-.deck--slide-h .slide--exit {
-  transform: translateX(-60px);
-}
-
-/* ----------------------------------------------------------
-   VARIANT: FADE  (.deck--fade)
-   No transform, pure opacity crossfade
----------------------------------------------------------- */
-
-.deck--fade .slide {
-  transform: none;
-  transition: opacity 0.55s ease;
-}
-
-.deck--fade .slide--active {
-  transform: none;
-}
-
-.deck--fade .slide--exit {
-  transform: none;
+/* The whole container — full viewport, on top */
+.ascent-curtain {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2147481000;
   opacity: 0;
+  visibility: hidden;
+}
+.ascent-curtain[data-playing] {
+  opacity: 1;
+  visibility: visible;
 }
 
-/* ----------------------------------------------------------
-   VARIANT: VERTICAL SLIDE  (.deck--slide-v)
-   Slides enter from below (+60px Y), exit to top (-60px Y)
----------------------------------------------------------- */
-
-.deck--slide-v .slide {
-  transform: translateY(60px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+/* Two midnight wings that meet in the center then part outward */
+.ascent-curtain .wing {
+  position: absolute;
+  top: 0; bottom: 0;
+  width: 51%;
+  background:
+    radial-gradient(ellipse at 50% 50%, rgba(40,30,70,0.0) 0%, rgba(20,16,40,0.0) 60%, rgba(20,16,40,0) 100%),
+    linear-gradient(180deg, #0d0a1f 0%, #141028 45%, #1a1436 100%);
+  will-change: transform;
+}
+.ascent-curtain .wing.l {
+  left: 0;
+  transform: translateX(-101%);
+  box-shadow: inset -40px 0 80px -30px rgba(0,0,0,0.6);
+}
+.ascent-curtain .wing.r {
+  right: 0;
+  transform: translateX(101%);
+  box-shadow: inset 40px 0 80px -30px rgba(0,0,0,0.6);
 }
 
-.deck--slide-v .slide--active {
-  transform: translateY(0);
+/* Subtle paper/film grain over the wings */
+.ascent-curtain .wing::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px),
+    radial-gradient(rgba(232,198,120,0.03) 1.2px, transparent 1.2px);
+  background-size: 3px 3px, 5px 5px;
+  mix-blend-mode: screen; opacity: 0.9;
 }
 
-.deck--slide-v .slide--exit {
-  transform: translateY(-60px);
-}
-
-/* ----------------------------------------------------------
-   VARIANT: SCALE  (.deck--scale)
-   Entering slides scale from 0.94, exiting scale to 1.04
----------------------------------------------------------- */
-
-.deck--scale .slide {
-  transform: scale(0.94);
-  transition: opacity 0.6s ease, transform 0.6s ease;
-}
-
-.deck--scale .slide--active {
-  transform: scale(1);
-}
-
-.deck--scale .slide--exit {
-  transform: scale(1.04);
+/* The brass slit of light — sits at center, grows vertically first,
+   then horizontally as the wings part. */
+.ascent-curtain .slit {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 2px; height: 0;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(180deg,
+    rgba(232,198,120,0) 0%,
+    rgba(232,198,120,0.9) 12%,
+    rgba(255,230,170,1) 50%,
+    rgba(232,198,120,0.9) 88%,
+    rgba(232,198,120,0) 100%);
+  filter: drop-shadow(0 0 16px rgba(255,220,140,0.8))
+          drop-shadow(0 0 40px rgba(232,198,120,0.35));
   opacity: 0;
+  border-radius: 2px;
+}
+
+/* Radial halo behind the slit — makes it feel like light, not a stripe */
+.ascent-curtain .halo {
+  position: absolute;
+  left: 50%; top: 50%;
+  width: 0; height: 0;
+  transform: translate(-50%, -50%);
+  border-radius: 50%;
+  background: radial-gradient(circle at center,
+    rgba(255,230,170,0.35) 0%,
+    rgba(232,198,120,0.18) 25%,
+    rgba(184,130,58,0.08) 45%,
+    rgba(20,16,40,0) 70%);
+  mix-blend-mode: screen;
+  opacity: 0;
+  pointer-events: none;
+  filter: blur(20px);
+}
+
+/* Massive Arabic/Latin numeral ghosted through the seam */
+.ascent-curtain .numeral {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, -50%) scale(1.04);
+  font-family: "Cairo Play", "Play", serif;
+  font-weight: 200;
+  font-size: 22vh;
+  line-height: 1;
+  color: rgba(232,198,120,0.28);
+  letter-spacing: -0.02em;
+  opacity: 0;
+  mix-blend-mode: screen;
+  text-shadow:
+    0 0 60px rgba(255,220,140,0.35),
+    0 0 120px rgba(184,130,58,0.2);
+  will-change: transform, opacity;
+  white-space: nowrap;
+}
+
+/* Chapter label — sits beneath the numeral in the middle band */
+.ascent-curtain .chapter {
+  position: absolute;
+  left: 50%; top: 50%;
+  transform: translate(-50%, calc(-50% + 18vh));
+  text-align: center;
+  opacity: 0;
+  color: #F3ECDC;
+  will-change: transform, opacity;
+}
+.ascent-curtain .chapter .en {
+  font-family: "Cairo Play", sans-serif;
+  font-size: 13px;
+  letter-spacing: 0.55em;
+  text-indent: 0.55em;
+  text-transform: uppercase;
+  opacity: 0.85;
+}
+.ascent-curtain .chapter .ar {
+  font-family: "Cairo Play", sans-serif;
+  font-size: 26px;
+  font-weight: 600;
+  direction: rtl;
+  margin-top: 14px;
+  color: #E8C678;              /* warm brass */
+  opacity: 0.9;
+}
+
+/* Slow horizontal shimmer band that sweeps across once */
+.ascent-curtain .shimmer {
+  position: absolute;
+  top: 0; bottom: 0;
+  left: -30%;
+  width: 40%;
+  background: linear-gradient(100deg,
+    transparent 0%,
+    rgba(232,198,120,0) 35%,
+    rgba(232,198,120,0.25) 50%,
+    rgba(232,198,120,0) 65%,
+    transparent 100%);
+  mix-blend-mode: screen;
+  filter: blur(20px);
+  opacity: 0;
+  transform: skewX(-14deg);
+  pointer-events: none;
+}
+
+/* ── Timeline ────────────────────────────────────────────────────
+   t=0      wings sweep in from edges (420ms, ease-in-out)
+   t=380    both wings meet at center — curtain closed
+   t=380    slit draws vertically (260ms)
+   t=520    halo blooms (400ms)
+   t=540    numeral + chapter fade in (260ms)
+   t=860    shimmer sweeps left→right (700ms)
+   t=900    numeral + chapter begin exit
+   t=980    wings begin parting outward (420ms, ease-out)
+   t=1400   done */
+
+.ascent-curtain[data-playing] .wing.l {
+  animation:
+    wingIn 420ms cubic-bezier(.62,.02,.3,1) forwards,
+    wingOutL 460ms cubic-bezier(.65,0,.2,1) forwards 980ms;
+}
+.ascent-curtain[data-playing] .wing.r {
+  animation:
+    wingInR 420ms cubic-bezier(.62,.02,.3,1) forwards,
+    wingOutR 460ms cubic-bezier(.65,0,.2,1) forwards 980ms;
+}
+@keyframes wingIn    { from { transform: translateX(-101%); } to { transform: translateX(-1%); } }
+@keyframes wingInR   { from { transform: translateX(101%); }  to { transform: translateX(1%); } }
+@keyframes wingOutL  { from { transform: translateX(-1%); }   to { transform: translateX(-101%); } }
+@keyframes wingOutR  { from { transform: translateX(1%); }    to { transform: translateX(101%); } }
+
+.ascent-curtain[data-playing] .slit {
+  animation:
+    slitGrow 300ms cubic-bezier(.2,.8,.2,1) forwards 380ms,
+    slitFade 300ms cubic-bezier(.65,0,.35,1) forwards 960ms;
+}
+@keyframes slitGrow {
+  0%   { height: 0;   opacity: 0; width: 2px; }
+  40%  { opacity: 1; }
+  100% { height: 92vh; opacity: 1; width: 2px; }
+}
+@keyframes slitFade {
+  from { opacity: 1; height: 92vh; }
+  to   { opacity: 0; height: 40vh; }
+}
+
+.ascent-curtain[data-playing] .halo {
+  animation: haloBloom 520ms cubic-bezier(.2,.8,.2,1) forwards 440ms,
+             haloFade  320ms ease-out forwards 960ms;
+}
+@keyframes haloBloom {
+  from { width: 0;     height: 0;     opacity: 0; }
+  to   { width: 70vh;  height: 70vh;  opacity: 1; }
+}
+@keyframes haloFade {
+  from { opacity: 1; }
+  to   { opacity: 0; }
+}
+
+.ascent-curtain[data-playing] .numeral {
+  animation:
+    numEnter 400ms cubic-bezier(.2,.8,.2,1) forwards 500ms,
+    numExit  340ms cubic-bezier(.6,0,.3,1) forwards 900ms;
+}
+@keyframes numEnter {
+  from { opacity: 0; transform: translate(-50%, -50%) scale(1.18); filter: blur(14px); }
+  to   { opacity: 1; transform: translate(-50%, -50%) scale(1);     filter: blur(0); }
+}
+@keyframes numExit {
+  from { opacity: 1; transform: translate(-50%, -50%) scale(1); filter: blur(0); }
+  to   { opacity: 0; transform: translate(-50%, -56%) scale(0.92); filter: blur(6px); }
+}
+
+.ascent-curtain[data-playing] .chapter {
+  animation:
+    chapterEnter 420ms cubic-bezier(.2,.8,.2,1) forwards 580ms,
+    chapterExit  260ms ease-in forwards 960ms;
+}
+@keyframes chapterEnter {
+  from { opacity: 0; transform: translate(-50%, calc(-50% + 22vh)); }
+  to   { opacity: 1; transform: translate(-50%, calc(-50% + 18vh)); }
+}
+@keyframes chapterExit {
+  from { opacity: 1; transform: translate(-50%, calc(-50% + 18vh)); }
+  to   { opacity: 0; transform: translate(-50%, calc(-50% + 14vh)); }
+}
+
+.ascent-curtain[data-playing] .shimmer {
+  animation: shimmerSweep 820ms cubic-bezier(.35,0,.4,1) forwards 760ms;
+}
+@keyframes shimmerSweep {
+  0%   { left: -30%; opacity: 0; }
+  20%  { opacity: 1; }
+  100% { left: 110%; opacity: 0; }
+}
+
+/* ── Outgoing slide treatment — lifts + blurs + desaturates.
+   Applied to the slide that's LEAVING during the transition. */
+.deck-leaving {
+  animation: slideLeave 520ms cubic-bezier(.45,0,.25,1) forwards !important;
+  will-change: transform, opacity, filter;
+}
+@keyframes slideLeave {
+  from { transform: translate3d(0,0,0)    scale(1);    filter: blur(0)  saturate(1);    opacity: 1; }
+  to   { transform: translate3d(0,-3%,0)  scale(0.985); filter: blur(4px) saturate(0.7); opacity: 0; }
+}
+
+/* ── Incoming slide treatment — parallax rise after curtain parts.
+   Applied when the wings begin opening so content streams up with them. */
+.deck-arriving > * {
+  animation: slideArrive 820ms cubic-bezier(.22,.78,.18,1) both;
+}
+.deck-arriving { animation: slideArriveBase 700ms cubic-bezier(.2,.8,.2,1) both; }
+@keyframes slideArriveBase {
+  from { filter: blur(6px) saturate(0.85); }
+  to   { filter: blur(0)   saturate(1); }
+}
+@keyframes slideArrive {
+  from { opacity: 0; transform: translate3d(0, 42px, 0); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ascent-curtain, .ascent-curtain *,
+  .deck-leaving, .deck-arriving, .deck-arriving > * {
+    animation: none !important;
+  }
 }

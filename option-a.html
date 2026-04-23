@@ -1,198 +1,214 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>ALALYAA · Option A — Heritage</title>
-  <meta name="description" content="ALALYAA brand guidelines — Option A, Heritage (Brass &amp; Ebony)." />
-
-  <link rel="stylesheet" href="styles/emaar.css" />
-  <link rel="stylesheet" href="styles/animations.css" />
-  <link rel="stylesheet" href="styles/guideline.css" />
-
-  <style>
-    html, body { background: var(--a-ebony); color: var(--a-ivory); }
-    .deck { background: var(--a-ebony); }
-
-    .s-cover {
-      background:
-        radial-gradient(ellipse at 15% 10%, rgba(184, 146, 42, 0.14), transparent 55%),
-        radial-gradient(ellipse at 85% 90%, rgba(184, 146, 42, 0.08), transparent 55%),
-        var(--a-ebony);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      gap: var(--sp-5);
-    }
-
-    .s-cover .label { color: var(--a-brass); opacity: 0.9; }
-
-    .s-cover .title {
-      font-family: var(--font-serif);
-      font-weight: 300;
-      font-size: clamp(3rem, 10vw, 7.5rem);
-      line-height: 1;
-      letter-spacing: -0.02em;
-      background: var(--a-foil);
-      background-size: 200% auto;
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-      animation: shimmer 10s linear infinite;
-    }
-
-    .s-cover .title-ar {
-      font-family: var(--font-arabic);
-      font-weight: 300;
-      font-size: clamp(1.5rem, 4vw, 3rem);
-      direction: rtl;
-    }
-
-    .s-cover .sub {
-      max-width: 48ch;
-      opacity: 0.7;
-      font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
-      line-height: 1.75;
-    }
-
-    .s-palette .slide__pad { gap: var(--sp-8); }
-    .s-palette .grid-swatches {
-      display: grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap: clamp(12px, 2vw, 32px);
-    }
-    @media (max-width: 680px) {
-      .s-palette .grid-swatches { grid-template-columns: 1fr 1fr; }
-    }
-
-    .s-type .pair {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: var(--sp-12);
-      align-items: start;
-    }
-    @media (max-width: 680px) {
-      .s-type .pair { grid-template-columns: 1fr; }
-    }
-    .s-type .spec {
-      font-family: var(--font-serif);
-      font-weight: 300;
-      font-size: clamp(2rem, 5vw, 4rem);
-      line-height: 1.1;
-    }
-    .s-type .spec-ar {
-      font-family: var(--font-arabic);
-      direction: rtl;
-    }
-    .s-type .meta {
-      font-size: 0.6875rem;
-      letter-spacing: 0.25em;
-      text-transform: uppercase;
-      opacity: 0.55;
-      margin-top: var(--sp-4);
-    }
-
-    .s-end { text-align: center; }
-    .s-end .title {
-      font-family: var(--font-serif);
-      font-weight: 300;
-      font-style: italic;
-      font-size: clamp(2rem, 4vw, 3rem);
-      opacity: 0.9;
-    }
-  </style>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>ALALYAA · Brand Guidelines Vol III</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Play:wght@400;700&family=Cairo+Play:wght@300;400;500;600;700;800&family=Cairo:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles/guideline.css"/>
+<link rel="stylesheet" href="styles/guideline-motion.css"/>
+<link rel="stylesheet" href="styles/guideline-transition.css?v=2"/>
+<script src="deck-stage.js"></script>
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" integrity="sha384-hD6/rw4ppMLGNu3tX5cjIb+uRZ7UkRJ6BPkLpg4hAu/6onKUg4lLsHAs9EBPT82L" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" integrity="sha384-u6aeetuaXnQ38mYT8rp6sbXaQe3NL9t+IBXmnYxwkUI2Hw4bsp2Wvmx4yRQF1uAm" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" integrity="sha384-m08KidiNqLdpJqLq95G/LEi8Qvjl/xUYll3QILypMoQ65QorJ9Lvtp2RXYGBFj1y" crossorigin="anonymous"></script>
 </head>
 <body>
-  <a class="deck-back" href="index.html">Back</a>
+<div id="root"></div>
+<script type="text/babel" src="components/GuidelinePrim.jsx"></script>
+<script type="text/babel" src="components/Guideline1.jsx"></script>
+<script type="text/babel" src="components/GuidelineConcept.jsx"></script>
+<script type="text/babel" src="components/GuidelineEN.jsx"></script>
+<script type="text/babel" src="components/Guideline2.jsx"></script>
+<script type="text/babel">
+const App = () => (
+  <deck-stage width="1920" height="1080">
+    <GCover/>
+    <GContents/>
+    <GIntro/>
+    <GMission/>
+    <GValues/>
+    <GWordmark/>
+    <GConceptAR/>
+    <GClearZone/>
+    <GWordmarkEN/>
+    <GClearZoneEN/>
+    <GDualLockup/>
+    <GLogoSystem/>
+    <GColour/>
+    <GType/>
+    <GStationery/>
+    <GSignage/>
+    <GColophon/>
+  </deck-stage>
+);
+ReactDOM.createRoot(document.getElementById('root')).render(<App/>);
+</script>
+<script>
+/* THE ASCENT — Cinematic Curtain orchestrator.
+   A theatrical curtain of midnight wings meet at center, a brass
+   slit of light grows vertically, a massive numeral + chapter name
+   ghost through the seam, a shimmer sweeps once, the wings part to
+   reveal the next slide rising up with parallax + focus pull-in. */
+(() => {
+  const CHAPTERS = [
+    { num: "٠",  en: "Cover",            ar: "الغــلاف" },
+    { num: "٠",  en: "Contents",         ar: "الفهــرس" },
+    { num: "١",  en: "Introduction",     ar: "تقديــم" },
+    { num: "١",  en: "Mission · Vision", ar: "رؤيــة · رســالة" },
+    { num: "١",  en: "Brand Values",     ar: "القيــم" },
+    { num: "٢",  en: "The Wordmark",     ar: "الشعــار" },
+    { num: "٢",  en: "The Concept",      ar: "المفهــوم" },
+    { num: "٢",  en: "Clear Zone",       ar: "المســاحة" },
+    { num: "٢",  en: "English Wordmark", ar: "اللاتينــي" },
+    { num: "٢",  en: "Latin Clear Zone", ar: "المســاحة" },
+    { num: "٢",  en: "Dual Lockup",      ar: "التلازم" },
+    { num: "٢",  en: "Logo System",      ar: "النظــام" },
+    { num: "٣",  en: "Colour Palette",   ar: "الألــوان" },
+    { num: "٣",  en: "Typography",       ar: "الطباعــة" },
+    { num: "٤",  en: "Stationery",       ar: "القرطاســية" },
+    { num: "٤",  en: "Signage",          ar: "اللوحــات" },
+    { num: "٥",  en: "Colophon",         ar: "الختــام" },
+  ];
 
-  <main class="deck" aria-label="ALALYAA Option A deck">
+  const curtain = document.createElement('div');
+  curtain.className = 'ascent-curtain';
+  curtain.innerHTML = `
+    <div class="wing l"></div>
+    <div class="wing r"></div>
+    <div class="halo"></div>
+    <div class="slit"></div>
+    <div class="numeral"></div>
+    <div class="chapter">
+      <div class="en"></div>
+      <div class="ar"></div>
+    </div>
+    <div class="shimmer"></div>
+  `;
+  document.body.appendChild(curtain);
+  const numEl = curtain.querySelector('.numeral');
+  const enEl  = curtain.querySelector('.chapter .en');
+  const arEl  = curtain.querySelector('.chapter .ar');
 
-    <section class="slide s-cover">
-      <span class="label anim-fade-in">Option A · Heritage</span>
-      <h1 class="title anim-fade-up anim-d1">ALALYAA</h1>
-      <p class="title-ar anim-fade-up anim-d2">العلياء</p>
-      <p class="sub anim-fade-up anim-d3">
-        Brass &amp; ebony. A grounded, archival register — Cairo Play in Arabic,
-        Cormorant Garamond in Latin, with brass-foil accents.
-      </p>
-    </section>
+  let playing = false;
+  function playCurtain(toIndex, fromSlide, toSlide) {
+    if (playing) return;
+    playing = true;
+    const meta = CHAPTERS[toIndex] || { num: String(toIndex + 1), en: "", ar: "" };
+    numEl.textContent = meta.num;
+    enEl.textContent  = meta.en;
+    arEl.textContent  = meta.ar;
 
-    <section class="slide s-palette">
-      <div class="slide__pad">
-        <span class="label">01 · Palette</span>
-        <h2 class="slide__title">A living archive of brass, ebony, and ivory.</h2>
-        <div class="slide__content">
-          <div class="grid-swatches">
-            <div class="swatch">
-              <div class="swatch__block" style="background: var(--a-ebony); border: 1px solid rgba(245,240,232,.08)"></div>
-              <div class="swatch__label">
-                <span class="swatch__name-ar">الأبنوس</span>
-                <span class="swatch__name-en">Ebony</span>
-                <span class="swatch__hex">#1A1410</span>
-              </div>
-            </div>
-            <div class="swatch">
-              <div class="swatch__block" style="background: var(--a-brass)"></div>
-              <div class="swatch__label">
-                <span class="swatch__name-ar">النحاس</span>
-                <span class="swatch__name-en">Brass</span>
-                <span class="swatch__hex">#B8922A</span>
-              </div>
-            </div>
-            <div class="swatch">
-              <div class="swatch__block" style="background: var(--a-brass-light)"></div>
-              <div class="swatch__label">
-                <span class="swatch__name-ar">النحاس الفاتح</span>
-                <span class="swatch__name-en">Brass · Light</span>
-                <span class="swatch__hex">#D4AA4A</span>
-              </div>
-            </div>
-            <div class="swatch">
-              <div class="swatch__block" style="background: var(--a-ivory)"></div>
-              <div class="swatch__label">
-                <span class="swatch__name-ar">العاج</span>
-                <span class="swatch__name-en">Ivory</span>
-                <span class="swatch__hex">#F5F0E8</span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    // Outgoing slide lifts + blurs
+    if (fromSlide) {
+      fromSlide.classList.remove('deck-leaving');
+      void fromSlide.offsetWidth;
+      fromSlide.classList.add('deck-leaving');
+      setTimeout(() => fromSlide.classList.remove('deck-leaving'), 560);
+    }
 
-    <section class="slide s-type">
-      <div class="slide__pad">
-        <span class="label">02 · Typography</span>
-        <h2 class="slide__title">A bilingual pairing, set in stone.</h2>
-        <div class="slide__content">
-          <div class="pair">
-            <div>
-              <p class="spec spec-ar">العلياء</p>
-              <p class="meta">Cairo Play · 300</p>
-            </div>
-            <div>
-              <p class="spec">Alalyaa</p>
-              <p class="meta">Cormorant Garamond · 300</p>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
+    // Curtain sequence
+    curtain.removeAttribute('data-playing');
+    void curtain.offsetWidth;
+    curtain.setAttribute('data-playing', '');
 
-    <section class="slide s-end">
-      <div class="slide__pad">
-        <div class="slide__content" style="align-items: center;">
-          <span class="label">Fin</span>
-          <p class="title">More slides coming — this is the foundation preview.</p>
-        </div>
-      </div>
-    </section>
+    // Incoming slide — focus-pull + parallax rise, synced with wing opening (t=980)
+    if (toSlide) {
+      setTimeout(() => {
+        toSlide.classList.remove('deck-arriving');
+        void toSlide.offsetWidth;
+        toSlide.classList.add('deck-arriving');
+        setTimeout(() => toSlide.classList.remove('deck-arriving'), 900);
+      }, 960);
+    }
 
-  </main>
+    setTimeout(() => {
+      curtain.removeAttribute('data-playing');
+      playing = false;
+    }, 1450);
+  }
 
-  <script src="motion.js"></script>
-  <script src="deck-stage.js"></script>
+  function attach() {
+    const stage = document.querySelector('deck-stage');
+    if (!stage) return setTimeout(attach, 60);
+    stage.addEventListener('slidechange', (e) => {
+      const { index, previousIndex, reason, slide, previousSlide } = e.detail;
+      if (reason === 'init' || previousIndex === -1) return;
+      playCurtain(index, previousSlide, slide);
+    });
+  }
+  setTimeout(attach, 0);
+})();
+</script>
+<script>
+/* THE ASCENT — motion orchestrator.
+   On every slide change, re-trigger in-slide entrance animations by
+   toggling .is-entering, and auto-wire default anim-* classes on
+   common guideline primitives so every slide gets choreography for free. */
+(() => {
+  const AUTO_RULES = [
+    // [selector,                    class,      extraDelay]
+    ['.folio',                       'anim-up'],
+    ['.section-tag',                 'anim-up'],
+    ['.section-number',              'anim-up'],
+    ['.title-display',               'anim-clip'],
+    ['.title-sans',                  'anim-up'],
+    ['.ar-title',                    'anim-rtl'],
+    ['.ar-body',                     'anim-rtl'],
+    ['.body-copy',                   'anim-up'],
+    ['.rule',                        'anim-rule'],
+    ['.rule--thick',                 'anim-rule'],
+    ['.rule--foil',                  'anim-rule'],
+    ['.crosshair',                   'anim-crosshair'],
+    ['.bottom-rail',                 'anim-up'],
+    ['.foil-chip',                   'anim-up'],
+  ];
+  function autowire(slide) {
+    AUTO_RULES.forEach(([sel, cls]) => {
+      slide.querySelectorAll(sel).forEach(el => el.classList.add(cls));
+    });
+    // Give body-copy paragraphs graduated delay based on order within parent
+    slide.querySelectorAll('.body-copy').forEach((el, i) => {
+      el.style.animationDelay = (320 + i * 90) + 'ms';
+    });
+    // Titles get a tiny pre-delay
+    slide.querySelectorAll('.title-display').forEach((el) => {
+      el.style.animationDelay = '140ms';
+    });
+    slide.querySelectorAll('.ar-title').forEach((el, i) => {
+      el.style.animationDelay = (240 + i * 60) + 'ms';
+    });
+  }
+
+  function replay(slide, delay) {
+    if (!slide) return;
+    autowire(slide);
+    slide.classList.remove('is-entering');
+    void slide.offsetWidth;
+    setTimeout(() => {
+      slide.classList.add('is-entering');
+      clearTimeout(slide.__ascentT);
+      slide.__ascentT = setTimeout(() => slide.classList.remove('is-entering'), 2800);
+    }, delay);
+  }
+
+  function attach() {
+    const stage = document.querySelector('deck-stage');
+    if (!stage) { return setTimeout(attach, 60); }
+    // Initial
+    const initial = stage.querySelector('[data-deck-active]');
+    if (initial) replay(initial, 0);
+    stage.addEventListener('slidechange', (e) => {
+      const { reason } = e.detail;
+      const delay = (reason === 'init') ? 0 : 1060;
+      replay(e.detail.slide, delay);
+    });
+  }
+  // Defer a tick so React has mounted children.
+  setTimeout(attach, 0);
+})();
+</script>
 </body>
 </html>

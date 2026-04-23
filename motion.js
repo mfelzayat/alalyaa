@@ -1,110 +1,57 @@
-/* ============================================================
-   ALALYAA · MOTION ENHANCEMENTS
-   motion.js
-   ============================================================ */
+/* ───────────────────────────────────────────────────────────────
+   Al Alyaa · Brand Book · Motion Controller
+   Orchestrates slide-entry animations and cross-slide transitions.
+   ─────────────────────────────────────────────────────────────── */
 
-(function () {
-  'use strict';
+(() => {
+  // Wait for deck-stage + slides to be present
+  const init = () => {
+    const deck = document.querySelector("deck-stage");
+    if (!deck) { requestAnimationFrame(init); return; }
 
-  /* ----------------------------------------------------------
-     PARALLAX — mousemove-driven depth parallax
-     Elements with [data-depth] move proportionally to cursor.
-     data-depth="0.2" = subtle, data-depth="1" = full range
-  ---------------------------------------------------------- */
+    // Replay entry animations on activation
+    const armEntry = (slide) => {
+      if (!slide) return;
+      slide.removeAttribute("data-entering");
+      // force reflow to restart CSS animations
+      void slide.offsetWidth;
+      slide.setAttribute("data-entering", "true");
+      // remove the attribute once animations settle (clean DOM)
+      clearTimeout(slide._alTimer);
+      slide._alTimer = setTimeout(() => {
+        slide.removeAttribute("data-entering");
+      }, 1600);
+    };
 
-  function initParallax() {
-    var elements = Array.from(document.querySelectorAll('[data-depth]'));
-    if (!elements.length) return;
+    // First slide — arm on next frame once scaled
+    setTimeout(() => {
+      const first = deck.querySelector("section.pl");
+      if (first) armEntry(first);
+    }, 80);
 
-    var mouseX = 0;
-    var mouseY = 0;
-    var rafId  = null;
+    // Subsequent navigation
+    deck.addEventListener("slidechange", (e) => {
+      const { slide, previousSlide, reason } = e.detail;
+      if (!slide) return;
 
-    function applyParallax() {
-      var cx = window.innerWidth  / 2;
-      var cy = window.innerHeight / 2;
-      var dx = mouseX - cx;
-      var dy = mouseY - cy;
+      const doIt = () => armEntry(slide);
 
-      elements.forEach(function (el) {
-        var depth = parseFloat(el.getAttribute('data-depth')) || 0.2;
-        var tx    = dx * depth * 0.04;
-        var ty    = dy * depth * 0.04;
-        el.style.transform = 'translate3d(' + tx + 'px, ' + ty + 'px, 0)';
-      });
-
-      rafId = null;
-    }
-
-    document.addEventListener('mousemove', function (e) {
-      mouseX = e.clientX;
-      mouseY = e.clientY;
-      if (!rafId) {
-        rafId = requestAnimationFrame(applyParallax);
-      }
-    }, { passive: true });
-
-    // Reset transform when pointer leaves the window
-    document.addEventListener('mouseleave', function () {
-      elements.forEach(function (el) {
-        el.style.transform = 'translate3d(0, 0, 0)';
-      });
-    });
-  }
-
-  /* ----------------------------------------------------------
-     GRAIN TEXTURE — canvas-based noise overlay
-     Applied to all elements with class .grain
-  ---------------------------------------------------------- */
-
-  function initGrainTexture() {
-    var grainEls = Array.from(document.querySelectorAll('.grain'));
-    if (!grainEls.length) return;
-
-    var SIZE   = 200; // canvas tile size
-    var canvas = document.createElement('canvas');
-    canvas.width  = SIZE;
-    canvas.height = SIZE;
-
-    var ctx    = canvas.getContext('2d');
-    var image  = ctx.createImageData(SIZE, SIZE);
-    var data   = image.data;
-
-    for (var i = 0; i < data.length; i += 4) {
-      var value = Math.floor(Math.random() * 255);
-      data[i]     = value; // R
-      data[i + 1] = value; // G
-      data[i + 2] = value; // B
-      data[i + 3] = Math.floor(Math.random() * 28) + 4; // A (very subtle)
-    }
-
-    ctx.putImageData(image, 0, 0);
-
-    var dataUrl = canvas.toDataURL('image/png');
-
-    grainEls.forEach(function (el) {
-      var existing = window.getComputedStyle(el).backgroundImage;
-      var grain    = 'url("' + dataUrl + '")';
-
-      if (existing && existing !== 'none') {
-        el.style.backgroundImage = grain + ', ' + existing;
+      // Use View Transitions API for cross-slide morph if available
+      if (document.startViewTransition && reason !== "init") {
+        try {
+          document.startViewTransition(() => { doIt(); });
+        } catch (_) {
+          doIt();
+        }
       } else {
-        el.style.backgroundImage = grain;
+        doIt();
       }
-
-      el.style.backgroundRepeat   = 'repeat, ' + (existing && existing !== 'none' ? 'no-repeat' : 'repeat');
-      el.style.backgroundSize     = SIZE + 'px ' + SIZE + 'px, cover';
-      el.style.backgroundPosition = '0 0, center';
     });
+  };
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", init);
+  } else {
+    init();
   }
-
-  /* ----------------------------------------------------------
-     INIT
-  ---------------------------------------------------------- */
-
-  document.addEventListener('DOMContentLoaded', function () {
-    initParallax();
-    initGrainTexture();
-  });
-
-}());
+})();

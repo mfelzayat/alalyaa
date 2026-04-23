@@ -1,96 +1,191 @@
-/* ============================================================
-   ALALYAA · SLIDE MOTION TRIGGERS
-   styles/guideline-motion.css
+/* ── THE ASCENT · motion layer ──────────────────────────────────
+   Every reveal is themed around العليــــاء = heights / rising.
+   Things enter from below; brass lines sweep across; kashida strokes
+   extend on cue. Triggered by .is-entering on the active slide.
+*/
 
-   All motion classes are invisible by default (opacity:0 /
-   translateY) and animate in only when the parent slide
-   carries the .slide--active class.
-   ============================================================ */
+/* --- base: on non-active slides, suppress transform work --- */
+deck-stage section { transition: opacity 420ms cubic-bezier(.2,.8,.2,1); }
 
-/* ----------------------------------------------------------
-   BASE HIDDEN STATE
----------------------------------------------------------- */
+/* A fade-up primitive — every slide's direct children get lift on enter */
+[data-deck-active].is-entering .anim-up {
+  animation: ascentUp 820ms cubic-bezier(.2,.8,.2,1) both;
+}
+[data-deck-active].is-entering .anim-up-2 { animation-delay: 120ms; }
+[data-deck-active].is-entering .anim-up-3 { animation-delay: 220ms; }
+[data-deck-active].is-entering .anim-up-4 { animation-delay: 320ms; }
+[data-deck-active].is-entering .anim-up-5 { animation-delay: 420ms; }
+[data-deck-active].is-entering .anim-up-6 { animation-delay: 520ms; }
 
-[class*="motion-"] {
-  opacity: 0;
+@keyframes ascentUp {
+  from { opacity: 0; transform: translate3d(0, 28px, 0); filter: blur(2px); }
+  to   { opacity: 1; transform: translate3d(0, 0, 0);    filter: blur(0); }
 }
 
-/* ----------------------------------------------------------
-   FADE-UP  (motion-1 … motion-8)
-   Stagger: 0, 0.12, 0.24, 0.36, 0.48, 0.60, 0.72, 0.84 s
----------------------------------------------------------- */
-
-.slide--active .motion-1,
-.slide--active .motion-2,
-.slide--active .motion-3,
-.slide--active .motion-4,
-.slide--active .motion-5,
-.slide--active .motion-6,
-.slide--active .motion-7,
-.slide--active .motion-8 {
-  animation: fadeUp 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+/* Kashida extension — the horizontal reach stroke */
+[data-deck-active].is-entering .anim-kashida {
+  animation: kashidaExtend 1100ms cubic-bezier(.2,.8,.15,1) both;
+  animation-delay: 260ms;
+  transform-origin: left center;
+}
+@keyframes kashidaExtend {
+  from { transform: scaleX(0); opacity: 0; }
+  to   { transform: scaleX(1); opacity: 1; }
 }
 
-.slide--active .motion-1 { animation-delay: 0.00s; }
-.slide--active .motion-2 { animation-delay: 0.12s; }
-.slide--active .motion-3 { animation-delay: 0.24s; }
-.slide--active .motion-4 { animation-delay: 0.36s; }
-.slide--active .motion-5 { animation-delay: 0.48s; }
-.slide--active .motion-6 { animation-delay: 0.60s; }
-.slide--active .motion-7 { animation-delay: 0.72s; }
-.slide--active .motion-8 { animation-delay: 0.84s; }
-
-/* ----------------------------------------------------------
-   FADE-IN  (motion-fade-1 … motion-fade-4)
----------------------------------------------------------- */
-
-.slide--active .motion-fade-1,
-.slide--active .motion-fade-2,
-.slide--active .motion-fade-3,
-.slide--active .motion-fade-4 {
-  animation: fadeIn 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+/* Rule / hairline sweep — draws from left */
+[data-deck-active].is-entering .anim-rule {
+  animation: ruleSweep 900ms cubic-bezier(.3,.9,.2,1) both;
+  animation-delay: 200ms;
+  transform-origin: left center;
+}
+@keyframes ruleSweep {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
 }
 
-.slide--active .motion-fade-1 { animation-delay: 0.00s; }
-.slide--active .motion-fade-2 { animation-delay: 0.18s; }
-.slide--active .motion-fade-3 { animation-delay: 0.36s; }
-.slide--active .motion-fade-4 { animation-delay: 0.54s; }
-
-/* ----------------------------------------------------------
-   CURTAIN REVEAL  (motion-curtain-1 … motion-curtain-3)
----------------------------------------------------------- */
-
-.slide--active .motion-curtain-1,
-.slide--active .motion-curtain-2,
-.slide--active .motion-curtain-3 {
-  animation: curtainReveal 0.9s cubic-bezier(0.22, 1, 0.36, 1) both;
+/* Clip-reveal wipe — for titles, from bottom up */
+[data-deck-active].is-entering .anim-clip {
+  animation: clipRiseUp 900ms cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes clipRiseUp {
+  from { clip-path: inset(0 0 100% 0); transform: translate3d(0,14px,0); }
+  to   { clip-path: inset(0 0 0 0);    transform: translate3d(0,0,0); }
 }
 
-.slide--active .motion-curtain-1 { animation-delay: 0.00s; }
-.slide--active .motion-curtain-2 { animation-delay: 0.20s; }
-.slide--active .motion-curtain-3 { animation-delay: 0.40s; }
+/* Stagger children — used on swatch grids, value lists etc */
+[data-deck-active].is-entering .anim-stagger > * {
+  animation: ascentUp 720ms cubic-bezier(.2,.8,.2,1) both;
+}
+[data-deck-active].is-entering .anim-stagger > *:nth-child(1) { animation-delay: 280ms; }
+[data-deck-active].is-entering .anim-stagger > *:nth-child(2) { animation-delay: 360ms; }
+[data-deck-active].is-entering .anim-stagger > *:nth-child(3) { animation-delay: 440ms; }
+[data-deck-active].is-entering .anim-stagger > *:nth-child(4) { animation-delay: 520ms; }
+[data-deck-active].is-entering .anim-stagger > *:nth-child(5) { animation-delay: 600ms; }
+[data-deck-active].is-entering .anim-stagger > *:nth-child(6) { animation-delay: 680ms; }
+[data-deck-active].is-entering .anim-stagger > *:nth-child(7) { animation-delay: 760ms; }
+[data-deck-active].is-entering .anim-stagger > *:nth-child(8) { animation-delay: 840ms; }
 
-/* ----------------------------------------------------------
-   SCALE-IN  (motion-scale-1 … motion-scale-3)
----------------------------------------------------------- */
-
-.slide--active .motion-scale-1,
-.slide--active .motion-scale-2,
-.slide--active .motion-scale-3 {
-  animation: scaleIn 0.72s cubic-bezier(0.22, 1, 0.36, 1) both;
+/* Corner crosshair bloom — spins into place */
+[data-deck-active].is-entering .anim-crosshair {
+  animation: crosshairBloom 700ms cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: 540ms;
+}
+@keyframes crosshairBloom {
+  from { opacity: 0; transform: scale(0.4) rotate(-45deg); }
+  to   { opacity: 0.55; transform: scale(1) rotate(0); }
 }
 
-.slide--active .motion-scale-1 { animation-delay: 0.00s; }
-.slide--active .motion-scale-2 { animation-delay: 0.20s; }
-.slide--active .motion-scale-3 { animation-delay: 0.40s; }
+/* Foil scanline — used on signage slide for a one-shot shimmer */
+.foil-scan {
+  position: absolute; inset: 0; pointer-events: none; overflow: hidden;
+  mix-blend-mode: screen; opacity: 0;
+}
+[data-deck-active].is-entering .foil-scan {
+  opacity: 1;
+  animation: foilScanOnce 1600ms ease-out both;
+  animation-delay: 700ms;
+}
+.foil-scan::before {
+  content: ""; position: absolute; top: -20%; bottom: -20%;
+  width: 22%; left: -30%;
+  background: linear-gradient(100deg,
+    transparent 0%,
+    rgba(200, 154, 91, 0.0) 20%,
+    rgba(200, 154, 91, 0.35) 50%,
+    rgba(200, 154, 91, 0.0) 80%,
+    transparent 100%);
+  filter: blur(8px);
+  transform: skewX(-18deg);
+}
+@keyframes foilScanOnce {
+  0%   { opacity: 0; }
+  10%  { opacity: 1; }
+  100% { opacity: 1; }
+}
+[data-deck-active].is-entering .foil-scan::before {
+  animation: scanMove 1600ms ease-in-out both;
+  animation-delay: 700ms;
+}
+@keyframes scanMove {
+  from { left: -30%; }
+  to   { left: 120%; }
+}
 
-/* ----------------------------------------------------------
-   REDUCED MOTION OVERRIDE
----------------------------------------------------------- */
+/* Ambient brass shimmer — slow, continuous, on foil accents */
+.brass-shimmer {
+  background-size: 200% 100%;
+  animation: brassDrift 18s linear infinite;
+}
+@keyframes brassDrift {
+  0%   { background-position: 0% 0%; }
+  100% { background-position: 200% 0%; }
+}
 
+/* Paper grain — subtle animated noise on paper bgs */
+.paper-grain::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background-image: radial-gradient(rgba(20,16,40,0.06) 1px, transparent 1px);
+  background-size: 3px 3px;
+  mix-blend-mode: multiply; opacity: 0.35;
+}
+
+/* Cover specimen — letter-spacing settle */
+[data-deck-active].is-entering .anim-settle {
+  animation: letterSettle 1400ms cubic-bezier(.2,.8,.2,1) both;
+}
+@keyframes letterSettle {
+  from { letter-spacing: 0.9em; opacity: 0; filter: blur(6px); }
+  60%  { filter: blur(0); }
+  to   { letter-spacing: inherit; opacity: 1; filter: blur(0); }
+}
+
+/* Horizontal rise-in from right — for Arabic specimens */
+[data-deck-active].is-entering .anim-rtl {
+  animation: riseFromRight 900ms cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: 220ms;
+}
+@keyframes riseFromRight {
+  from { opacity: 0; transform: translate3d(40px, 8px, 0); }
+  to   { opacity: 1; transform: translate3d(0,0,0); }
+}
+
+/* Left entry — for Latin specimens */
+[data-deck-active].is-entering .anim-ltr {
+  animation: riseFromLeft 900ms cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: 220ms;
+}
+@keyframes riseFromLeft {
+  from { opacity: 0; transform: translate3d(-40px, 8px, 0); }
+  to   { opacity: 1; transform: translate3d(0,0,0); }
+}
+
+/* Scale-in — for big display glyphs */
+[data-deck-active].is-entering .anim-scale {
+  animation: scaleRise 1100ms cubic-bezier(.2,.8,.2,1) both;
+  animation-delay: 300ms;
+  transform-origin: center bottom;
+}
+@keyframes scaleRise {
+  from { opacity: 0; transform: scale(0.82) translateY(24px); filter: blur(4px); }
+  to   { opacity: 1; transform: scale(1) translateY(0);       filter: blur(0); }
+}
+
+/* 3D perspective tilt — settles flat */
+[data-deck-active].is-entering .anim-tilt {
+  animation: tiltFlat 1100ms cubic-bezier(.2,.8,.2,1) both;
+  transform-origin: center top;
+  perspective: 1200px;
+}
+@keyframes tiltFlat {
+  from { opacity: 0; transform: perspective(1200px) rotateX(8deg) translateY(18px); }
+  to   { opacity: 1; transform: perspective(1200px) rotateX(0)    translateY(0); }
+}
+
+/* Respect motion preferences */
 @media (prefers-reduced-motion: reduce) {
-  .slide--active [class*="motion-"] {
-    animation: fadeIn 0.01ms linear both;
-    animation-delay: 0ms !important;
+  [data-deck-active].is-entering * {
+    animation: none !important;
   }
+  .brass-shimmer { animation: none !important; }
 }

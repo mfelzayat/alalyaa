@@ -1,401 +1,137 @@
-/* ============================================================
-   ALALYAA · BASE DECK / SLIDE LAYOUT
-   styles/guideline.css
-   ============================================================ */
+/* ── ALIAA · Volume III · Guideline Edition ────────────────────── */
+/* Inspired by Emaar-style brand guideline craft:
+   - Spaced-out letterforms (letter-spacing: 0.4em on all meta type)
+   - Numbered section system (1.1, 1.2…)
+   - Monochrome + sand accent
+   - Print / foil language
+   - Wordmark-first restraint
+*/
 
-/* ----------------------------------------------------------
-   CSS RESET
----------------------------------------------------------- */
+:root {
+  /* Palette — inspired by Cairo Play's warm, geometric, Egyptian-modernist character.
+     Deep midnight ink, clay red, papyrus cream, brass gold, nile stone, dusk violet. */
+  --ink:        #141028;       /* midnight — deep indigo-black */
+  --ink-2:      #2A2448;       /* night violet */
+  --graphite:   #4C4866;       /* dusk */
+  --steel:      #8B869E;       /* stone */
+  --mist:       #D9D3C4;       /* limestone */
+  --paper:      #F3ECDC;       /* papyrus */
+  --paper-2:    #E7DCC3;       /* warm cream */
+  --sand:       #C89A5B;       /* brass */
+  --sand-deep:  #9A6B2C;       /* burnished brass */
+  --foil:       #B8823A;       /* antique brass — highlight */
+  --clay:       #B24A2C;       /* clay red — expressive accent */
+  --nile:       #3E6B5E;       /* deep nile teal */
+  --rule:       rgba(20,16,40,0.14);
+  --rule-2:     rgba(20,16,40,0.28);
 
-*, *::before, *::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+  --f-display:  "Cairo Play", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-sans:     "Cairo Play", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-copy:     "Cairo Play", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  --f-mono:     "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --f-ar:       "Cairo Play", "Cairo", "Amiri", sans-serif;
+  --f-ar-sans:  "Cairo Play", "Cairo", sans-serif;
 }
 
-html {
-  font-size: 16px;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
+* { box-sizing: border-box; }
+html, body { margin: 0; padding: 0; background: #111; }
+
+.g {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--f-sans);
+  position: relative; overflow: hidden;
+}
+.g--ink  { background: var(--ink);   color: var(--paper); }
+.g--sand { background: var(--paper-2); color: var(--ink); }
+
+/* Tracking utility — the Emaar signature */
+.spaced   { letter-spacing: 0.42em; text-transform: uppercase; text-indent: 0.42em; white-space: nowrap; }
+.spaced-2 { letter-spacing: 0.28em; text-transform: uppercase; text-indent: 0.28em; white-space: nowrap; }
+.spaced-3 { letter-spacing: 0.18em; text-transform: uppercase; text-indent: 0.18em; white-space: nowrap; }
+
+/* Page chrome: folio numbers, section numbers, edition strip */
+.folio {
+  position: absolute; top: 48px; left: 48px;
+  font-family: var(--f-sans); font-size: 11px; font-weight: 400;
+  letter-spacing: 0.2em; color: currentColor; opacity: 0.72;
+  white-space: nowrap;
+}
+.folio .bar { display: inline-block; padding: 0 10px; }
+
+.section-tag {
+  position: absolute; top: 48px; right: 48px;
+  font-family: var(--f-sans); font-size: 11px;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  color: currentColor; opacity: 0.72;
+  white-space: nowrap;
 }
 
-body {
-  min-height: 100dvh;
-  line-height: 1.6;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
-}
-
-img, video, svg {
-  display: block;
-  max-width: 100%;
-}
-
-button, input, select, textarea {
-  font: inherit;
-  color: inherit;
-}
-
-a {
-  color: inherit;
-  text-decoration: none;
-}
-
-ul, ol {
-  list-style: none;
-}
-
-/* ----------------------------------------------------------
-   DECK CONTAINER
----------------------------------------------------------- */
-
-.deck {
-  position: relative;
-  width: 100vw;
-  height: 100dvh;
-  overflow: hidden;
-  isolation: isolate;
-}
-
-/* ----------------------------------------------------------
-   SLIDE BASE
----------------------------------------------------------- */
-
-.slide {
-  position: absolute;
-  inset: 0;
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(60px);
-  transition:
-    opacity 0.6s ease,
-    transform 0.6s ease;
-  overflow: hidden;
-}
-
-.slide--active {
-  opacity: 1;
-  pointer-events: auto;
-  transform: translateX(0);
-  z-index: var(--z-slide, 10);
-}
-
-.slide--exit {
-  opacity: 0;
-  pointer-events: none;
-  transform: translateX(-60px);
-}
-
-/* ----------------------------------------------------------
-   SLIDE LAYOUT HELPERS
----------------------------------------------------------- */
-
-.slide__pad {
-  padding: var(--slide-pad-y) var(--slide-pad-x);
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-}
-
-.slide__content {
-  flex: 1;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-}
-
-.slide__title {
-  font-family: var(--font-serif, 'Cormorant Garamond', serif);
-  font-weight: 300;
-  font-size: clamp(2rem, 5vw, 4rem);
-  line-height: 1.1;
-  letter-spacing: -0.01em;
-}
-
-.slide__subtitle {
-  font-family: var(--font-serif, 'Cormorant Garamond', serif);
-  font-style: italic;
-  font-weight: 300;
-  font-size: clamp(1rem, 2vw, 1.5rem);
-  opacity: 0.75;
-  margin-top: 0.5em;
-}
-
-.slide__body {
-  font-size: clamp(0.875rem, 1.2vw, 1.0625rem);
-  line-height: 1.75;
-  max-width: 60ch;
-  opacity: 0.85;
-}
-
-/* ----------------------------------------------------------
-   EYEBROW / LABEL
----------------------------------------------------------- */
-
-.label {
-  display: inline-block;
-  font-family: var(--font-serif, 'Cormorant Garamond', serif);
-  font-size: 0.6875rem;
-  font-weight: 400;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
+.bottom-rail {
+  position: absolute; bottom: 48px; left: 48px; right: 48px;
+  display: flex; justify-content: space-between;
+  font-family: var(--f-sans); font-size: 10px;
+  letter-spacing: 0.32em; text-transform: uppercase;
   opacity: 0.55;
-  margin-bottom: 1.25rem;
+  white-space: nowrap;
 }
 
-/* ----------------------------------------------------------
-   RULES / DIVIDERS
----------------------------------------------------------- */
-
-.rule {
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: currentColor;
-  opacity: 0.15;
-  border: none;
-  margin: var(--sp-6, 24px) 0;
+.section-number {
+  font-family: var(--f-sans); font-size: 11px;
+  letter-spacing: 0.28em; text-transform: uppercase;
 }
 
-.rule--v {
-  display: block;
-  width: 1px;
-  height: 100%;
-  background: currentColor;
-  opacity: 0.15;
-}
-
-/* ----------------------------------------------------------
-   GRID HELPERS
----------------------------------------------------------- */
-
-.grid-2 {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: clamp(16px, 3vw, 48px);
-}
-
-.grid-3 {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: clamp(12px, 2.5vw, 36px);
-}
-
-@media (max-width: 680px) {
-  .grid-2 {
-    grid-template-columns: 1fr;
-  }
-  .grid-3 {
-    grid-template-columns: 1fr 1fr;
-  }
-}
-
-@media (max-width: 420px) {
-  .grid-3 {
-    grid-template-columns: 1fr;
-  }
-}
-
-/* ----------------------------------------------------------
-   COLOR SWATCHES
----------------------------------------------------------- */
-
-.swatch {
-  display: flex;
-  flex-direction: column;
-  gap: var(--sp-3, 12px);
-}
-
-.swatch__block {
-  width: 100%;
-  aspect-ratio: 3 / 2;
-  border-radius: var(--radius-md, 8px);
-}
-
-.swatch__label {
-  display: flex;
-  flex-direction: column;
-  gap: 2px;
-}
-
-.swatch__name-ar {
-  font-family: var(--font-arabic, 'Cairo Play', sans-serif);
-  font-weight: 300;
-  font-size: 1rem;
-  direction: rtl;
-}
-
-.swatch__name-en {
-  font-size: 0.75rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  opacity: 0.65;
-}
-
-.swatch__hex {
-  font-family: 'Courier New', monospace;
-  font-size: 0.6875rem;
-  opacity: 0.5;
-  letter-spacing: 0.05em;
-}
-
-/* ----------------------------------------------------------
-   DECK NAVIGATION — DOT NAV
----------------------------------------------------------- */
-
-.deck-nav {
-  position: fixed;
-  bottom: var(--sp-6, 24px);
-  left: 50%;
-  transform: translateX(-50%);
-  display: flex;
-  flex-direction: row;
-  align-items: center;
-  gap: var(--sp-2, 8px);
-  z-index: var(--z-nav, 100);
-  padding: var(--sp-2, 8px) var(--sp-4, 16px);
-  border-radius: var(--radius-full, 9999px);
-  background: rgba(0, 0, 0, 0.35);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
-}
-
-.deck-nav__dot {
-  display: block;
-  height: 5px;
-  width: 5px;
-  border-radius: var(--radius-full, 9999px);
-  background: rgba(255, 255, 255, 0.4);
-  border: none;
-  cursor: pointer;
-  padding: 0;
-  transition:
-    width 0.3s var(--ease-out, cubic-bezier(0.22,1,0.36,1)),
-    background 0.3s ease;
-  flex-shrink: 0;
-}
-
-.deck-nav__dot--active {
-  width: 20px;
-  background: rgba(255, 255, 255, 0.9);
-}
-
-.deck-nav__dot:hover:not(.deck-nav__dot--active) {
-  background: rgba(255, 255, 255, 0.65);
-}
-
-/* ----------------------------------------------------------
-   DECK ARROWS
----------------------------------------------------------- */
-
-.deck-nav__arrow {
-  position: fixed;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: var(--z-nav, 100);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 44px;
-  height: 44px;
-  border-radius: var(--radius-full, 9999px);
-  background: rgba(0, 0, 0, 0.30);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid rgba(255, 255, 255, 0.1);
-  cursor: pointer;
-  color: rgba(255, 255, 255, 0.7);
-  font-size: 1.125rem;
-  transition:
-    background 0.2s ease,
-    color 0.2s ease,
-    opacity 0.2s ease;
-  opacity: 0.7;
-  -webkit-appearance: none;
-  appearance: none;
-}
-
-.deck-nav__arrow:hover {
-  background: rgba(0, 0, 0, 0.55);
-  color: #fff;
-  opacity: 1;
-}
-
-.deck-nav__arrow--prev {
-  left: var(--sp-4, 16px);
-}
-
-.deck-nav__arrow--next {
-  right: var(--sp-4, 16px);
-}
-
-.deck-nav__arrow:disabled {
-  opacity: 0.2;
-  pointer-events: none;
-}
-
-/* ----------------------------------------------------------
-   PROGRESS BAR
----------------------------------------------------------- */
-
-.deck-progress {
-  position: fixed;
-  top: 0;
-  left: 0;
-  height: 2px;
-  background: var(--a-brass, #B8922A);
-  z-index: var(--z-nav, 100);
-  transition: width 0.4s var(--ease-out, cubic-bezier(0.22,1,0.36,1));
-  pointer-events: none;
-}
-
-/* ----------------------------------------------------------
-   SLIDE COUNTER
----------------------------------------------------------- */
-
-.deck-counter {
-  position: fixed;
-  bottom: var(--sp-6, 24px);
-  right: var(--sp-6, 24px);
-  z-index: var(--z-nav, 100);
-  font-family: var(--font-serif, 'Cormorant Garamond', serif);
-  font-size: 0.75rem;
-  letter-spacing: 0.15em;
-  opacity: 0.4;
-  color: inherit;
-  pointer-events: none;
-}
-
-/* ----------------------------------------------------------
-   BACK LINK
----------------------------------------------------------- */
-
-.deck-back {
-  position: fixed;
-  top: var(--sp-5, 20px);
-  left: var(--sp-6, 24px);
-  z-index: var(--z-nav, 100);
-  font-family: var(--font-serif, 'Cormorant Garamond', serif);
-  font-size: 0.6875rem;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
-  opacity: 0.45;
-  color: inherit;
-  display: flex;
-  align-items: center;
-  gap: var(--sp-2, 8px);
-  transition: opacity 0.2s ease;
-  text-decoration: none;
-}
-
-.deck-back:hover {
-  opacity: 0.9;
-}
-
-.deck-back::before {
-  content: '←';
+.title-display {
+  font-family: var(--f-display); font-weight: 400;
   font-style: normal;
-  letter-spacing: 0;
+  letter-spacing: 0.01em;
+  line-height: 1.0;
 }
+
+.title-sans {
+  font-family: var(--f-sans); font-weight: 500;
+  letter-spacing: 0.01em; line-height: 1.0;
+}
+
+.body-copy {
+  font-family: var(--f-copy); font-size: 17px;
+  line-height: 1.55; color: var(--graphite);
+  font-weight: 400; letter-spacing: -0.005em;
+}
+.body-copy--ink { color: var(--paper); opacity: 0.8; }
+
+.ar-title {
+  font-family: var(--f-ar); font-weight: 700;
+  direction: rtl; line-height: 1.0;
+}
+.ar-body {
+  font-family: var(--f-ar); direction: rtl; line-height: 1.7;
+  font-size: 20px;
+}
+
+.rule { height: 1px; background: var(--rule); }
+.rule--thick { height: 2px; background: var(--ink); }
+.rule--foil  { height: 1px; background: var(--foil); }
+
+/* Cross hair registration marks */
+.crosshair {
+  position: absolute; width: 20px; height: 20px;
+  pointer-events: none;
+}
+.crosshair::before, .crosshair::after {
+  content: ""; position: absolute; background: currentColor; opacity: 0.55;
+}
+.crosshair::before { left: 50%; top: 0; bottom: 0; width: 1px; transform: translateX(-50%); }
+.crosshair::after  { top: 50%; left: 0; right: 0; height: 1px; transform: translateY(-50%); }
+
+.foil-chip {
+  display: inline-flex; align-items: center; gap: 10px;
+  padding: 4px 12px;
+  border: 1px solid currentColor;
+  font-family: var(--f-sans); font-size: 10px;
+  letter-spacing: 0.32em; text-transform: uppercase;
+  opacity: 0.8;
+}
+
+/* Column grid helpers */
+.grid-12 { display: grid; grid-template-columns: repeat(12, 1fr); gap: 24px; }
