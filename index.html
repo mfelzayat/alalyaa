@@ -687,6 +687,218 @@
     color: var(--b-paper);
   }
 
+  /* ════════════════════════════════════════════════════════
+     CARD C — Concept · AI-Powered Tower
+     Midnight navy / ivory / champagne · Cormorant italic
+     Full-width banner below the A/B row — a project concept,
+     different in kind from the two brand-book directions.
+     ════════════════════════════════════════════════════════ */
+  :root {
+    --c-ground:    #0B1220;
+    --c-ground-2:  #111826;
+    --c-ivory:     #EAE4D7;
+    --c-ivory-dim: rgba(234,228,215,0.72);
+    --c-ivory-mut: rgba(234,228,215,0.48);
+    --c-ivory-lin: rgba(234,228,215,0.14);
+    --c-champagne: #C9A96A;
+    --c-champagne-hi: #D4A857;
+  }
+
+  .concept-row { width: 100%; }
+
+  .card--c {
+    width: 100%;
+    min-height: 440px;
+    padding: 0;
+    color: var(--c-ivory);
+    font-family: 'Alexandria', 'Inter', sans-serif;
+    background: var(--c-ground);
+    overflow: hidden;
+    animation-delay: 0.9s;
+  }
+  .card--c .card--c__bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    overflow: hidden;
+    pointer-events: none;
+  }
+  .card--c .card--c__bg img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center 32%;
+    opacity: 0.45;
+    transition: opacity 520ms var(--ease-out), transform 720ms var(--ease-out);
+  }
+  .card--c .card--c__bg::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background:
+      radial-gradient(ellipse at 70% 40%, rgba(11,18,32,0) 0%, rgba(11,18,32,0.35) 55%, rgba(11,18,32,0.85) 100%),
+      linear-gradient(180deg, rgba(11,18,32,0.60) 0%, rgba(11,18,32,0.10) 18%, rgba(11,18,32,0.10) 60%, rgba(11,18,32,0.85) 100%);
+    pointer-events: none;
+  }
+  .card--c:hover .card--c__bg img,
+  .card--c:focus-visible .card--c__bg img {
+    opacity: 0.58;
+    transform: scale(1.02);
+  }
+
+  .card--c .card__newtab {
+    color: var(--c-ivory-dim);
+    background: rgba(234,228,215,0.06);
+    border: 1px solid var(--c-ivory-lin);
+  }
+
+  .card--c__content {
+    position: relative;
+    z-index: 2;
+    display: grid;
+    grid-template-rows: auto 1fr auto;
+    gap: clamp(24px, 3vw, 40px);
+    padding: clamp(36px, 4vw, 56px) clamp(40px, 5vw, 72px);
+    min-height: inherit;
+  }
+
+  .card--c__top {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 24px;
+    font-family: 'Alexandria', 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--c-ivory-dim);
+    flex-wrap: wrap;
+  }
+  .card--c__top .date { color: var(--c-ivory-mut); }
+
+  .card--c__body { max-width: 820px; }
+
+  .card--c__eyebrow {
+    display: inline-block;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--c-champagne-hi);
+    margin-bottom: 14px;
+  }
+  .card--c__sub {
+    display: block;
+    font-family: 'Alexandria', 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--c-ivory-dim);
+    margin-bottom: 18px;
+  }
+
+  .card--c__title {
+    font-family: 'Cormorant Garamond', 'EB Garamond', Georgia, serif;
+    font-weight: 300;
+    font-style: italic;
+    font-size: clamp(3.25rem, 7.2vw, 6rem);
+    line-height: 0.96;
+    letter-spacing: -0.005em;
+    color: var(--c-ivory);
+    margin: 0 0 14px;
+  }
+  .card--c__title em { color: var(--c-champagne-hi); font-style: italic; }
+
+  .card--c__ar {
+    font-family: 'Cairo Play', 'Cairo', sans-serif;
+    font-weight: 400;
+    direction: rtl;
+    font-size: clamp(2rem, 3.2vw, 2.75rem);
+    color: rgba(234,228,215,0.85);
+    line-height: 1;
+    margin-bottom: 22px;
+  }
+
+  .card--c__tagline {
+    display: inline-flex;
+    align-items: center;
+    gap: 18px;
+    font-family: 'Alexandria', 'Inter', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.34em;
+    text-transform: uppercase;
+    color: var(--c-champagne-hi);
+  }
+  .card--c__rule {
+    display: inline-block;
+    width: 56px;
+    height: 1px;
+    background: var(--c-champagne-hi);
+  }
+
+  .card--c__bottom {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-end;
+    gap: 32px;
+    flex-wrap: wrap;
+  }
+  .card--c__specs {
+    display: grid;
+    grid-template-columns: repeat(4, auto);
+    gap: 6px 40px;
+  }
+  .card--c__specs .spec__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--c-ivory-mut);
+    display: block;
+    margin-bottom: 4px;
+  }
+  .card--c__specs .spec__value {
+    font-family: 'Alexandria', 'Inter', sans-serif;
+    font-weight: 400;
+    font-size: 0.875rem;
+    color: var(--c-ivory);
+  }
+
+  .card--c .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 22px;
+    border: 1px solid var(--c-champagne);
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    letter-spacing: 0.28em;
+    text-indent: 0.28em;
+    text-transform: uppercase;
+    color: var(--c-champagne);
+    background: transparent;
+    transition: all 320ms var(--ease-out);
+  }
+  .card--c:hover .cta,
+  .card--c:focus-visible .cta {
+    background: var(--c-champagne);
+    color: var(--c-ground);
+    border-color: var(--c-champagne);
+  }
+
+  @media (max-width: 780px) {
+    .card--c__specs { grid-template-columns: 1fr 1fr; }
+    .card--c__top { font-size: 10px; }
+  }
+  @media (max-width: 520px) {
+    .card--c__specs { grid-template-columns: 1fr; }
+    .card--c { min-height: auto; }
+  }
+
   /* ───────────────────── footer ───────────────────── */
   footer {
     margin-top: auto;
@@ -765,9 +977,9 @@
     <h1 class="hero__title">ALALYAA</h1>
     <p class="hero__sub">العليـــــاء للتطويــــر العقــــاري</p>
     <p class="hero__lede">
-      Two brand directions have been developed for <strong class="al">ALALYAA</strong> Developments.
-      Each card below is a miniature cover of its full brand book —
-      open one in a new tab to view the deck.
+      Two brand directions and a first-project concept have been developed for
+      <strong class="al">ALALYAA</strong> Developments. Each card below is a
+      miniature cover of its full presentation — open one in a new tab to view it.
     </p>
     <span class="hero__kicker">Choose a direction</span>
   </section>
@@ -894,6 +1106,45 @@
 
   </section>
 
+  <!-- ───────── OPTION C · Project Concept — AI Tower (banner row) ───────── -->
+  <section class="concept-row" aria-label="Project concept">
+    <a class="card card--c" href="option-c.html" target="_blank" rel="noopener"
+       aria-label="Open the AI Tower concept presentation in a new tab">
+      <div class="card--c__bg" aria-hidden="true">
+        <img src="assets/cover-hub.png" alt=""/>
+      </div>
+      <span class="card__newtab">↗ New tab</span>
+
+      <div class="card--c__content">
+        <div class="card--c__top">
+          <span><strong class="al">Al Alyaa</strong> Developments · Concept Presentation</span>
+          <span class="date">Strike Media &nbsp;/&nbsp; April MMXXVI</span>
+        </div>
+
+        <div class="card--c__body">
+          <span class="card--c__eyebrow">Option&nbsp;C · Concept · Pre-Brand Book</span>
+          <span class="card--c__sub">A Commercial Tower for <strong class="al">Al Alyaa</strong> Developments</span>
+          <h2 class="card--c__title">Tower<br/>that <em>knows</em>.</h2>
+          <div class="card--c__ar">البرج الذي يعلم.</div>
+          <div class="card--c__tagline">
+            <span class="card--c__rule"></span>
+            Two names. One category.
+          </div>
+        </div>
+
+        <div class="card--c__bottom">
+          <div class="card--c__specs">
+            <div><span class="spec__label">Slides</span><span class="spec__value">15</span></div>
+            <div><span class="spec__label">Routes</span><span class="spec__value">AXIA · ULIA</span></div>
+            <div><span class="spec__label">Palette</span><span class="spec__value">Midnight · Champagne · Ivory</span></div>
+            <div><span class="spec__label">Site</span><span class="spec__value">New Administrative Capital</span></div>
+          </div>
+          <span class="cta">Open Concept <span class="cta__arrow">→</span></span>
+        </div>
+      </div>
+    </a>
+  </section>
+
   <footer>
     <span class="copyright">© MMXXVI STRIKE MEDIA · All Rights Reserved</span>
     <div class="poweredby">
@@ -955,7 +1206,7 @@
     // Option cards: append ?fs=1 so the new tab knows to auto-enter
     // fullscreen on its first user gesture (browsers won't grant
     // fullscreen to a tab that has no gesture of its own yet).
-    document.querySelectorAll('.choices a.card').forEach((a) => {
+    document.querySelectorAll('.choices a.card, .concept-row a.card').forEach((a) => {
       a.addEventListener('click', (e) => {
         // Allow modifier-clicks (cmd/ctrl/middle) to behave normally.
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;

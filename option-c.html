@@ -1,0 +1,1957 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Al Alyaa — Concept Presentation</title>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
+<script type="application/json" id="speaker-notes">[]</script>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Inter:wght@100;200;300;400;500;600&family=JetBrains+Mono:wght@300;400;500&family=Noto+Naskh+Arabic:wght@400;500;600&family=Noto+Kufi+Arabic:wght@300;400;500&family=Reem+Kufi:wght@400;500;600&family=Cairo:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+<script>
+const TWEAK_DEFAULTS = /*EDITMODE-BEGIN*/{
+  "accent": "champagne",
+  "ground": "midnight",
+  "display": "cormorant",
+  "showGrid": false
+}/*EDITMODE-END*/;
+</script>
+
+<style>
+  :root {
+    --ground: #0B1220;          /* midnight navy */
+    --ground-2: #111826;        /* charcoal navy */
+    --ground-3: #0F1622;
+    --ivory: #EAE4D7;           /* warm ivory */
+    --ivory-dim: rgba(234,228,215,0.72);
+    --ivory-mute: rgba(234,228,215,0.48);
+    --ivory-faint: rgba(234,228,215,0.22);
+    --ivory-line: rgba(234,228,215,0.14);
+    --ivory-hair: rgba(234,228,215,0.08);
+    --champagne: #C9A96A;
+    --champagne-dim: rgba(201,169,106,0.72);
+    --stone: #A89B88;
+    --ink: #0B1220;
+    --paper: #EAE4D7;
+    --paper-2: #E2DBCB;
+    --paper-line: rgba(11,18,32,0.12);
+    --paper-mute: rgba(11,18,32,0.6);
+    --paper-faint: rgba(11,18,32,0.38);
+
+    --serif: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+    --sans: "Inter", -apple-system, BlinkMacSystemFont, "Helvetica Neue", sans-serif;
+    --arabic: "Cairo", "Noto Naskh Arabic", sans-serif;
+  }
+
+  html, body { margin: 0; padding: 0; background: #000; }
+  body { font-family: var(--sans); color: var(--ivory); }
+
+  deck-stage { background: #000; }
+
+  section {
+    background: var(--ground);
+    color: var(--ivory);
+    overflow: hidden;
+    position: relative;
+  }
+
+  /* ---------- Chrome (chapter marker + page number) ---------- */
+  .chapter {
+    position: absolute; top: 64px; left: 88px;
+    font-family: var(--sans); font-weight: 400;
+    font-size: 14px; letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ivory-mute);
+  }
+  .pageno {
+    position: absolute; bottom: 56px; right: 88px;
+    font-family: var(--sans); font-weight: 300;
+    font-size: 14px; letter-spacing: 0.24em;
+    color: var(--ivory-mute);
+  }
+  .imprint {
+    position: absolute; bottom: 56px; left: 88px;
+    font-family: var(--sans); font-weight: 400;
+    font-size: 13px; letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--ivory-faint);
+  }
+
+  /* paper variant flips chrome to dark ink */
+  section.paper { background: var(--paper); color: var(--ink); }
+  section.paper .chapter,
+  section.paper .pageno { color: var(--paper-mute); }
+  section.paper .imprint { color: var(--paper-faint); }
+
+  /* frame = the writable area inside the chrome margins */
+  .frame {
+    position: absolute; inset: 120px 88px 112px 88px;
+    display: flex;
+  }
+
+  /* ---------- Display type ---------- */
+  .display {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-style: italic;
+    font-size: 96px;
+    line-height: 1.02;
+    letter-spacing: -0.01em;
+    color: var(--ivory);
+    margin: 0;
+  }
+  .display.roman { font-style: normal; }
+  .display-s {
+    font-family: var(--serif);
+    font-weight: 300;
+    font-size: 64px;
+    line-height: 1.05;
+    letter-spacing: -0.005em;
+    margin: 0;
+  }
+  .kicker {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 13px;
+    letter-spacing: 0.36em;
+    text-transform: uppercase;
+    color: var(--champagne);
+  }
+  .lede {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 24px;
+    line-height: 1.55;
+    letter-spacing: 0.005em;
+    color: var(--ivory-dim);
+    max-width: 560px;
+  }
+  .caption {
+    font-family: var(--sans);
+    font-weight: 400;
+    font-size: 12px;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ivory-mute);
+  }
+  .rule { height: 1px; background: var(--ivory-line); border: 0; margin: 0; }
+  .rule.champagne { background: var(--champagne); height: 1px; width: 48px; }
+
+  /* ---------- Slide 1 Cover ---------- */
+  .cover-letter {
+    position: absolute;
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 300;
+    font-size: 640px;
+    line-height: 0.82;
+    letter-spacing: -0.04em;
+    color: var(--ivory);
+    opacity: 0.06;
+    user-select: none;
+  }
+  .cover-axis {
+    position: absolute; inset: 0;
+    pointer-events: none;
+  }
+
+  /* ---------- Generic helpers ---------- */
+  .col { display: flex; flex-direction: column; }
+  .row { display: flex; flex-direction: row; }
+  .grow { flex: 1; }
+
+  .footnote {
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.02em;
+    line-height: 1.55;
+    color: var(--ivory-mute);
+  }
+
+  /* numbered lists (monograph spec style) */
+  .spec-row {
+    display: grid;
+    grid-template-columns: 52px 1fr;
+    padding: 22px 0;
+    border-top: 1px solid var(--ivory-line);
+    gap: 40px;
+    align-items: baseline;
+  }
+  .spec-row:last-child { border-bottom: 1px solid var(--ivory-line); }
+  .spec-num {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 14px;
+    letter-spacing: 0.24em;
+    color: var(--champagne);
+  }
+  .spec-body { display: grid; grid-template-columns: 260px 1fr; gap: 48px; align-items: baseline; }
+  .spec-term {
+    font-family: var(--serif);
+    font-style: italic;
+    font-weight: 400;
+    font-size: 30px;
+    color: var(--ivory);
+  }
+  .spec-def {
+    font-family: var(--sans);
+    font-weight: 300;
+    font-size: 19px;
+    line-height: 1.6;
+    color: var(--ivory-dim);
+  }
+
+  /* Tweaks */
+  #tweaks {
+    position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+    background: rgba(11,18,32,0.95); color: var(--ivory);
+    border: 1px solid var(--ivory-line);
+    padding: 18px 20px; width: 260px;
+    font-family: var(--sans); font-size: 12px;
+    display: none;
+    backdrop-filter: blur(12px);
+  }
+  #tweaks h4 { margin: 0 0 14px 0; font-weight: 400; letter-spacing: 0.24em; text-transform: uppercase; font-size: 10px; color: var(--champagne); }
+  #tweaks label { display: block; margin-bottom: 14px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ivory-mute); }
+  #tweaks select, #tweaks input[type=checkbox] { margin-top: 6px; background: transparent; border: 1px solid var(--ivory-line); color: var(--ivory); font-family: var(--sans); font-size: 12px; padding: 6px 8px; width: 100%; }
+  #tweaks option { background: #0B1220; }
+
+  /* optional 12-col grid */
+  .grid-overlay { position: absolute; inset: 0; pointer-events: none; display: none; z-index: 100; }
+  .grid-overlay.on { display: block; }
+  .grid-overlay::before {
+    content: ''; position: absolute; inset: 120px 88px 112px 88px;
+    background:
+      repeating-linear-gradient(to right, rgba(201,169,106,0.14) 0 1px, transparent 1px calc((100% - 11px) / 12 + 1px));
+  }
+
+  /* Arabic treatment */
+  .arabic {
+    font-family: var(--arabic);
+    font-weight: 500;
+    direction: rtl;
+    letter-spacing: 0;
+  }
+  /* Arabic subtitle — short translations under English headlines */
+  .ar-sub {
+    font-family: var(--arabic);
+    direction: rtl;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.5;
+    color: var(--champagne-dim);
+    letter-spacing: 0;
+    margin-top: 20px;
+  }
+  section.paper .ar-sub { color: var(--champagne); }
+  .ar-cap {
+    font-family: var(--arabic);
+    direction: rtl;
+    font-weight: 400;
+    font-size: 23px;
+    line-height: 1.55;
+    color: var(--ivory-mute);
+    margin-top: 10px;
+  }
+  section.paper .ar-cap { color: var(--paper-mute); }
+
+  /* Arabic body — full translations beneath English paragraphs */
+  .ar-body {
+    font-family: var(--arabic);
+    direction: rtl;
+    font-weight: 400;
+    font-size: 26px;
+    line-height: 1.8;
+    color: var(--ivory-mute);
+    margin-top: 14px;
+    padding-top: 12px;
+    border-top: 1px solid var(--ivory-hair);
+    text-align: right;
+  }
+  section.paper .ar-body { color: var(--paper-mute); border-top-color: var(--paper-line); }
+  .ar-body.lg { font-size: 31px; }
+  .ar-body.sm { font-size: 18px; line-height: 1.7; }
+
+  /* Placeholder renders */
+  .render {
+    background:
+      linear-gradient(135deg, rgba(201,169,106,0.12), rgba(201,169,106,0) 40%),
+      repeating-linear-gradient(45deg, rgba(234,228,215,0.02) 0 2px, transparent 2px 14px),
+      #0A0F19;
+    border: 1px solid var(--ivory-hair);
+    position: relative;
+    overflow: hidden;
+  }
+  .render .cap {
+    position: absolute; top: 16px; left: 18px;
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: var(--ivory-mute);
+  }
+  .render .ref {
+    position: absolute; bottom: 16px; right: 18px;
+    font-family: var(--sans); font-size: 12px; letter-spacing: 0.24em;
+    color: var(--ivory-faint);
+  }
+  .render.light {
+    background:
+      linear-gradient(135deg, rgba(201,169,106,0.22), rgba(201,169,106,0) 40%),
+      repeating-linear-gradient(45deg, rgba(11,18,32,0.03) 0 2px, transparent 2px 14px),
+      var(--paper-2);
+    border: 1px solid var(--paper-line);
+  }
+  .render.light .cap, .render.light .ref { color: var(--paper-mute); }
+
+  /* Hairline architectural marks */
+  .mark-axia {
+    width: 100%; height: 100%;
+  }
+  .mark-axia line { stroke: var(--champagne); stroke-width: 1; }
+  .mark-ulia path { stroke: var(--champagne); stroke-width: 1; fill: none; }
+
+  /* =========================================================
+     AXIA · DARK FUTURISTIC CI
+     obsidian / graphite / cold electric / mono technical
+     ========================================================= */
+  section.axia {
+    background: #05070C;
+    color: #E6EAF0;
+    font-family: "JetBrains Mono", "Courier Prime", ui-monospace, monospace;
+  }
+  section.axia .chapter,
+  section.axia .pageno { color: rgba(230,234,240,0.42); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  section.axia .imprint { color: rgba(230,234,240,0.28); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  section.axia .kicker { color: #5EE7DF; font-family: "JetBrains Mono", ui-monospace, monospace; letter-spacing: 0.4em; }
+  section.axia .caption { color: rgba(230,234,240,0.46); font-family: "JetBrains Mono", ui-monospace, monospace; }
+  section.axia .footnote { color: rgba(230,234,240,0.52); font-family: "JetBrains Mono", ui-monospace, monospace; font-size: 14px; }
+  section.axia .display,
+  section.axia .display-s {
+    font-family: "Inter", sans-serif;
+    font-style: normal;
+    font-weight: 200;
+    color: #F2F4F8;
+    letter-spacing: -0.015em;
+  }
+  section.axia .rule { background: rgba(230,234,240,0.12); }
+  section.axia .rule.champagne { background: #5EE7DF; }
+  section.axia .ar-body,
+  section.axia .ar-sub { color: rgba(230,234,240,0.52); border-top-color: rgba(230,234,240,0.1); font-family: "Noto Kufi Arabic", "Noto Naskh Arabic", serif; }
+
+  .axia-scan {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.6;
+    background:
+      repeating-linear-gradient(to bottom, rgba(94,231,223,0.04) 0 1px, transparent 1px 3px),
+      radial-gradient(ellipse 1400px 800px at 20% 20%, rgba(94,231,223,0.08), transparent 60%),
+      radial-gradient(ellipse 1000px 600px at 80% 80%, rgba(88,120,255,0.05), transparent 60%);
+  }
+  .axia-grid {
+    position: absolute; inset: 120px 88px 112px 88px; pointer-events: none; opacity: 0.5;
+    background:
+      linear-gradient(to right, rgba(230,234,240,0.06) 1px, transparent 1px) 0 0 / 80px 100%,
+      linear-gradient(to bottom, rgba(230,234,240,0.06) 1px, transparent 1px) 0 0 / 100% 80px;
+  }
+  .axia-chip {
+    display: inline-flex; align-items: center; gap: 10px;
+    font-family: "JetBrains Mono", monospace; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;
+    color: #5EE7DF; padding: 6px 12px; border: 1px solid rgba(94,231,223,0.4);
+  }
+  .axia-chip::before { content: ''; width: 6px; height: 6px; background: #5EE7DF; border-radius: 50%; box-shadow: 0 0 8px #5EE7DF; }
+
+  /* =========================================================
+     ULIA · ARABIAN FRESH CI
+     warm paper / terracotta / olive / ink / calligraphic
+     ========================================================= */
+  section.ulia {
+    background: #F4EBD9;
+    color: #2A1F14;
+  }
+  section.ulia .chapter,
+  section.ulia .pageno { color: rgba(42,31,20,0.52); }
+  section.ulia .imprint { color: rgba(42,31,20,0.38); }
+  section.ulia .kicker { color: #B8553B; }
+  section.ulia .caption { color: rgba(42,31,20,0.55); }
+  section.ulia .footnote { color: rgba(42,31,20,0.62); }
+  section.ulia .display,
+  section.ulia .display-s {
+    font-family: "Cormorant Garamond", "EB Garamond", Georgia, serif;
+    font-weight: 400;
+    color: #2A1F14;
+  }
+  section.ulia .rule { background: rgba(42,31,20,0.18); }
+  section.ulia .rule.champagne { background: #B8553B; }
+  section.ulia .ar-body,
+  section.ulia .ar-sub { color: rgba(42,31,20,0.72); border-top-color: rgba(42,31,20,0.18); font-family: "Cairo", "Noto Naskh Arabic", sans-serif; }
+  section.ulia .arabic { font-family: "Cairo", "Noto Naskh Arabic", sans-serif; }
+
+  .ulia-tile {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.3;
+  }
+  .ulia-pattern {
+    position: absolute; inset: 0; pointer-events: none; opacity: 0.12;
+    background-image:
+      radial-gradient(circle at 50% 50%, #B8553B 1.5px, transparent 2px),
+      radial-gradient(circle at 0 0, #7B8265 1px, transparent 1.5px),
+      radial-gradient(circle at 100% 100%, #7B8265 1px, transparent 1.5px);
+    background-size: 72px 72px, 72px 72px, 72px 72px;
+  }
+  .ulia-arch {
+    fill: none; stroke: #B8553B; stroke-width: 1;
+  }
+
+
+  /* ================================================================
+     AMBIENT BACKGROUND — slow digital threads behind dark slides
+     Sits at z-index 0 inside each section; content is z-index 1+
+  ================================================================ */
+  section:not(.paper)::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      /* vertical thread pattern — long hairlines */
+      repeating-linear-gradient(90deg,
+        transparent 0,
+        transparent 119px,
+        rgba(201,169,106,0.07) 119px,
+        rgba(201,169,106,0.07) 120px),
+      /* horizontal data strobe — very faint */
+      repeating-linear-gradient(0deg,
+        transparent 0,
+        transparent 79px,
+        rgba(234,228,215,0.04) 79px,
+        rgba(234,228,215,0.04) 80px);
+    z-index: 0;
+    animation: ambient-drift 48s linear infinite;
+    opacity: 0.55;
+  }
+  section:not(.paper)::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+      radial-gradient(900px 600px at 22% 15%, rgba(201,169,106,0.09), transparent 60%),
+      radial-gradient(700px 500px at 82% 85%, rgba(201,169,106,0.06), transparent 60%);
+    z-index: 0;
+    animation: ambient-breathe 22s ease-in-out infinite alternate;
+  }
+  @keyframes ambient-drift {
+    0%   { background-position: 0 0, 0 0; }
+    100% { background-position: 240px 0, 0 160px; }
+  }
+  @keyframes ambient-breathe {
+    0%   { opacity: 0.6; transform: scale(1); }
+    100% { opacity: 1;   transform: scale(1.04); }
+  }
+  /* ensure real content sits above */
+  section > * { position: relative; z-index: 1; }
+
+  /* Slow, elegant slide transitions (override deck-stage default) */
+  deck-stage::part(slide),
+  deck-stage section {
+    transition: opacity 900ms cubic-bezier(0.4, 0, 0.2, 1) !important;
+  }
+
+
+  /* --- Subtle scanning hairline (barely there, adds digital feel) --- */
+  section:not(.paper) .scanline,
+  section:not(.paper)::before {}
+  /* use a third layer via box-shadow trick on a pseudo on active slide only */
+
+  /* ================================================================
+     CONTENT REVEAL + DIGITAL SWEEP — triggered when slide activates
+  ================================================================ */
+  /* Reveal: stagger fade-up+blur on direct content */
+  section[data-deck-active] .frame > *,
+  section[data-deck-active] .chapter,
+  section[data-deck-active] .imprint,
+  section[data-deck-active] .pageno {
+    animation: reveal-up 900ms cubic-bezier(0.2, 0.7, 0.2, 1) both;
+  }
+  section[data-deck-active] .frame > *:nth-child(1) { animation-delay: 120ms; }
+  section[data-deck-active] .frame > *:nth-child(2) { animation-delay: 240ms; }
+  section[data-deck-active] .frame > *:nth-child(3) { animation-delay: 360ms; }
+  section[data-deck-active] .frame > *:nth-child(4) { animation-delay: 480ms; }
+  section[data-deck-active] .frame > *:nth-child(5) { animation-delay: 600ms; }
+  section[data-deck-active] .chapter { animation-delay: 0ms; }
+  section[data-deck-active] .imprint,
+  section[data-deck-active] .pageno { animation-delay: 720ms; }
+
+  @keyframes reveal-up {
+    0%   { opacity: 0; transform: translateY(16px); filter: blur(6px); letter-spacing: 0.02em; }
+    60%  { opacity: 1; filter: blur(0.6px); }
+    100% { opacity: 1; transform: translateY(0); filter: blur(0); letter-spacing: normal; }
+  }
+
+  /* Digital SWEEP — thin golden datum crosses the slide as it enters */
+  section[data-deck-active]::after {
+    /* override the breathing glow with the sweep overlay */
+    background:
+      radial-gradient(900px 600px at 22% 15%, rgba(201,169,106,0.09), transparent 60%),
+      radial-gradient(700px 500px at 82% 85%, rgba(201,169,106,0.06), transparent 60%);
+  }
+  section[data-deck-active]::before {
+    /* keep thread pattern; append sweep via additional animation */
+  }
+
+  /* dedicated sweep element (injected by JS) */
+  .deck-sweep {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 100;
+    overflow: hidden;
+  }
+  .deck-sweep .bar {
+    position: absolute;
+    top: 0; bottom: 0;
+    left: -40%;
+    width: 40%;
+    background: linear-gradient(90deg,
+      transparent 0%,
+      rgba(201,169,106,0.02) 40%,
+      rgba(201,169,106,0.14) 70%,
+      rgba(234,228,215,0.85) 88%,
+      rgba(201,169,106,0.14) 95%,
+      transparent 100%);
+    filter: blur(0.5px);
+    animation: sweep-cross 950ms cubic-bezier(0.65, 0, 0.25, 1) forwards;
+  }
+  .deck-sweep .line {
+    position: absolute;
+    top: 50%; left: 0; right: 0;
+    height: 1px;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(201,169,106,0.9),
+      rgba(234,228,215,1),
+      rgba(201,169,106,0.9),
+      transparent);
+    transform: scaleX(0);
+    transform-origin: left center;
+    box-shadow: 0 0 12px rgba(201,169,106,0.6);
+    animation: sweep-line 1100ms cubic-bezier(0.8, 0, 0.2, 1) forwards;
+  }
+  .deck-sweep .blocks {
+    position: absolute;
+    inset: 0;
+    background:
+      repeating-linear-gradient(90deg,
+        transparent 0,
+        transparent 3px,
+        rgba(201,169,106,0.12) 3px,
+        rgba(201,169,106,0.12) 4px);
+    opacity: 0;
+    animation: sweep-blocks 700ms ease-out forwards;
+    mix-blend-mode: screen;
+  }
+  @keyframes sweep-cross {
+    0%   { transform: translateX(0); }
+    100% { transform: translateX(350%); }
+  }
+  @keyframes sweep-line {
+    0%   { transform: scaleX(0); transform-origin: left center; }
+    45%  { transform: scaleX(1); transform-origin: left center; }
+    46%  { transform: scaleX(1); transform-origin: right center; }
+    100% { transform: scaleX(0); transform-origin: right center; }
+  }
+  @keyframes sweep-blocks {
+    0%   { opacity: 0; transform: translateX(-20%); }
+    40%  { opacity: 0.6; }
+    100% { opacity: 0; transform: translateX(20%); }
+  }
+
+  /* Fullscreen toggle button */
+  .fs-toggle {
+    position: fixed;
+    top: 18px;
+    right: 18px;
+    z-index: 9999;
+    width: 36px;
+    height: 36px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,169,106,0.35);
+    background: rgba(11,18,32,0.55);
+    backdrop-filter: blur(6px);
+    color: rgba(234,228,215,0.75);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease;
+    font-family: 'Inter', sans-serif;
+  }
+  .fs-toggle:hover {
+    border-color: rgba(201,169,106,0.7);
+    color: #C9A96A;
+    background: rgba(11,18,32,0.8);
+  }
+  .fs-toggle svg { width: 14px; height: 14px; display: block; }
+</style>
+</head>
+<body>
+
+<deck-stage width="1920" height="1080">
+
+<!-- =================================================================
+     SLIDE 01 — COVER
+================================================================= -->
+<section data-label="01 Cover" style="background: #0a0906; color: #EAE4D7;">
+  <!-- full-bleed hero image -->
+  <div style="position: absolute; inset: 0; z-index: 0; overflow: hidden;">
+    <img src="assets/cover-hub.png" alt="The Hub — the chamber where the tower thinks"
+         style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center;">
+    <!-- vignette + bottom darkening so text stays legible -->
+    <div style="position: absolute; inset: 0; background:
+      radial-gradient(ellipse at 50% 45%, rgba(0,0,0,0) 0%, rgba(0,0,0,0.15) 45%, rgba(0,0,0,0.55) 85%),
+      linear-gradient(180deg, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.05) 22%, rgba(0,0,0,0.05) 62%, rgba(0,0,0,0.75) 100%);
+      pointer-events: none;"></div>
+  </div>
+
+  <div class="frame" style="flex-direction: column; justify-content: space-between; position: relative; z-index: 2; padding: 72px 88px;">
+
+    <!-- top row: publication masthead -->
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.34em; color: rgba(234,228,215,0.75); text-transform: uppercase;">
+        Al Alyaa Developments &nbsp;·&nbsp; Concept Presentation
+      </div>
+      <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.34em; color: rgba(234,228,215,0.6); text-transform: uppercase;">
+        Strike Media &nbsp;/&nbsp; April 2026
+      </div>
+    </div>
+
+    <!-- centre spacer so bottom content sits low -->
+    <div></div>
+
+    <!-- bottom block: wordmark + concept line -->
+    <div style="max-width: 760px;">
+      <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.34em; color: #D4A857; text-transform: uppercase; margin-bottom: 28px;">
+        Concept · Pre-Brand Book
+      </div>
+
+      <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 12px; letter-spacing: 0.28em; color: rgba(234,228,215,0.7); text-transform: uppercase; margin-bottom: 28px;">
+        A Commercial Tower for Al Alyaa Developments
+      </div>
+
+      <h1 style="font-family: var(--serif, 'Cormorant Garamond', serif); font-weight: 300; font-style: italic; font-size: 128px; line-height: 0.96; letter-spacing: -0.005em; color: #EAE4D7; margin: 0;">
+        Tower<br>
+        that <span style="color: #D4A857;">knows</span>.
+      </h1>
+
+      <div style="margin-top: 22px; font-family: 'Cairo', sans-serif; font-size: 80px; color: rgba(234,228,215,0.85); line-height: 1;">
+        البرج الذي يعلم.
+      </div>
+
+      <div style="margin-top: 40px; display: flex; align-items: center; gap: 20px;">
+        <div style="width: 56px; height: 1px; background: #D4A857;"></div>
+        <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.34em; color: #D4A857; text-transform: uppercase;">Two names. One category.</div>
+      </div>
+
+      <div style="margin-top: 28px; font-family: 'Inter', sans-serif; font-weight: 300; font-size: 13px; line-height: 1.65; color: rgba(234,228,215,0.7); max-width: 440px;">
+        A concept presentation — precedent to the brand book —<br>
+        proposing the first commercial tower in the region<br>
+        whose intelligence is the brand, not a feature.
+      </div>
+    </div>
+  </div>
+
+  <!-- page number i, bottom-right -->
+  <div style="position: absolute; bottom: 44px; right: 44px; z-index: 3; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.34em; color: rgba(234,228,215,0.65); text-transform: uppercase;">i</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 02 — THE PROBLEM
+================================================================= -->
+<section data-label="02 Problem">
+  <div class="chapter">01 &nbsp;·&nbsp; The Market</div>
+
+  <div class="frame" style="flex-direction: column; justify-content: space-between; padding: 120px 88px 56px 88px;">
+
+    <!-- hero plate: the saturated skyline -->
+    <figure style="margin: 0; position: relative;">
+      <div style="position: relative; overflow: hidden;">
+        <img src="assets/problem-skyline.png" alt="Nine near-identical Grade-A towers in haze — the saturated market"
+             style="width: 100%; height: 420px; object-fit: cover; display: block; filter: brightness(0.72) contrast(1.05) saturate(0.85);">
+        <!-- tonal overlay: darken left third for headline legibility -->
+        <div style="position: absolute; inset: 0; background: linear-gradient(90deg, rgba(10,15,26,0.72) 0%, rgba(10,15,26,0.45) 35%, rgba(10,15,26,0.15) 60%, rgba(10,15,26,0.05) 100%); pointer-events: none;"></div>
+        <div style="position: absolute; inset: 0; background: linear-gradient(180deg, rgba(10,15,26,0.25) 0%, rgba(10,15,26,0) 30%, rgba(10,15,26,0) 70%, rgba(10,15,26,0.35) 100%); pointer-events: none;"></div>
+
+        <!-- overlaid headline, upper-left -->
+        <div style="position: absolute; left: 48px; top: 48px; max-width: 720px;">
+          <div class="kicker" style="margin-bottom: 22px; color: rgba(237,232,219,0.8);">The condition</div>
+          <h2 class="display" style="font-size: 54px; line-height: 1.08; color: var(--ivory); margin: 0; font-weight: 300;">
+            Saturated with <span style="color: var(--champagne); font-style: normal; font-weight: 300;">inventory</span>.<br>
+            Short on <span style="font-style: italic;">conviction</span>.
+          </h2>
+        </div>
+
+        <!-- top-right plate label -->
+        <div style="position: absolute; top: 24px; right: 24px; display: flex; gap: 20px; align-items: baseline;">
+          <div class="caption" style="color: rgba(237,232,219,0.7);">Plate 01</div>
+          <div class="caption" style="color: rgba(237,232,219,0.5);">New Administrative Capital · Grade-A skyline</div>
+        </div>
+
+        <!-- bottom-left footnote overlay -->
+        <div style="position: absolute; left: 48px; bottom: 24px;">
+          <div class="caption" style="color: rgba(237,232,219,0.6);">Nine towers · one argument · repeated</div>
+        </div>
+      </div>
+    </figure>
+
+    <!-- three-point rationale -->
+    <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 64px; max-width: 1600px;">
+      <div>
+        <div class="caption" style="color: var(--champagne); margin-bottom: 16px;">i</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 18px; line-height: 1.55; color: var(--ivory-dim);">
+          Every Grade A tower now claims the same three things: location, specification, and a smart-building layer.
+        </div>
+        <div class="ar-body sm">كلّ برجٍ من الفئة الأولى يدّعي المزايا ذاتها: الموقع، المواصفات، وطبقة المبنى الذكيّ.</div>
+      </div>
+      <div>
+        <div class="caption" style="color: var(--champagne); margin-bottom: 16px;">ii</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 18px; line-height: 1.55; color: var(--ivory-dim);">
+          Tenants choose on rent, on floor plate, on the commute. Not on belief.
+        </div>
+        <div class="ar-body sm">يختار المستأجر على أساس الإيجار، ومساحة الطابق، وزمن التنقّل — لا على أساس الإيمان.</div>
+      </div>
+      <div>
+        <div class="caption" style="color: var(--champagne); margin-bottom: 16px;">iii</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 18px; line-height: 1.55; color: var(--ivory-dim);">
+          The towers that command premium rents are not better buildings. They are better arguments.
+        </div>
+        <div class="ar-body sm">الأبراج التي تفرض إيجارات ممتازة ليست مبانيَ أفضل — بل حجّةً أقوى.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Concept</div>
+  <div class="pageno">02</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 03 — THE INSIGHT
+================================================================= -->
+<section data-label="03 Insight" class="paper">
+  <div class="chapter">02 &nbsp;·&nbsp; The Insight</div>
+
+  <div class="frame" style="flex-direction: column; justify-content: space-between; padding-top: 40px;">
+    <div style="text-align: center;">
+      <div class="kicker" style="color: var(--paper-mute);">A distinction the market has not yet drawn</div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 120px; align-items: center; width: 100%;">
+      <div style="text-align: right;">
+        <div class="caption" style="color: var(--paper-faint); margin-bottom: 36px;">What every tower claims</div>
+        <div class="display-s" style="color: var(--ink); font-size: 72px; font-style: italic; font-weight: 300; line-height: 1.05;">
+          Smart buildings <span style="font-style: normal;">contain</span> AI.
+        </div>
+      </div>
+
+      <div style="width: 1px; height: 220px; background: var(--paper-line);"></div>
+
+      <div style="text-align: left;">
+        <div class="caption" style="color: var(--champagne); margin-bottom: 36px;">What this one proposes</div>
+        <div class="display-s" style="color: var(--ink); font-size: 72px; font-style: italic; font-weight: 300; line-height: 1.05;">
+          This tower <span style="font-style: normal; color: var(--champagne);">is</span> AI.
+        </div>
+      </div>
+    </div>
+
+    <div style="text-align: center;">
+      <div class="footnote" style="color: var(--paper-mute); font-style: italic; font-family: var(--serif); font-size: 24px; line-height: 1.5; max-width: 780px; margin: 0 auto;">
+        Not a spec upgrade. A new commercial asset class — where intelligence is the operating logic, not the amenity.
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Concept</div>
+  <div class="pageno">03</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 04 — THE CONCEPT: THE TOWER THAT KNOWS
+================================================================= -->
+<section data-label="04 The Tower That Knows">
+  <div class="chapter">03 &nbsp;·&nbsp; The Category</div>
+
+  <div class="frame" style="gap: 88px;">
+    <!-- left: image plate — fluted travertine in raking light -->
+    <div style="flex: 0 0 720px; display: flex; flex-direction: column; gap: 20px;">
+      <div class="render" style="flex: 1; position: relative; overflow: hidden; background: #1a1713;">
+        <img src="assets/slide04-tower.png"
+             alt="The tower at dusk — monolith with two lit apertures, figure for scale"
+             style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+        <!-- top-left caption -->
+        <div style="position: absolute; top: 18px; left: 20px; z-index: 2; font-family: var(--sans); font-weight: 400; font-size: 12px; letter-spacing: 0.32em; text-transform: uppercase; color: rgba(255,250,240,0.92); text-shadow: 0 1px 6px rgba(0,0,0,0.5);">
+          Plate 02 &nbsp;·&nbsp; Elevation, blue hour
+        </div>
+        <!-- bottom-right caption -->
+        <div style="position: absolute; bottom: 16px; right: 20px; z-index: 2; font-family: var(--serif); font-style: italic; font-size: 16px; letter-spacing: 0.18em; color: rgba(255,250,240,0.88); text-shadow: 0 1px 6px rgba(0,0,0,0.5);">
+          42 storeys · 186 m · one figure
+        </div>
+        <!-- top-right tick marks -->
+        <div style="position: absolute; top: 14px; right: 14px; display: flex; gap: 8px; z-index: 2;">
+          <div style="width: 10px; height: 10px; border-top: 1px solid rgba(201,169,106,0.75); border-right: 1px solid rgba(201,169,106,0.75);"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- right: concept body -->
+    <div style="flex: 1; display: flex; flex-direction: column; justify-content: center; max-width: 720px;">
+      <div class="kicker" style="margin-bottom: 32px;">The proposition</div>
+
+      <h2 class="display" style="font-size: 76px; margin-bottom: 28px; line-height: 1.02;">
+        Tower<br>
+        that <span style="color: var(--champagne); font-style: italic; font-weight: 300;">knows</span>.
+      </h2>
+      <div class="ar-sub" style="font-size: 51px; margin-bottom: 40px; color: rgb(192, 156, 86); font-family: 'Cairo', sans-serif;">البرج الذي يعلم.</div>
+
+      <hr class="rule champagne" style="margin: 0 0 36px 0;">
+
+      <div style="font-family: var(--sans); font-weight: 300; font-size: 22px; line-height: 1.6; color: var(--ivory-dim); max-width: 620px;">
+        Not a smart building, not a connected one. An address that <em style="font-family: var(--serif); color: var(--ivory);">attends</em>, <em style="font-family: var(--serif); color: var(--ivory);">remembers</em>, and <em style="font-family: var(--serif); color: var(--ivory);">decides</em>.
+        A tower whose intelligence is measured not in sensors, but in judgement.
+      </div>
+      <div class="ar-body" style="max-width: 620px;">ليس مبنىً ذكيّاً، ولا مُتّصلاً. بل عنوانٌ <span style="color: var(--ivory);">يُصغي</span>، و<span style="color: var(--ivory);">يتذكّر</span>، و<span style="color: var(--ivory);">يقرّر</span>. برجٌ يُقاس ذكاؤه لا بعدد المجسّات، بل بفطنة الحكم.</div>
+
+      <div style="margin-top: 64px; display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 32px; max-width: 620px;">
+        <div>
+          <div class="caption" style="color: var(--champagne); margin-bottom: 10px;">Storeys</div>
+          <div style="font-family: var(--serif); font-size: 36px; color: var(--ivory); font-weight: 300;">42</div>
+        </div>
+        <div>
+          <div class="caption" style="color: var(--champagne); margin-bottom: 10px;">Typical plate</div>
+          <div style="font-family: var(--serif); font-size: 36px; color: var(--ivory); font-weight: 300;">1,860<span style="font-size: 16px; color: var(--ivory-mute);"> m²</span></div>
+        </div>
+        <div>
+          <div class="caption" style="color: var(--champagne); margin-bottom: 10px;">Ground to sky</div>
+          <div style="font-family: var(--serif); font-size: 36px; color: var(--ivory); font-weight: 300;">52<span style="font-size: 16px; color: var(--ivory-mute);"> sec</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Concept</div>
+  <div class="pageno">04</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 05 — HOW IT THINKS
+================================================================= -->
+<section data-label="05 How It Thinks">
+  <div class="chapter">04 &nbsp;·&nbsp; Faculties</div>
+
+  <div class="frame" style="flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px;">
+      <div style="max-width: 740px;">
+        <div class="kicker" style="margin-bottom: 20px;">Six faculties</div>
+        <h2 class="display-s" style="font-size: 56px; color: var(--ivory); line-height: 1.02;">
+          How it <span style="font-style: italic; color: var(--champagne);">thinks</span>.
+        </h2>
+      </div>
+      <div class="footnote" style="max-width: 360px; text-align: right;">
+        Each faculty runs continuously. None are visible to the occupant until they are needed.
+      </div>
+    </div>
+
+    <!-- 3 columns × 2 rows grid -->
+    <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-auto-rows: 1fr; border-top: 1px solid var(--ivory-line); flex: 1;">
+
+      <div style="padding: 28px 36px 28px 0; border-right: 1px solid var(--ivory-line); border-bottom: 1px solid var(--ivory-line);">
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 12px;">
+          <div class="spec-num">i.</div>
+          <div class="spec-term" style="font-size: 22px;">Arrival</div>
+        </div>
+        <div class="spec-def" style="margin-bottom: 12px;">The lobby recognises a tenant's expected client before the receptionist does. Greeting, wayfinding, and elevator call are pre-composed.</div>
+        <div class="ar-body" style="font-family: 'Cairo', sans-serif; font-size: 18px; line-height: 1.6; color: var(--ivory-dim); direction: rtl;">يَعرِفُ البهوُ ضيفَ المستأجرِ قبلَ الموظّف. فالتحيّةُ، والإرشادُ، واستدعاءُ المصعدِ مُهيَّأٌ مُسبقاً.</div>
+      </div>
+
+      <div style="padding: 28px 36px; border-right: 1px solid var(--ivory-line); border-bottom: 1px solid var(--ivory-line);">
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 12px;">
+          <div class="spec-num">ii.</div>
+          <div class="spec-term" style="font-size: 22px;">Environment</div>
+        </div>
+        <div class="spec-def" style="margin-bottom: 12px;">Acoustics, lighting, and thermal load calibrate to the nature of the conversation — negotiation, creative, analytic.</div>
+        <div class="ar-body" style="font-family: 'Cairo', sans-serif; font-size: 18px; line-height: 1.6; color: var(--ivory-dim); direction: rtl;">تُعايِرُ كلُّ قاعةٍ صوتَها وإضاءتَها وحرارتَها وَفْقَ طبيعةِ الحديث: تفاوضٌ، أو إبداعٌ، أو تحليل.</div>
+      </div>
+
+      <div style="padding: 28px 0 28px 36px; border-bottom: 1px solid var(--ivory-line);">
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 12px;">
+          <div class="spec-num">iii.</div>
+          <div class="spec-term" style="font-size: 22px;">Benchmarking</div>
+        </div>
+        <div class="spec-def" style="margin-bottom: 12px;">Each tenant's operational efficiency is measured against anonymised peers. The address becomes a competitive input, not only a location.</div>
+        <div class="ar-body" style="font-family: 'Cairo', sans-serif; font-size: 18px; line-height: 1.6; color: var(--ivory-dim); direction: rtl;">تُقاسُ كفاءةُ كلِّ مستأجرٍ إزاءَ أقرانِهِ دونَ كشفِ هويّاتِهم. فيغدو العنوانُ مُدخَلاً تنافسيّاً، لا موقعاً فحسب.</div>
+      </div>
+
+      <div style="padding: 28px 36px 28px 0; border-right: 1px solid var(--ivory-line);">
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 12px;">
+          <div class="spec-num">iv.</div>
+          <div class="spec-term" style="font-size: 22px;">Facade</div>
+        </div>
+        <div class="spec-def" style="margin-bottom: 12px;">The curtain wall modulates light and thermal behaviour to occupancy rhythms. The building breathes with its tenants.</div>
+        <div class="ar-body" style="font-family: 'Cairo', sans-serif; font-size: 18px; line-height: 1.6; color: var(--ivory-dim); direction: rtl;">تَضبِطُ الواجهةُ سلوكَها الضوئيَّ والحراريَّ وَفْقَ إيقاعِ الإشغال. فالمبنى يتنفّسُ مع شاغِليه.</div>
+      </div>
+
+      <div style="padding: 28px 36px; border-right: 1px solid var(--ivory-line);">
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 12px;">
+          <div class="spec-num">v.</div>
+          <div class="spec-term" style="font-size: 22px;">Operations</div>
+        </div>
+        <div class="spec-def" style="margin-bottom: 12px;">Maintenance, cleaning, and energy dispatch are predictive. The building resolves most issues before they are reported.</div>
+        <div class="ar-body" style="font-family: 'Cairo', sans-serif; font-size: 18px; line-height: 1.6; color: var(--ivory-dim); direction: rtl;">الصيانةُ، والتنظيفُ، وتوزيعُ الطاقةِ استباقيّةٌ. يَحسِمُ المبنى معظمَ المسائلِ قبلَ أن تُرفَع.</div>
+      </div>
+
+      <div style="padding: 28px 0 28px 36px;">
+        <div style="display: flex; align-items: baseline; gap: 14px; margin-bottom: 12px;">
+          <div class="spec-num">vi.</div>
+          <div class="spec-term" style="font-size: 22px;">Security</div>
+        </div>
+        <div class="spec-def" style="margin-bottom: 12px;">Ambient, continuous, unaddressed. Access, provenance, and data dignity are maintained without gates or announcements.</div>
+        <div class="ar-body" style="font-family: 'Cairo', sans-serif; font-size: 18px; line-height: 1.6; color: var(--ivory-dim); direction: rtl;">مُحيطةٌ، دائمةٌ، صامتةٌ. الدخولُ، والتحقّقُ، وصَونُ البيانات دونَ بوّاباتٍ ولا إعلان.</div>
+      </div>
+
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Concept</div>
+  <div class="pageno">05</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 06 — WHAT TENANTS GET
+================================================================= -->
+<section data-label="06 Tenant Value" class="paper">
+  <div class="chapter">05 &nbsp;·&nbsp; For the Tenant</div>
+
+  <div class="frame" style="flex-direction: column;">
+    <div style="max-width: 1000px; margin-bottom: 80px;">
+      <div class="kicker" style="color: var(--paper-mute); margin-bottom: 24px;">Position it as advantage, not novelty</div>
+      <h2 class="display-s" style="font-size: 64px; color: var(--ink); font-style: italic;">
+        What an address like this <span style="font-style: normal;">earns</span>.
+      </h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 48px; flex: 1;">
+      <div>
+        <div style="font-family: var(--serif); font-weight: 300; font-size: 64px; color: var(--champagne); line-height: 1;">01</div>
+        <hr style="width: 40px; border: 0; border-top: 1px solid var(--champagne); margin: 20px 0;">
+        <div class="spec-term" style="color: var(--ink); font-size: 24px; margin-bottom: 14px;">Operational<br>intelligence</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.55; color: var(--paper-mute);">
+          Tenant efficiency benchmarked anonymously against peers in category. Performance becomes location-correlated.
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family: var(--serif); font-weight: 300; font-size: 64px; color: var(--champagne); line-height: 1;">02</div>
+        <hr style="width: 40px; border: 0; border-top: 1px solid var(--champagne); margin: 20px 0;">
+        <div class="spec-term" style="color: var(--ink); font-size: 24px; margin-bottom: 14px;">Energy<br>equity</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.55; color: var(--paper-mute);">
+          Consumption is allocated, not estimated. Each tenant pays only for what the building measures them to use.
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family: var(--serif); font-weight: 300; font-size: 64px; color: var(--champagne); line-height: 1;">03</div>
+        <hr style="width: 40px; border: 0; border-top: 1px solid var(--champagne); margin: 20px 0;">
+        <div class="spec-term" style="color: var(--ink); font-size: 24px; margin-bottom: 14px;">Hospitality-<br>grade arrival</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.55; color: var(--paper-mute);">
+          Guests are anticipated. The building performs the introductions the receptionist would have performed, faster.
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family: var(--serif); font-weight: 300; font-size: 64px; color: var(--champagne); line-height: 1;">04</div>
+        <hr style="width: 40px; border: 0; border-top: 1px solid var(--champagne); margin: 20px 0;">
+        <div class="spec-term" style="color: var(--ink); font-size: 24px; margin-bottom: 14px;">Environmental<br>adaptability</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.55; color: var(--paper-mute);">
+          The room adjusts to the work. Board meeting, creative session, deposition — the acoustics know the difference.
+        </div>
+      </div>
+
+      <div>
+        <div style="font-family: var(--serif); font-weight: 300; font-size: 64px; color: var(--champagne); line-height: 1;">05</div>
+        <hr style="width: 40px; border: 0; border-top: 1px solid var(--champagne); margin: 20px 0;">
+        <div class="spec-term" style="color: var(--ink); font-size: 24px; margin-bottom: 14px;">Data<br>dignity</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.55; color: var(--paper-mute);">
+          What the building learns about a tenant never leaves it. Intelligence is a benefit of tenancy, not a condition of it.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Concept</div>
+  <div class="pageno">06</div>
+</section>
+
+
+
+<!-- =================================================================
+     SLIDE 08 — DIVIDER: TWO NAMES
+================================================================= -->
+<section data-label="07 Naming — The Question">
+  <div class="chapter">06 &nbsp;·&nbsp; Naming</div>
+
+  <div class="frame" style="flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+
+    <!-- Top eyebrow -->
+    <div style="display: flex; align-items: center; gap: 20px; margin-bottom: 80px; color: var(--ivory-dim);">
+      <div style="width: 48px; height: 1px; background: var(--champagne); opacity: 0.7;"></div>
+      <div class="kicker" style="letter-spacing: 0.42em;">An interlude</div>
+      <div style="width: 48px; height: 1px; background: var(--champagne); opacity: 0.7;"></div>
+    </div>
+
+    <!-- Declarative line -->
+    <div style="font-family: var(--serif); font-weight: 300; font-size: 64px; line-height: 1.15; color: var(--ivory); letter-spacing: -0.01em; max-width: 980px;">
+      The category is defined.<br>
+      <em style="font-style: italic; color: var(--champagne);">Now it must be named.</em>
+    </div>
+
+    <!-- Arabic mirror -->
+    <div class="arabic" style="margin-top: 56px; font-family: var(--arabic); font-weight: 300; font-size: 44px; color: var(--ivory-dim); direction: rtl; line-height: 1.5; letter-spacing: 0;">
+      الفئة قد تحدَّدت. <span style="color: var(--champagne); font-weight: 400;">بقي أن تُسمّى.</span>
+    </div>
+
+    <!-- Long rule -->
+    <div style="margin: 100px 0 48px; width: 220px; height: 1px; background: linear-gradient(90deg, transparent, var(--champagne), transparent);"></div>
+
+    <!-- Foot note -->
+    <div class="footnote" style="font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ivory-dim); max-width: 680px; line-height: 1.55;">
+      What we call a thing teaches the world what it is.<br>
+      On the next page, two candidates — held in equal light.
+    </div>
+
+  </div>
+
+  <!-- left chapter numeral, quiet -->
+  <div style="position: absolute; left: 108px; bottom: 108px; font-family: var(--serif); font-style: italic; font-weight: 300; font-size: 180px; color: rgba(234,228,215,0.06); line-height: 1; letter-spacing: -0.02em;">
+    ?
+  </div>
+
+  <div class="imprint">Al Alyaa · Concept</div>
+  <div class="pageno">07</div>
+</section>
+
+  <section data-label="08 Divider — Two Names">
+  <div class="chapter">07 &nbsp;·&nbsp; Naming — Two Routes</div>
+
+  <div class="frame" style="flex-direction: column; justify-content: center; align-items: center;">
+    <div class="kicker" style="margin-bottom: 40px;">Two routes — developed in parallel</div>
+
+    <!-- materials band: graphite slate | travertine -->
+    <figure style="margin: 0 0 56px 0; width: 78%; max-width: 1320px; position: relative;">
+      <img src="assets/decision-bg.png" alt="Material register — graphite &amp; travertine"
+           style="width: 100%; height: 140px; object-fit: cover; display: block;">
+      <div style="position:absolute; top:-6px; left:-6px; width:12px; height:12px; border-top:1px solid var(--champagne); border-left:1px solid var(--champagne);"></div>
+      <div style="position:absolute; top:-6px; right:-6px; width:12px; height:12px; border-top:1px solid var(--champagne); border-right:1px solid var(--champagne);"></div>
+      <div style="position:absolute; bottom:-6px; left:-6px; width:12px; height:12px; border-bottom:1px solid var(--champagne); border-left:1px solid var(--champagne);"></div>
+      <div style="position:absolute; bottom:-6px; right:-6px; width:12px; height:12px; border-bottom:1px solid var(--champagne); border-right:1px solid var(--champagne);"></div>
+      <figcaption style="display: flex; justify-content: space-between; margin-top: 14px;">
+        <div class="caption" style="color: var(--ivory-mute);">Material register · graphite</div>
+        <div class="caption" style="color: var(--ivory-mute);">travertine · brass</div>
+      </figcaption>
+    </figure>
+
+    <div style="display: grid; grid-template-columns: 1fr auto 1fr; gap: 120px; align-items: center;">
+      <div style="text-align: right;">
+        <div class="caption" style="color: var(--ivory-mute); margin-bottom: 24px;">Route A</div>
+        <div class="display" style="font-family: Inter; font-size: 140px; letter-spacing: 0.18em; font-style: normal; font-weight: 300;">AXIA</div>
+        <div style="margin-top: 14px; display: flex; align-items: center; justify-content: flex-end; gap: 14px;">
+          <div style="width: 40px; height: 1px; background: var(--champagne);"></div>
+          <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; letter-spacing: 0.48em; color: var(--champagne); text-transform: uppercase;">Tower</div>
+        </div>
+        <div class="footnote" style="margin-top: 20px; max-width: 340px; margin-left: auto;"><em style="font-family: var(--serif);">αξία</em> — worth, value. The axis of enterprise.</div>
+      </div>
+
+      <div style="width: 1px; height: 280px; background: var(--ivory-line);"></div>
+
+      <div>
+        <div class="caption" style="color: var(--ivory-mute); margin-bottom: 24px;">Route B</div>
+        <div class="display" style="font-size: 140px; letter-spacing: 0.18em; font-style: normal; font-weight: 300;">ULIA</div>
+        <div style="margin-top: 14px; display: flex; align-items: center; justify-content: flex-start; gap: 14px;">
+          <div style="width: 40px; height: 1px; background: var(--champagne);"></div>
+          <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; letter-spacing: 0.48em; color: var(--champagne); text-transform: uppercase;">Tower</div>
+        </div>
+        <div class="footnote" style="margin-top: 20px; max-width: 340px;">Ulysses — intelligence, navigation. Inherits <span class="arabic" style="font-family: var(--arabic);">عُليّا</span>.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 120px; max-width: 740px; text-align: center;">
+      <div class="footnote" style="font-family: var(--serif); font-style: italic; font-size: 22px; color: var(--ivory-dim); line-height: 1.55;">
+        Neither is the safe route. Neither is the bold route. Both belong at the top of<br>
+        Sheikh Zayed Road, DIFC, and Madison Avenue.
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Concept</div>
+  <div class="pageno">08</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 09 — AXIA: NAME RATIONALE
+================================================================= -->
+
+<!-- =================================================================
+     SLIDE 09 — AXIA · COVER (dark futuristic)
+================================================================= -->
+<section data-label="09 AXIA Cover" class="axia">
+  <div class="chapter">08 &nbsp;·&nbsp; Route A</div>
+
+  <div class="axia-scan"></div>
+  <div class="axia-grid"></div>
+
+  <!-- top terminal ticker -->
+  <div style="position: absolute; top: 64px; right: 88px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.28em; color: #5EE7DF;">
+    ROUTE.A &nbsp;//&nbsp; AXIA TOWER &nbsp;//&nbsp; v1.0 &nbsp;//&nbsp; 04.26
+  </div>
+
+  <!-- large ghost X -->
+  <svg style="position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); width: 1100px; height: 1100px; opacity: 0.08;" viewBox="0 0 400 400">
+    <line x1="40" y1="40" x2="360" y2="360" stroke="#5EE7DF" stroke-width="0.5"/>
+    <line x1="360" y1="40" x2="40" y2="360" stroke="#5EE7DF" stroke-width="0.5"/>
+    <circle cx="200" cy="200" r="120" fill="none" stroke="#5EE7DF" stroke-width="0.3"/>
+    <circle cx="200" cy="200" r="180" fill="none" stroke="#5EE7DF" stroke-width="0.3"/>
+  </svg>
+
+  <div class="frame" style="flex-direction: column; justify-content: space-between;">
+    <div style="display: flex; align-items: center; gap: 24px; margin-top: 40px;">
+      <div class="axia-chip">ROUTE A</div>
+      <div class="caption">NAME_VARIANT · 01</div>
+    </div>
+
+    <div style="text-align: center;">
+      <div style="font-family: 'Inter', sans-serif; font-weight: 100; font-size: 280px; letter-spacing: 0.32em; color: #F2F4F8; line-height: 1; text-shadow: 0 0 60px rgba(94,231,223,0.12);">
+        AXIA
+      </div>
+      <div style="margin-top: 18px; display: flex; align-items: center; justify-content: center; gap: 22px;">
+        <div style="width: 80px; height: 1px; background: rgba(94,231,223,0.5);"></div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.56em; color: #5EE7DF; text-transform: uppercase;">Tower</div>
+        <div style="width: 80px; height: 1px; background: rgba(94,231,223,0.5);"></div>
+      </div>
+      <div style="margin-top: 28px; font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.48em; color: rgba(94,231,223,0.82);">
+        &lt; T H E &nbsp;&nbsp; A X I S &nbsp;&nbsp; O F &nbsp;&nbsp; V A L U E /&gt;
+      </div>
+      <div class="ar-sub" style="font-family: 'Noto Kufi Arabic', serif; color: rgba(94,231,223,0.72); font-size: 24px; margin-top: 28px;">
+        محورُ القيمة
+      </div>
+    </div>
+
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.32em; color: rgba(230,234,240,0.42);">
+      <div>
+        ETYMOLOGY &nbsp;→&nbsp; αξία (axía)<br>
+        TERRITORY &nbsp;→&nbsp; INSTITUTIONAL<br>
+        REGISTER &nbsp;&nbsp;→&nbsp; DECLARATIVE
+      </div>
+      <div style="text-align: right;">
+        DARK.MODE · LOCKED<br>
+        PALETTE · OBSIDIAN / CYAN<br>
+        TYPE · INTER·100 / JETBRAINS·MONO
+      </div>
+    </div>
+  </div>
+
+  <div class="pageno">09</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 10 — AXIA RATIONALE (dark futuristic)
+================================================================= -->
+<section data-label="10 AXIA Rationale" class="axia">
+  <div class="chapter">09 &nbsp;·&nbsp; Route A — AXIA Tower</div>
+  <div class="axia-grid"></div>
+
+  <div class="frame" style="gap: 88px;">
+    <!-- left: the mark, large, quiet -->
+    <div style="flex: 0 0 640px; display: flex; flex-direction: column; gap: 32px;">
+      <div style="flex: 1; border: 1px solid rgba(94,231,223,0.32); position: relative; overflow: hidden; background: #05070C;">
+        <img src="assets/axia-facade.png" alt="AXIA Tower — fluted facade detail" style="width: 100%; height: 100%; object-fit: cover; display: block;"/>
+        <div class="caption" style="position: absolute; top: 20px; left: 24px; color: rgba(94,231,223,0.85); text-shadow: 0 1px 4px rgba(0,0,0,0.6);">FACADE.STUDY / 01</div>
+        <div class="caption" style="position: absolute; bottom: 20px; right: 24px; color: rgba(230,234,240,0.65); text-shadow: 0 1px 4px rgba(0,0,0,0.6);">Fluted anodized graphite · single cyan seam</div>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 20px;">
+        <div style="font-family: 'Inter', sans-serif; font-weight: 100; font-size: 84px; letter-spacing: 0.24em; color: #F2F4F8;">AXIA</div>
+        <div style="font-family: 'JetBrains Mono', monospace; font-size: 14px; letter-spacing: 0.42em; color: #5EE7DF; text-transform: uppercase;">— Tower</div>
+      </div>
+    </div>
+
+    <!-- right: rationale -->
+    <div style="flex: 1; display: flex; flex-direction: column; max-width: 680px; padding-top: 20px;">
+      <div class="kicker" style="margin-bottom: 24px;">ROUTE_A // RATIONALE</div>
+      <h2 class="display-s" style="font-size: 64px; font-weight: 200;">
+        The axis of <span style="color: #5EE7DF;">value</span>.
+      </h2>
+      <div class="ar-sub" style="font-size: 22px; margin-top: 18px; margin-bottom: 20px;">محورُ القيمة.</div>
+
+      <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px 40px; row-gap: 24px; font-family: 'JetBrains Mono', monospace; font-size: 13px; line-height: 1.7;">
+        <div class="caption">ETYM</div>
+        <div style="color: rgba(230,234,240,0.72);">Greek <em style="color: #5EE7DF; font-style: normal;">αξία</em> (axía) — worth, value. Adjacent to <em style="color: #5EE7DF; font-style: normal;">axis</em> and <em style="color: #5EE7DF; font-style: normal;">axiom</em>.</div>
+
+        <div class="caption">TERRITORY</div>
+        <div style="color: rgba(230,234,240,0.72);">The tower as the centre of gravity in the city's commercial map. Institutional permanence. Goldman Sachs, not WeWork.</div>
+
+        <div class="caption">REGISTER</div>
+        <div style="color: rgba(230,234,240,0.72);">Declarative. Structural. A tower that does not explain itself.</div>
+
+        <div class="caption">MARK_LOGIC</div>
+        <div style="color: rgba(230,234,240,0.72);">The X as structural intersection — two vectors meeting at the point of decision.</div>
+      </div>
+
+      <hr class="rule" style="margin: 48px 0 36px 0;">
+
+      <div class="caption" style="color: #5EE7DF; margin-bottom: 18px;">// TAGLINE_DIRECTIONS</div>
+      <div style="font-family: 'Inter', sans-serif; font-weight: 200; font-size: 24px; line-height: 1.6; color: #F2F4F8;">
+        <div>— The axis of enterprise.</div>
+        <div>— Where ambition finds its centre.</div>
+        <div>— Measured, permanent, exact.</div>
+      </div>
+
+      <div style="margin-top: 48px; padding: 24px 28px; border-left: 1px solid #5EE7DF; background: rgba(94,231,223,0.04);">
+        <div class="caption" style="color: #5EE7DF; margin-bottom: 12px;">// ONE_LINE</div>
+        <div style="font-family: 'Inter', sans-serif; font-weight: 200; font-size: 22px; color: #F2F4F8; line-height: 1.5;">
+          AXIA Tower. The address the city arranges itself around.
+        </div>
+        <div class="ar-body sm" style="margin-top: 12px;">أكسيا. العنوان الذي تنتظم المدينة حوله.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">AL ALYAA · AXIA TOWER · CONCEPT</div>
+  <div class="pageno">10</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 11 — AXIA WORLD (dark futuristic)
+================================================================= -->
+<section data-label="11 AXIA World" class="axia">
+  <div class="chapter">10 &nbsp;·&nbsp; AXIA Tower / Visual World</div>
+  <div class="axia-scan"></div>
+
+  <div class="frame" style="flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px;">
+      <div>
+        <div class="kicker" style="margin-bottom: 20px;">MOOD · MATERIALITY · APPLICATION</div>
+        <h2 class="display-s" style="font-size: 48px; font-weight: 200;">Machine precision, human scale.</h2>
+      </div>
+      <div class="footnote" style="max-width: 340px; text-align: right;">
+        Obsidian ground. Thin-weight sans for display. Mono for system voice. Cyan as signal, never decoration. Architectural X-motif throughout.
+      </div>
+    </div>
+
+    <!-- 2x3 grid of applications -->
+    <div style="flex: 1; display: grid; grid-template-columns: 1.1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 24px;">
+      <!-- Hero render -->
+      <div style="grid-row: span 2; background: #05070C; border: 1px solid rgba(94,231,223,0.2); position: relative; overflow: hidden;">
+        <img src="assets/axia-hero.png" alt="AXIA Tower exterior" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"/>
+        <div class="cap" style="position: absolute; top: 16px; left: 18px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.28em; color: rgba(94,231,223,0.85); text-shadow: 0 1px 4px rgba(0,0,0,0.6); z-index: 2;">EXTERIOR · BLUE.HOUR · 02:14</div>
+        <div style="position: absolute; bottom: 16px; left: 18px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.32em; color: rgba(94,231,223,0.7); text-shadow: 0 1px 4px rgba(0,0,0,0.6); z-index: 2;">AXIA · TOWER</div>
+        <div style="display: none;">
+        <svg viewBox="0 0 500 820" style="position: absolute; inset: 0; width: 100%; height: 100%;" preserveAspectRatio="xMidYMid meet">
+          <defs>
+            <linearGradient id="axia-tower" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0%" stop-color="#1A2436"/>
+              <stop offset="100%" stop-color="#05070C"/>
+            </linearGradient>
+          </defs>
+          <rect x="180" y="120" width="140" height="640" fill="url(#axia-tower)" stroke="rgba(94,231,223,0.45)" stroke-width="1"/>
+          <g stroke="rgba(94,231,223,0.18)" stroke-width="0.5">
+            <line x1="180" y1="140" x2="320" y2="140"/><line x1="180" y1="160" x2="320" y2="160"/><line x1="180" y1="180" x2="320" y2="180"/><line x1="180" y1="200" x2="320" y2="200"/><line x1="180" y1="220" x2="320" y2="220"/><line x1="180" y1="240" x2="320" y2="240"/><line x1="180" y1="260" x2="320" y2="260"/><line x1="180" y1="280" x2="320" y2="280"/><line x1="180" y1="300" x2="320" y2="300"/><line x1="180" y1="320" x2="320" y2="320"/><line x1="180" y1="340" x2="320" y2="340"/><line x1="180" y1="360" x2="320" y2="360"/><line x1="180" y1="380" x2="320" y2="380"/><line x1="180" y1="400" x2="320" y2="400"/><line x1="180" y1="420" x2="320" y2="420"/><line x1="180" y1="440" x2="320" y2="440"/><line x1="180" y1="460" x2="320" y2="460"/><line x1="180" y1="480" x2="320" y2="480"/><line x1="180" y1="500" x2="320" y2="500"/><line x1="180" y1="520" x2="320" y2="520"/><line x1="180" y1="540" x2="320" y2="540"/><line x1="180" y1="560" x2="320" y2="560"/><line x1="180" y1="580" x2="320" y2="580"/><line x1="180" y1="600" x2="320" y2="600"/><line x1="180" y1="620" x2="320" y2="620"/><line x1="180" y1="640" x2="320" y2="640"/><line x1="180" y1="660" x2="320" y2="660"/><line x1="180" y1="680" x2="320" y2="680"/><line x1="180" y1="700" x2="320" y2="700"/><line x1="180" y1="720" x2="320" y2="720"/><line x1="180" y1="740" x2="320" y2="740"/>
+          </g>
+          <g stroke="rgba(94,231,223,0.08)" stroke-width="0.4">
+            <line x1="220" y1="140" x2="220" y2="740"/>
+            <line x1="250" y1="140" x2="250" y2="740"/>
+            <line x1="280" y1="140" x2="280" y2="740"/>
+          </g>
+          <rect x="180" y="740" width="140" height="20" fill="rgba(94,231,223,0.25)"/>
+          <line x1="180" y1="760" x2="320" y2="760" stroke="rgba(94,231,223,0.6)" stroke-width="1"/>
+          <g transform="translate(250 790)">
+            <line x1="-50" y1="0" x2="50" y2="0" stroke="rgba(94,231,223,0.5)" stroke-width="0.5"/>
+          </g>
+          <g transform="translate(250 785)">
+            <text x="0" y="25" font-family="Inter" font-weight="200" font-size="14" letter-spacing="10" text-anchor="middle" fill="#5EE7DF">AXIA</text>
+            <text x="0" y="42" font-family="JetBrains Mono" font-size="8" letter-spacing="6" text-anchor="middle" fill="rgba(94,231,223,0.55)">TOWER</text>
+          </g>
+          <!-- reticle -->
+          <line x1="40" y1="440" x2="160" y2="440" stroke="rgba(94,231,223,0.25)" stroke-width="0.5"/>
+          <line x1="340" y1="440" x2="460" y2="440" stroke="rgba(94,231,223,0.25)" stroke-width="0.5"/>
+          <text x="60" y="432" font-family="JetBrains Mono" font-size="9" fill="rgba(94,231,223,0.5)">+23.4m</text>
+          <text x="420" y="432" font-family="JetBrains Mono" font-size="9" fill="rgba(94,231,223,0.5)">FL.64</text>
+        </svg>
+        </div>
+      </div>
+
+      <!-- Aerial / signal -->
+      <div style="border: 1px solid rgba(94,231,223,0.2); padding: 0; position: relative; overflow: hidden; background: #05070C;">
+        <img src="assets/axia-aerial.png" alt="AXIA Tower — aerial signal" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"/>
+        <div class="cap" style="position: absolute; top: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.28em; color: rgba(94,231,223,0.9); text-shadow: 0 1px 4px rgba(0,0,0,0.6); z-index: 2;">AERIAL · 03:40</div>
+        <div style="position: absolute; bottom: 12px; right: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.24em; color: rgba(94,231,223,0.65); text-shadow: 0 1px 4px rgba(0,0,0,0.6); z-index: 2;">A COORDINATE, NOT A BUILDING</div>
+      </div>
+
+      <!-- Type -->
+      <div style="border: 1px solid rgba(230,234,240,0.12); padding: 28px; display: flex; flex-direction: column; justify-content: space-between; background: rgba(10,14,24,0.4);">
+        <div class="caption">// TYPE_STACK</div>
+        <div>
+          <div style="font-family: 'Inter', sans-serif; font-weight: 100; font-size: 64px; letter-spacing: 0.26em; color: #F2F4F8; line-height: 1;">AXIA</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.42em; color: #5EE7DF; margin-top: 6px; text-transform: uppercase;">— Tower</div>
+          <hr class="rule" style="margin: 16px 0;">
+          <div style="font-family: 'Inter', sans-serif; font-weight: 200; font-size: 16px; color: rgba(230,234,240,0.72); letter-spacing: 0.02em;">Inter · 100 / 200</div>
+          <div style="font-family: 'JetBrains Mono', monospace; font-size: 11px; letter-spacing: 0.22em; color: rgba(94,231,223,0.7); margin-top: 8px;">JETBRAINS_MONO · 400</div>
+        </div>
+      </div>
+
+      <!-- Business card -->
+      <div style="border: 1px solid rgba(230,234,240,0.12); padding: 28px; display: flex; flex-direction: column; gap: 20px; background: rgba(10,14,24,0.4);">
+        <div class="caption">// CARD · 85×55</div>
+        <div style="flex: 1; background: #0A0E18; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(94,231,223,0.2);">
+          <svg viewBox="0 0 40 40" style="width: 28px; height: 28px;">
+            <line x1="8" y1="8" x2="32" y2="32" stroke="#5EE7DF" stroke-width="1"/>
+            <line x1="32" y1="8" x2="8" y2="32" stroke="#5EE7DF" stroke-width="1"/>
+          </svg>
+          <div>
+            <div style="font-family: 'Inter', sans-serif; font-weight: 300; font-size: 15px; color: #F2F4F8;">Hala Mansour</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.22em; color: rgba(230,234,240,0.52); margin-top: 2px; text-transform: uppercase;">Leasing_Director</div>
+            <hr style="border: 0; border-top: 1px solid rgba(94,231,223,0.3); margin: 10px 0;">
+            <div style="display: flex; align-items: baseline; gap: 10px;">
+              <div style="font-family: 'Inter', sans-serif; font-weight: 100; font-size: 14px; letter-spacing: 0.32em; color: #5EE7DF;">AXIA</div>
+              <div style="font-family: 'JetBrains Mono', monospace; font-size: 8px; letter-spacing: 0.32em; color: rgba(94,231,223,0.72); text-transform: uppercase;">Tower</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lobby interior -->
+      <div style="border: 1px solid rgba(230,234,240,0.12); padding: 0; position: relative; overflow: hidden; background: #05070C;">
+        <img src="assets/axia-lobby.png" alt="AXIA Tower lobby" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"/>
+        <div class="cap" style="position: absolute; top: 14px; left: 16px; font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.28em; color: rgba(94,231,223,0.9); text-shadow: 0 1px 4px rgba(0,0,0,0.6); z-index: 2;">LOBBY · GROUND.FLOOR</div>
+        <div style="position: absolute; bottom: 12px; right: 14px; font-family: 'JetBrains Mono', monospace; font-size: 9px; letter-spacing: 0.24em; color: rgba(94,231,223,0.6); text-shadow: 0 1px 4px rgba(0,0,0,0.6); z-index: 2;">CHARCOAL · BRONZE · CYAN</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">AL ALYAA · AXIA TOWER · CONCEPT</div>
+  <div class="pageno">11</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 12 — ULIA · COVER (light Arabian fresh)
+================================================================= -->
+<section data-label="12 ULIA Cover" class="ulia" style="background: #1A120A; color: #EDE2CA;">
+  <!-- full-bleed hero -->
+  <div style="position: absolute; inset: 0; overflow: hidden;">
+    <img src="assets/ulia-cover-hero.png" alt="Ulia Tower at dusk"
+         style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 35%;">
+    <!-- warm gradient scrim: darkens left for wordmark legibility, fades clear on right -->
+    <div style="position: absolute; inset: 0;
+         background: linear-gradient(90deg,
+           rgba(26,18,10,0.88) 0%,
+           rgba(26,18,10,0.72) 28%,
+           rgba(26,18,10,0.28) 55%,
+           rgba(26,18,10,0.08) 78%,
+           rgba(26,18,10,0.32) 100%);"></div>
+    <!-- soft dusk glow at top-right -->
+    <div style="position: absolute; top: 0; right: 0; width: 60%; height: 40%;
+         background: radial-gradient(ellipse at top right, rgba(244,220,180,0.14) 0%, transparent 70%);"></div>
+  </div>
+
+  <div class="chapter" style="position: relative; z-index: 2; color: rgba(237,226,202,0.72);">11 &nbsp;·&nbsp; Route B</div>
+
+  <div class="frame" style="flex-direction: column; justify-content: space-between; position: relative; z-index: 2;">
+    <div style="display: flex; align-items: center; gap: 24px; margin-top: 40px;">
+      <div style="padding: 6px 14px; border: 1px solid #D9A57A; color: #D9A57A; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.32em; text-transform: uppercase;">Route B</div>
+      <div class="caption" style="color: rgba(237,226,202,0.6);">Name variant · 02</div>
+    </div>
+
+    <div style="max-width: 760px; padding-bottom: 20px;">
+      <div style="font-family: 'Cormorant Garamond', serif; font-weight: 300; font-style: italic; font-size: 240px; letter-spacing: 0.02em; color: #F4EBD9; line-height: 0.92; text-shadow: 0 2px 24px rgba(0,0,0,0.35);">
+        Ulia
+      </div>
+      <div style="margin-top: 18px; display: flex; align-items: center; gap: 20px;">
+        <div style="width: 64px; height: 1px; background: #D9A57A;"></div>
+        <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 28px; letter-spacing: 0.42em; color: #D9A57A; text-transform: lowercase;">tower</div>
+      </div>
+      <div style="margin-top: 28px; display: inline-block; font-family: 'Reem Kufi', serif; font-size: 88px; color: #D9A57A; direction: rtl; letter-spacing: 0; line-height: 1; text-shadow: 0 2px 18px rgba(0,0,0,0.35);">
+        عُليّا
+      </div>
+      <div style="margin-top: 22px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 26px; letter-spacing: 0.06em; color: rgba(237,226,202,0.78); max-width: 520px; line-height: 1.35;">
+        — intelligence, elevated —
+      </div>
+    </div>
+
+    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 80px; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 11px; letter-spacing: 0.28em; color: rgba(237,226,202,0.58); text-transform: uppercase;">
+      <div style="line-height: 2;">
+        Etymology &nbsp;—&nbsp; Ulysses · <span class="arabic" style="text-transform: none; letter-spacing: 0; color: #D9A57A;">عُليّا</span><br>
+        Territory &nbsp;&nbsp;—&nbsp; Cultural resonance<br>
+        Register &nbsp;&nbsp;&nbsp;—&nbsp; Poised, inherited
+      </div>
+      <div style="text-align: right; line-height: 2;">
+        Hour · 17:38 · dusk<br>
+        Palette · Travertine / Brass / Terracotta<br>
+        Type · Cormorant / Reem Kufi
+      </div>
+    </div>
+  </div>
+
+  <div class="pageno" style="position: relative; z-index: 2; color: rgba(237,226,202,0.5);">12</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 13 — ULIA RATIONALE (light Arabian fresh)
+================================================================= -->
+<section data-label="13 ULIA Rationale" class="ulia">
+  <div class="chapter">12 &nbsp;·&nbsp; Route B — ULIA</div>
+
+  <div class="frame" style="gap: 88px;">
+    <!-- left: the mark (arch) -->
+    <div style="flex: 0 0 640px; display: flex; flex-direction: column; gap: 32px;">
+      <div style="flex: 1; border: 1px solid rgba(42,31,20,0.18); position: relative; overflow: hidden; background: #F4EBD9;">
+        <img src="assets/ulia-rationale.png" alt="Ulia interior — travertine colonnade" style="width: 100%; height: 100%; object-fit: cover; display: block;"/>
+        <div class="caption" style="position: absolute; top: 20px; left: 24px; color: rgba(255,250,240,0.95); text-shadow: 0 1px 4px rgba(0,0,0,0.4);">Interior study · 01</div>
+        <div class="caption" style="position: absolute; bottom: 20px; right: 24px; color: rgba(255,250,240,0.9); text-shadow: 0 1px 4px rgba(0,0,0,0.4);">Travertine colonnade · terracotta · water</div>
+      </div>
+      <div style="display: flex; align-items: baseline; gap: 22px;">
+        <div style="font-family: 'Cormorant Garamond', serif; font-weight: 400; font-style: italic; font-size: 96px; letter-spacing: 0.04em; color: #2A1F14;">Ulia</div>
+        <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 22px; letter-spacing: 0.42em; color: #B8553B; text-transform: lowercase;">— tower</div>
+      </div>
+    </div>
+
+    <!-- right: rationale -->
+    <div style="flex: 1; display: flex; flex-direction: column; max-width: 680px; padding-top: 20px;">
+      <div class="kicker" style="margin-bottom: 24px;">Route B · Rationale</div>
+      <h2 class="display-s" style="font-size: 56px; font-style: italic; font-weight: 400;">
+        Intelligence, <span style="font-style: normal; color: #B8553B;">elevated</span>.
+      </h2>
+      <div class="ar-sub" style="font-size: 26px; margin-top: 18px; margin-bottom: 20px; color: #B8553B;">الضكاء الراقي .</div>
+
+      <div style="display: grid; grid-template-columns: 140px 1fr; gap: 20px 40px; row-gap: 24px; font-family: 'Inter', sans-serif; font-size: 15px; line-height: 1.65;">
+        <div class="caption">Etymology</div>
+        <div style="color: rgba(42,31,20,0.78);">Echoes <em style="font-family: 'Cormorant Garamond', serif; color: #2A1F14;">Ulysses</em> — intelligence, navigation. Bridges phonetically to <span class="arabic" style="color: #B8553B;">عُليّا</span> (Al Alyaa).</div>
+
+        <div class="caption">Lineage</div>
+        <div style="color: rgba(42,31,20,0.78);">The tower inherits its maker's name rather than discarding it. Heritage carried forward, not re-staged.</div>
+
+        <div class="caption">Territory</div>
+        <div style="color: rgba(42,31,20,0.78);">Less the centre, more the guide. A tower that thinks with you. European poise, Cairene ambition.</div>
+
+        <div class="caption">Mark logic</div>
+        <div style="color: rgba(42,31,20,0.78);">The U as architectural curve — an embrace, an arch, a threshold.</div>
+      </div>
+
+      <hr class="rule" style="margin: 48px 0 36px 0;">
+
+      <div class="caption" style="color: #B8553B; margin-bottom: 18px;">Tagline directions</div>
+      <div style="font-family: 'Cormorant Garamond', serif; font-size: 28px; line-height: 1.55; color: #2A1F14; font-weight: 400;">
+        <div>— Intelligence, elevated.</div>
+        <div>— The tower that thinks with you.</div>
+        <div>— An address of considered presence.</div>
+      </div>
+
+      <div style="margin-top: 48px; padding: 24px 28px; border-left: 2px solid #B8553B; background: rgba(184,85,59,0.04);">
+        <div class="caption" style="color: #B8553B; margin-bottom: 12px;">One line</div>
+        <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 24px; color: #2A1F14; line-height: 1.5;">
+          ULIA. <span class="arabic" style="color: #B8553B; font-style: normal;">عُليّا</span> — elevated, carried in the name.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Ulia · Concept</div>
+  <div class="pageno">13</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 14 — ULIA WORLD (light Arabian fresh)
+================================================================= -->
+<section data-label="14 ULIA World" class="ulia">
+  <div class="chapter">13 &nbsp;·&nbsp; Ulia / Visual World</div>
+
+  <div class="frame" style="flex-direction: column;">
+    <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 48px;">
+      <div>
+        <div class="kicker" style="margin-bottom: 20px;">Mood · materiality · application</div>
+        <h2 class="display-s" style="font-size: 48px; font-style: italic; font-weight: 400;">Arabian light, Mediterranean calm.</h2>
+      </div>
+      <div class="footnote" style="max-width: 360px; text-align: right;">
+        Warm paper ground. Serif-forward display. Terracotta accents, olive mid-tones. Arches and hand-set geometry. Arabic calligraphy given equal weight.
+      </div>
+    </div>
+
+    <div style="flex: 1; display: grid; grid-template-columns: 1.1fr 1fr 1fr; grid-template-rows: 1fr 1fr; gap: 24px;">
+      <!-- Hero: lobby atmosphere -->
+      <div style="grid-row: span 2; background: #EDE2CA; border: 1px solid rgba(42,31,20,0.14); position: relative; overflow: hidden;">
+        <img src="assets/ulia-world-hero.png" alt="Ulia — lobby atmosphere, travertine &amp; mashrabiya" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"/>
+        <div style="position: absolute; top: 16px; left: 18px; font-family: 'Inter', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.28em; color: rgba(42,31,20,0.82); background: rgba(237,226,202,0.78); padding: 4px 10px; text-transform: uppercase; z-index: 2;">Lobby · morning light · 09:20</div>
+        <div style="position: absolute; bottom: 16px; right: 18px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; letter-spacing: 0.24em; color: rgba(42,31,20,0.78); background: rgba(237,226,202,0.78); padding: 3px 9px; z-index: 2;">— carried in the name</div>
+      </div>
+
+      <!-- Crown detail -->
+      <div style="border: 1px solid rgba(42,31,20,0.18); padding: 0; position: relative; overflow: hidden; background: #EDE2CA;">
+        <img src="assets/ulia-crown.png" alt="Ulia Tower — brass mashrabiya crown" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"/>
+        <div class="caption" style="position: absolute; top: 14px; left: 16px; color: rgba(42,31,20,0.82); background: rgba(237,226,202,0.75); padding: 4px 10px; z-index: 2;">Crown · brass lantern</div>
+        <div style="position: absolute; bottom: 12px; right: 14px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; letter-spacing: 0.24em; color: rgba(42,31,20,0.72); background: rgba(237,226,202,0.75); padding: 3px 9px; z-index: 2;">Najdi eight-point star</div>
+      </div>
+
+      <!-- Materials flat-lay -->
+      <div style="border: 1px solid rgba(42,31,20,0.18); padding: 0; position: relative; overflow: hidden; background: #EDE2CA;">
+        <img src="assets/ulia-materials.png" alt="Ulia Tower — material composition" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"/>
+        <div class="caption" style="position: absolute; top: 14px; left: 16px; color: rgba(42,31,20,0.82); background: rgba(237,226,202,0.75); padding: 4px 10px; z-index: 2;">Materiality</div>
+        <div style="position: absolute; bottom: 12px; right: 14px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; letter-spacing: 0.24em; color: rgba(42,31,20,0.72); background: rgba(237,226,202,0.75); padding: 3px 9px; z-index: 2;">travertine · brass · linen · oud</div>
+      </div>
+
+      <!-- Business card -->
+      <div style="border: 1px solid rgba(42,31,20,0.18); padding: 28px; display: flex; flex-direction: column; gap: 20px; background: rgba(255,255,255,0.3);">
+        <div class="caption">Business card · 85 × 55 mm</div>
+        <div style="flex: 1; background: #EDE2CA; padding: 28px; display: flex; flex-direction: column; justify-content: space-between; border: 1px solid rgba(42,31,20,0.12);">
+          <svg viewBox="0 0 40 40" style="width: 30px; height: 30px;">
+            <path d="M 8 32 L 8 18 Q 8 8 20 8 Q 32 8 32 18 L 32 32" fill="none" stroke="#B8553B" stroke-width="1.2"/>
+          </svg>
+          <div>
+            <div style="font-family: 'Cormorant Garamond', serif; font-size: 16px; color: #2A1F14;">Hala Mansour</div>
+            <div style="font-family: 'Inter', sans-serif; font-size: 9px; letter-spacing: 0.18em; color: rgba(42,31,20,0.55); margin-top: 2px; text-transform: uppercase;">Leasing Director</div>
+            <hr style="border: 0; border-top: 1px solid rgba(42,31,20,0.2); margin: 10px 0;">
+            <div style="display: flex; align-items: baseline; gap: 10px;">
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 22px; color: #B8553B;">Ulia</div>
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 10px; letter-spacing: 0.32em; color: rgba(184,85,59,0.75); text-transform: lowercase;">tower</div>
+              <div class="arabic" style="font-family: 'Reem Kufi', serif; font-size: 16px; color: #B8553B;">عُليّا</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Lobby interior -->
+      <div style="border: 1px solid rgba(42,31,20,0.18); padding: 0; position: relative; overflow: hidden; background: #EDE2CA;">
+        <img src="assets/ulia-lobby.png" alt="Ulia Tower lobby" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;"/>
+        <div class="caption" style="position: absolute; top: 14px; left: 16px; color: rgba(42,31,20,0.82); background: rgba(237,226,202,0.7); padding: 4px 10px; z-index: 2;">Lobby · mashrabiya · water</div>
+        <div style="position: absolute; bottom: 12px; right: 14px; font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 13px; letter-spacing: 0.24em; color: rgba(42,31,20,0.72); background: rgba(237,226,202,0.7); padding: 3px 9px; z-index: 2;">brass · linen · travertine</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Ulia · Concept</div>
+  <div class="pageno">14</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 15 — DECISION (moved here, after both options)
+================================================================= -->
+<section data-label="15 Decision">
+  <div class="chapter">14 &nbsp;·&nbsp; A Frame for Decision</div>
+
+  <div class="frame" style="flex-direction: column;">
+    <div style="max-width: 1100px; margin-bottom: 56px;">
+      <div class="kicker" style="margin-bottom: 20px;">Not a verdict — a frame</div>
+      <h2 class="display-s" style="font-size: 54px;">Two uncompromised routes.</h2>
+      <div class="ar-sub" style="font-size: 22px; margin-top: 16px;">مساران لا تنازل في أيٍّ منهما.</div>
+    </div>
+
+    <div style="flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 2px; background: var(--ivory-hair);">
+      <!-- AXIA side (dark) -->
+      <div style="background: #05070C; padding: 56px 52px; display: flex; flex-direction: column; position: relative;">
+        <div style="position: absolute; inset: 0; opacity: 0.5; background: repeating-linear-gradient(to bottom, rgba(94,231,223,0.03) 0 1px, transparent 1px 3px); pointer-events: none;"></div>
+        <div style="position: relative;">
+          <div style="display: flex; align-items: baseline; gap: 16px; margin-bottom: 32px;">
+            <div style="font-family: 'Inter', sans-serif; font-weight: 100; font-size: 40px; letter-spacing: 0.28em; color: #F2F4F8;">AXIA</div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 13px; letter-spacing: 0.42em; color: #5EE7DF; text-transform: uppercase;">Tower</div>
+            <div style="flex: 1;"></div>
+            <div style="font-family: 'JetBrains Mono', monospace; font-size: 10px; letter-spacing: 0.32em; color: #5EE7DF;">ROUTE_A</div>
+          </div>
+
+          <div style="font-family: 'Inter', sans-serif; font-weight: 200; font-size: 30px; color: #F2F4F8; line-height: 1.35; margin-bottom: 40px; max-width: 460px;">
+            Choose if the client optimises for <span style="color: #5EE7DF;">institutional gravity</span>.
+          </div>
+
+          <hr style="border: 0; border-top: 1px solid rgba(94,231,223,0.3); margin-bottom: 32px;">
+
+          <div style="display: grid; grid-template-columns: 1fr; gap: 22px; font-family: 'JetBrains Mono', monospace; font-size: 12px; line-height: 1.65; color: rgba(230,234,240,0.72);">
+            <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px;"><div style="color: rgba(94,231,223,0.8); letter-spacing: 0.22em;">STRENGTH</div><div>Reads as permanence at first sight. The address for capital that does not need introduction.</div></div>
+            <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px;"><div style="color: rgba(94,231,223,0.8); letter-spacing: 0.22em;">WINS_WITH</div><div>Legal, banking, sovereign wealth, regional HQs of NYSE-listed firms.</div></div>
+            <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px;"><div style="color: rgba(94,231,223,0.8); letter-spacing: 0.22em;">RISK</div><div>Cultural distance from Al Alyaa's Arabic heritage. Greek root requires education in-market.</div></div>
+            <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px;"><div style="color: rgba(94,231,223,0.8); letter-spacing: 0.22em;">HORIZON</div><div>Ages into gravitas. Strongest at year ten.</div></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- ULIA side (light Arabian) -->
+      <div style="background: #F4EBD9; padding: 56px 52px; display: flex; flex-direction: column; position: relative; color: #2A1F14;">
+        <svg style="position: absolute; top: 0; right: 0; width: 240px; height: 240px; opacity: 0.12;" viewBox="0 0 200 200">
+          <path d="M 20 180 L 20 90 Q 20 20 100 20 Q 180 20 180 90 L 180 180" fill="none" stroke="#B8553B" stroke-width="1"/>
+        </svg>
+        <div style="position: relative;">
+          <div style="display: flex; align-items: baseline; justify-content: space-between; margin-bottom: 32px;">
+            <div style="display: flex; align-items: baseline; gap: 20px;">
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 54px; letter-spacing: 0.04em; color: #2A1F14;">Ulia</div>
+              <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 400; font-size: 18px; letter-spacing: 0.42em; color: #B8553B; text-transform: lowercase;">tower</div>
+              <div style="font-family: 'Cairo', sans-serif; font-size: 32px; color: #B8553B;">عُليّا</div>
+            </div>
+            <div style="font-family: 'Inter', sans-serif; font-weight: 400; font-size: 10px; letter-spacing: 0.32em; color: #B8553B; text-transform: uppercase;">Route B</div>
+          </div>
+
+          <div style="font-family: 'Cormorant Garamond', serif; font-style: italic; font-size: 32px; color: #2A1F14; line-height: 1.3; margin-bottom: 40px; max-width: 460px;">
+            Choose if the client optimises for <span style="color: #B8553B; font-style: normal;">cultural resonance</span> and long-term emotional equity.
+          </div>
+
+          <hr style="border: 0; border-top: 1px solid rgba(42,31,20,0.2); margin-bottom: 32px;">
+
+          <div style="display: grid; grid-template-columns: 1fr; gap: 22px; font-family: 'Inter', sans-serif; font-size: 14px; line-height: 1.6; color: rgba(42,31,20,0.78);">
+            <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px;"><div style="color: #B8553B; font-weight: 400; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;">Strength</div><div>Phonetic lineage to <span class="arabic" style="color: #2A1F14;">عُليّا</span>. The tower inherits its maker rather than replacing it.</div></div>
+            <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px;"><div style="color: #B8553B; font-weight: 400; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;">Wins with</div><div>Regional champions, cultural institutions, tech firms investing in talent retention.</div></div>
+            <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px;"><div style="color: #B8553B; font-weight: 400; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;">Risk</div><div>Requires more typographic craft to not read residential. Discipline in execution matters more.</div></div>
+            <div style="display: grid; grid-template-columns: 140px 1fr; gap: 32px;"><div style="color: #B8553B; font-weight: 400; font-size: 10px; letter-spacing: 0.28em; text-transform: uppercase;">Horizon</div><div>Grows with the portfolio. Strongest as a master-brand anchor.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Concept</div>
+  <div class="pageno">15</div>
+</section>
+
+<section data-label="16 A Day Inside" style="background: #0A0C10;">
+  <!-- full-bleed beacon plate -->
+  <div style="position: absolute; inset: 0; overflow: hidden;">
+    <img src="assets/closing.png" alt=""
+         style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: center 30%; opacity: 0.72;">
+    <!-- gradient scrim for legibility of the bottom grid -->
+    <div style="position: absolute; inset: 0;
+         background: linear-gradient(180deg,
+           rgba(10,12,16,0.35) 0%,
+           rgba(10,12,16,0.15) 38%,
+           rgba(10,12,16,0.55) 62%,
+           rgba(10,12,16,0.92) 88%,
+           rgba(10,12,16,0.98) 100%);"></div>
+    <!-- vertical beam echo, subtle -->
+    <div style="position: absolute; top: 0; left: 50%; width: 1px; height: 56%;
+         background: linear-gradient(180deg, rgba(234,228,215,0) 0%, rgba(234,228,215,0.22) 70%, rgba(234,228,215,0) 100%);"></div>
+  </div>
+
+  <div class="chapter" style="position: relative; z-index: 2;">15 &nbsp;·&nbsp; The Experience Layer</div>
+
+  <div class="frame" style="flex-direction: column; justify-content: flex-end; position: relative; z-index: 2;">
+    <div style="max-width: 960px; margin-bottom: 56px;">
+      <div class="kicker" style="margin-bottom: 18px; color: var(--champagne);">Regardless of name — what occupancy feels like</div>
+      <h2 class="display-s" style="font-size: 52px; font-style: italic; color: var(--ivory);">A day inside.</h2>
+    </div>
+
+    <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 40px;">
+      <div style="display: flex; flex-direction: column; gap: 22px; border-top: 1px solid var(--champagne); padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <div class="caption" style="color: var(--champagne);">07:42</div>
+          <div class="caption" style="color: var(--ivory-faint);">i</div>
+        </div>
+        <div style="font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1.22; color: var(--ivory); font-weight: 300;">The arrival.</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 13.5px; line-height: 1.6; color: var(--ivory-dim);">
+          The visitor crosses the threshold. The building has already scheduled the meeting, called the lift, and warmed the room to the temperature the tenant prefers for morning briefings.
+        </div>
+        <div class="ar-body sm" style="border-top-color: var(--ivory-hair);">يعبر الزائر العتبة. المبنى قد رتّب اللقاء، واستدعى المصعد، ودفّأ القاعة إلى الحرارة التي يفضّلها المستأجر في لقاءات الصباح.</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 22px; border-top: 1px solid var(--champagne); padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <div class="caption" style="color: var(--champagne);">11:15</div>
+          <div class="caption" style="color: var(--ivory-faint);">ii</div>
+        </div>
+        <div style="font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1.22; color: var(--ivory); font-weight: 300;">The workday.</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 13.5px; line-height: 1.6; color: var(--ivory-dim);">
+          Light shifts with the city's rhythm. Air density adjusts to occupancy. The floor returns three hours of the fortnight that elsewhere would be spent managing itself.
+        </div>
+        <div class="ar-body sm" style="border-top-color: var(--ivory-hair);">يتبدلّ الضوء مع إيقاع المدينة. تتكيّف كثافة الهواء مع الإشغال. يعيد الطابق ثلاث ساعات في كلّ أسبوعين — ساعات كانت ستُنفَق في أماكن أخرى على إدارة الذات.</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 22px; border-top: 1px solid var(--champagne); padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <div class="caption" style="color: var(--champagne);">14:30</div>
+          <div class="caption" style="color: var(--ivory-faint);">iii</div>
+        </div>
+        <div style="font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1.22; color: var(--ivory); font-weight: 300;">The meeting.</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 13.5px; line-height: 1.6; color: var(--ivory-dim);">
+          The room has calibrated acoustically for negotiation before the first party has entered. The second party is escorted along the route the first will not see.
+        </div>
+        <div class="ar-body sm" style="border-top-color: var(--ivory-hair);">القاعة تُعاير صوتها للتفاوض قبل دخول الفريق الأول. الفريق الثاني يُرافق عبر المسار الذي لا يراه الأوّل.</div>
+      </div>
+
+      <div style="display: flex; flex-direction: column; gap: 22px; border-top: 1px solid var(--champagne); padding-top: 20px;">
+        <div style="display: flex; justify-content: space-between; align-items: baseline;">
+          <div class="caption" style="color: var(--champagne);">19:08</div>
+          <div class="caption" style="color: var(--ivory-faint);">iv</div>
+        </div>
+        <div style="font-family: var(--serif); font-style: italic; font-size: 28px; line-height: 1.22; color: var(--ivory); font-weight: 300;">The exit.</div>
+        <div style="font-family: var(--sans); font-weight: 300; font-size: 13.5px; line-height: 1.6; color: var(--ivory-dim);">
+          The floor powers down without announcement. The quarter's operational report has been composed and waits — unread, unless needed — with the tenant's CFO.
+        </div>
+        <div class="ar-body sm" style="border-top-color: var(--ivory-hair);">يخفت الطابق دون إعلان. تقرير الأداء الفصليّ قد أُعدّ وينتظر، أمام المدير المالي للمستأجر، على ألّا يُقرأ إلا عند الحاجة.</div>
+      </div>
+    </div>
+
+    <div style="margin-top: 44px; max-width: 760px;">
+      <div class="footnote" style="font-family: var(--serif); font-style: italic; font-size: 18px; line-height: 1.55; color: var(--ivory-dim);">
+        Never announced. Never demonstrated. The building's intelligence is closest to how a grand hotel anticipates a guest — and nothing at all like how a startup demos a chatbot.
+      </div>
+      <div class="ar-body" style="font-size: 15px;">لا يُعلَن عنه، ولا يُستعرَض. ذكاء المبنى أقرب إلى كيف يستبق فندقٌ عريقٌ حاجة ضيفه — وبعيدٌ كلّ البُعد عن عرض شركةٍ ناشئة لبرنامج محادثة.</div>
+    </div>
+  </div>
+
+  <div class="imprint" style="z-index: 2;">Al Alyaa · Concept</div>
+  <div class="pageno" style="z-index: 2;">16</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 15 — ROADMAP
+================================================================= -->
+<section data-label="17 Roadmap" class="paper">
+  <div class="chapter">16 &nbsp;·&nbsp; Roadmap</div>
+
+  <div class="frame" style="flex-direction: column;">
+    <div style="max-width: 900px; margin-bottom: 88px;">
+      <div class="kicker" style="color: var(--paper-mute); margin-bottom: 20px;">A momentum signal — not the thirteen-week plan</div>
+      <h2 class="display-s" style="font-size: 54px; color: var(--ink); font-style: italic;">Concept to commissioned brand.</h2>
+    </div>
+
+    <!-- horizontal timeline -->
+    <div style="flex: 1; position: relative;">
+      <!-- spine -->
+      <div style="position: absolute; top: 32px; left: 0; right: 0; height: 1px; background: var(--paper-line);"></div>
+      <div style="position: absolute; top: 32px; left: 0; width: 25%; height: 1px; background: var(--champagne);"></div>
+
+      <div style="display: grid; grid-template-columns: repeat(4, 1fr); gap: 48px; position: relative;">
+        <div>
+          <div style="width: 12px; height: 12px; background: var(--champagne); border-radius: 50%; margin-bottom: 28px;"></div>
+          <div class="caption" style="color: var(--paper-mute); margin-bottom: 14px;">Phase i &nbsp;·&nbsp; Now</div>
+          <div class="spec-term" style="color: var(--ink); font-size: 28px; margin-bottom: 18px;">Concept<br>conviction</div>
+          <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--paper-mute);">
+            This deck. Internal alignment on category and naming route.
+          </div>
+        </div>
+
+        <div>
+          <div style="width: 12px; height: 12px; border: 1px solid var(--paper-line); background: transparent; border-radius: 50%; margin-bottom: 28px;"></div>
+          <div class="caption" style="color: var(--paper-mute); margin-bottom: 14px;">Phase ii &nbsp;·&nbsp; Weeks 1–4</div>
+          <div class="spec-term" style="color: var(--ink); font-size: 28px; margin-bottom: 18px;">Brand book<br>drafting</div>
+          <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--paper-mute);">
+            Identity system, type and colour, logo finalisation, voice framework. Commissioned on sign-off of this document.
+          </div>
+        </div>
+
+        <div>
+          <div style="width: 12px; height: 12px; border: 1px solid var(--paper-line); background: transparent; border-radius: 50%; margin-bottom: 28px;"></div>
+          <div class="caption" style="color: var(--paper-mute); margin-bottom: 14px;">Phase iii &nbsp;·&nbsp; Weeks 5–10</div>
+          <div class="spec-term" style="color: var(--ink); font-size: 28px; margin-bottom: 18px;">Application<br>system</div>
+          <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--paper-mute);">
+            Leasing brochure, environmental and signage, digital, stationery. Production specs locked.
+          </div>
+        </div>
+
+        <div>
+          <div style="width: 12px; height: 12px; border: 1px solid var(--paper-line); background: transparent; border-radius: 50%; margin-bottom: 28px;"></div>
+          <div class="caption" style="color: var(--paper-mute); margin-bottom: 14px;">Phase iv &nbsp;·&nbsp; Weeks 11–13</div>
+          <div class="spec-term" style="color: var(--ink); font-size: 28px; margin-bottom: 18px;">Launch<br>readiness</div>
+          <div style="font-family: var(--sans); font-weight: 300; font-size: 14px; line-height: 1.6; color: var(--paper-mute);">
+            Tenant and broker package, hoarding, experience centre brief, soft-launch narrative.
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="imprint">Al Alyaa · Concept</div>
+  <div class="pageno">17</div>
+</section>
+
+<!-- =================================================================
+     SLIDE 16 — DIRECTIVE
+================================================================= -->
+<section data-label="18 Directive">
+  <div class="chapter">17 &nbsp;·&nbsp; The Directive</div>
+
+  <!-- quiet reticle -->
+  <svg style="position: absolute; inset: 0; pointer-events: none;" viewBox="0 0 1920 1080" preserveAspectRatio="none">
+    <line x1="88" y1="540" x2="1832" y2="540" stroke="rgba(234,228,215,0.06)" stroke-width="1"/>
+    <line x1="960" y1="120" x2="960" y2="968" stroke="rgba(234,228,215,0.06)" stroke-width="1"/>
+  </svg>
+
+  <div class="frame" style="flex-direction: column; justify-content: center; align-items: center; text-align: center;">
+    <div class="kicker" style="margin-bottom: 56px;">In closing</div>
+
+    <div style="max-width: 1280px;">
+      <div class="display" style="font-size: 88px; line-height: 1.1; font-style: normal; font-weight: 300; letter-spacing: -0.01em;">
+        The goal of this tower<br>
+        is not to be <span style="font-style: italic; color: var(--ivory-dim);">built</span>.<br>
+        It is to be <span style="font-style: italic; color: var(--champagne);">remembered</span>.
+      </div>
+      <div class="ar-sub" style="font-size: 26px; margin-top: 36px;">غايةُ هذا البرج ليست أن يبني— بل أن يكون علامة يصعب نسيانها.</div>
+    </div>
+
+    <hr class="rule champagne" style="margin: 72px auto;">
+
+    <div style="max-width: 640px;">
+      <div class="footnote" style="font-family: var(--serif); font-style: italic; font-size: 20px; color: var(--ivory-dim); line-height: 1.55;">
+        The concept lands first. The name follows. The design closes the argument. The brand book is commissioned. Leasing follows. The category is owned.
+      </div>
+      <div class="ar-body" style="margin-top: 18px;"></div>
+    </div>
+
+    <div style="margin-top: 120px; display: flex; align-items: center; gap: 32px;">
+      <div class="caption">Strike Media</div>
+      <div style="width: 32px; height: 1px; background: var(--ivory-line);"></div>
+      <div class="caption">Creative Strategy &amp; Execution</div>
+      <div style="width: 32px; height: 1px; background: var(--ivory-line);"></div>
+      <div class="caption">April 2026</div>
+    </div>
+  </div>
+
+  <div class="pageno">18</div>
+</section>
+
+</deck-stage>
+
+<!-- ============================== TWEAKS ============================== -->
+<div id="tweaks">
+  <h4>Tweaks</h4>
+  <label>Accent
+    <select id="tw-accent">
+      <option value="champagne">Champagne · #C9A96A</option>
+      <option value="bronze">Bronze · #9C7A4A</option>
+      <option value="softgold">Soft gold · #D4B87A</option>
+      <option value="pewter">Pewter · #A89B88</option>
+    </select>
+  </label>
+  <label>Ground
+    <select id="tw-ground">
+      <option value="midnight">Midnight navy</option>
+      <option value="charcoal">Charcoal</option>
+      <option value="obsidian">Obsidian</option>
+    </select>
+  </label>
+  <label>Display type
+    <select id="tw-display">
+      <option value="cormorant">Cormorant Garamond</option>
+      <option value="inter">Inter (sans display)</option>
+    </select>
+  </label>
+  <label style="display: flex; align-items: center; gap: 10px; text-transform: uppercase;">
+    <input type="checkbox" id="tw-grid" style="width: auto;"> 12-col grid
+  </label>
+</div>
+
+<div class="grid-overlay" id="grid-overlay"></div>
+
+<script src="deck-stage.js"></script>
+<script>
+(function(){
+  const tweaks = document.getElementById('tweaks');
+  const grid = document.getElementById('grid-overlay');
+
+  const accentMap = {
+    champagne: '#C9A96A',
+    bronze: '#9C7A4A',
+    softgold: '#D4B87A',
+    pewter: '#A89B88'
+  };
+  const groundMap = {
+    midnight: { g: '#0B1220', g2: '#111826' },
+    charcoal: { g: '#141414', g2: '#1C1C1C' },
+    obsidian: { g: '#06080C', g2: '#0D1018' }
+  };
+  const displayMap = {
+    cormorant: '"Cormorant Garamond", "EB Garamond", Georgia, serif',
+    inter: '"Inter", -apple-system, sans-serif'
+  };
+
+  function apply(state) {
+    const r = document.documentElement.style;
+    r.setProperty('--champagne', accentMap[state.accent] || accentMap.champagne);
+    const g = groundMap[state.ground] || groundMap.midnight;
+    r.setProperty('--ground', g.g);
+    r.setProperty('--ground-2', g.g2);
+    r.setProperty('--serif', displayMap[state.display] || displayMap.cormorant);
+    grid.classList.toggle('on', !!state.showGrid);
+  }
+
+  let state = Object.assign({}, TWEAK_DEFAULTS);
+  apply(state);
+
+  function bind() {
+    document.getElementById('tw-accent').value = state.accent;
+    document.getElementById('tw-ground').value = state.ground;
+    document.getElementById('tw-display').value = state.display;
+    document.getElementById('tw-grid').checked = !!state.showGrid;
+
+    document.getElementById('tw-accent').onchange = e => set({ accent: e.target.value });
+    document.getElementById('tw-ground').onchange = e => set({ ground: e.target.value });
+    document.getElementById('tw-display').onchange = e => set({ display: e.target.value });
+    document.getElementById('tw-grid').onchange = e => set({ showGrid: e.target.checked });
+  }
+
+  function set(edits) {
+    state = Object.assign({}, state, edits);
+    apply(state);
+    try { window.parent.postMessage({ type: '__edit_mode_set_keys', edits }, '*'); } catch(e) {}
+  }
+
+  window.addEventListener('message', (ev) => {
+    const d = ev.data || {};
+    if (d.type === '__activate_edit_mode') { tweaks.style.display = 'block'; bind(); }
+    if (d.type === '__deactivate_edit_mode') { tweaks.style.display = 'none'; }
+  });
+  try { window.parent.postMessage({ type: '__edit_mode_available' }, '*'); } catch(e) {}
+})();
+</script>
+
+
+<button class="fs-toggle" id="fsToggle" aria-label="Toggle fullscreen" title="Fullscreen (F)">
+  <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2">
+    <path d="M2 5V2h3M11 2h3v3M14 11v3h-3M5 14H2v-3"/>
+  </svg>
+</button>
+<script>
+(function(){
+  // Digital sweep on slide activation
+  const spawnSweep = (slide) => {
+    if (!slide || slide.classList.contains('paper')) return; // skip paper slides for subtlety
+    const existing = slide.querySelector(':scope > .deck-sweep');
+    if (existing) existing.remove();
+    const wrap = document.createElement('div');
+    wrap.className = 'deck-sweep';
+    wrap.innerHTML = '<div class="blocks"></div><div class="line"></div><div class="bar"></div>';
+    slide.appendChild(wrap);
+    setTimeout(() => wrap.remove(), 1400);
+  };
+  // Observe attr changes on sections
+  const sections = document.querySelectorAll('deck-stage > section');
+  const obs = new MutationObserver((muts) => {
+    muts.forEach(m => {
+      if (m.type === 'attributes' && m.attributeName === 'data-deck-active') {
+        if (m.target.hasAttribute('data-deck-active')) spawnSweep(m.target);
+      }
+    });
+  });
+  sections.forEach(s => obs.observe(s, { attributes: true, attributeFilter: ['data-deck-active'] }));
+  // Also sweep on initial render
+  window.addEventListener('load', () => {
+    const active = document.querySelector('section[data-deck-active]');
+    if (active) spawnSweep(active);
+  });
+})();
+(function(){
+  const btn = document.getElementById('fsToggle');
+  const setIcon = () => {
+    const exp = document.fullscreenElement;
+    btn.innerHTML = exp
+      ? '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M5 2v3H2M11 5V2h3M14 11h-3v3M2 11h3v3"/></svg>'
+      : '<svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.2"><path d="M2 5V2h3M11 2h3v3M14 11v3h-3M5 14H2v-3"/></svg>';
+  };
+  const toggle = async () => {
+    try {
+      if (!document.fullscreenElement) await document.documentElement.requestFullscreen();
+      else await document.exitFullscreen();
+    } catch(e) {}
+  };
+  btn.addEventListener('click', toggle);
+  document.addEventListener('fullscreenchange', setIcon);
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'f' || e.key === 'F') { if (!/input|textarea/i.test(e.target.tagName)) toggle(); }
+  });
+})();
+</script>
+</body>
+</html>
