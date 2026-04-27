@@ -1,0 +1,893 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>AL ALYAA · Billboard Trials · MMXXVI</title>
+<meta name="description" content="AL ALYAA Developments — outdoor billboard mockups testing Modern and Classic logo directions."/>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo+Play:wght@300;400;500;600;700&family=Alexandria:wght@200;300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ─────────────────────── tokens ─────────────────────── */
+  :root {
+    --linen-50:   #FDFAF3;
+    --linen-100:  #FBF6EE;
+    --linen-200:  #F7EEE0;
+    --linen-300:  #F3ECDC;
+    --linen-400:  #E7DCC3;
+
+    --ink-warm:   #2A2621;
+    --ink-soft:   #3A3630;
+    --ink-mute:   #5F574C;
+    --ink-faint:  #7A7262;
+
+    --a-brass:    #B8823A;
+    --a-brass-lt: #C89A5B;
+    --a-clay:     #B24A2C;
+    --a-clay-hi:  #C7573A;
+
+    --b-clay:     #C38C6A;
+
+    --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  html, body { min-height: 100dvh; }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  .al { font-weight: 700; }
+
+  body {
+    font-family: 'Alexandria', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    background:
+      radial-gradient(ellipse at 18% 0%, #FFFDF7 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 100%, #F1E7D5 0%, transparent 55%),
+      linear-gradient(180deg, var(--linen-100) 0%, var(--linen-300) 100%);
+    color: var(--ink-soft);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  /* ─────────────────────── page shell ─────────────────────── */
+  .page {
+    display: flex;
+    flex-direction: column;
+    min-height: 100dvh;
+  }
+
+  /* ─────────────────────── header ─────────────────────── */
+  .site-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+    padding: clamp(24px, 4vw, 48px) clamp(24px, 5vw, 80px) clamp(20px, 3vw, 36px);
+    animation: fadeIn 0.9s var(--ease-out) both;
+  }
+
+  .mark { display: flex; flex-direction: column; gap: 4px; }
+  .mark__ar {
+    font-family: 'Cairo Play', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+    direction: rtl;
+    color: var(--ink-warm);
+    letter-spacing: 0.02em;
+  }
+  .mark__en {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 500;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .header-right {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    line-height: 1.8;
+  }
+
+  .fs-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(42,38,33,0.18);
+    border-radius: 999px;
+    background: rgba(255,253,247,0.55);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: background 240ms var(--ease-out), border-color 240ms var(--ease-out), color 240ms var(--ease-out);
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 0;
+    backdrop-filter: blur(4px);
+  }
+  .fs-toggle:hover, .fs-toggle:focus-visible {
+    background: var(--ink-warm);
+    color: var(--linen-100);
+    border-color: var(--ink-warm);
+    outline: none;
+  }
+  .fs-toggle svg { width: 16px; height: 16px; display: block; }
+  .fs-toggle .icon-exit { display: none; }
+  body.is-fs .fs-toggle .icon-enter { display: none; }
+  body.is-fs .fs-toggle .icon-exit  { display: block; }
+
+  /* ─────────────────────── hero ─────────────────────── */
+  .hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(14px, 2vh, 22px);
+    padding: clamp(48px, 8vh, 96px) clamp(24px, 5vw, 80px) clamp(48px, 7vh, 88px);
+    animation: fadeUp 1s var(--ease-out) 0.1s both;
+  }
+
+  .hero__eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--a-clay);
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero__eyebrow::before,
+  .hero__eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 38px;
+    height: 1px;
+    background: var(--a-clay);
+    opacity: 0.5;
+  }
+
+  .hero__title {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 7vw, 5.5rem);
+    line-height: 0.96;
+    letter-spacing: 0.02em;
+    color: var(--ink-warm);
+  }
+
+  .hero__ar {
+    font-family: 'Cairo Play', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.25rem, 2.6vw, 2rem);
+    direction: rtl;
+    color: var(--ink-soft);
+  }
+
+  .hero__lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.4vw, 1.1875rem);
+    color: var(--ink-mute);
+    line-height: 1.65;
+    max-width: 58ch;
+    margin: 0 auto;
+  }
+
+  /* ─────────────────────── section divider ─────────────────────── */
+  .section-divider {
+    width: 100%;
+    height: 1px;
+    background: var(--ink-warm);
+    opacity: 0.10;
+  }
+
+  /* ─────────────────────── direction sections ─────────────────────── */
+  .direction {
+    padding: clamp(56px, 8vw, 96px) clamp(24px, 5vw, 80px);
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .direction__header {
+    margin-bottom: clamp(40px, 5vw, 64px);
+  }
+
+  .direction__eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--a-clay);
+    display: block;
+    margin-bottom: 12px;
+  }
+  .direction--b .direction__eyebrow {
+    color: var(--a-brass);
+  }
+
+  .direction__title {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    line-height: 1;
+    color: var(--ink-warm);
+    margin-bottom: 8px;
+  }
+
+  .direction__subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.6vw, 1.3125rem);
+    color: var(--ink-mute);
+  }
+
+  .direction__rule {
+    width: 56px;
+    height: 2px;
+    background: var(--a-clay);
+    margin-top: 20px;
+    border-radius: 1px;
+  }
+  .direction--b .direction__rule {
+    background: var(--a-brass);
+  }
+
+  /* ─────────────────────── billboard stack ─────────────────────── */
+  .billboard-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 64px;
+  }
+
+  .billboard-item {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .billboard-item__link {
+    display: block;
+    border-radius: 2px;
+    overflow: hidden;
+    max-width: 1200px;
+    box-shadow:
+      0 1px 0 rgba(42,38,33,0.06),
+      0 24px 52px -28px rgba(42,38,33,0.30);
+    transition: transform 480ms var(--ease-out), box-shadow 480ms var(--ease-out);
+  }
+  .billboard-item__link:hover,
+  .billboard-item__link:focus-visible {
+    transform: translateY(-4px);
+    box-shadow:
+      0 1px 0 rgba(42,38,33,0.08),
+      0 36px 64px -28px rgba(42,38,33,0.40);
+    outline: none;
+  }
+  .billboard-item__link img {
+    width: 100%;
+    height: auto;
+    display: block;
+    transition: transform 720ms var(--ease-out);
+  }
+  .billboard-item__link:hover img,
+  .billboard-item__link:focus-visible img {
+    transform: scale(1.01);
+  }
+
+  .billboard-item__caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    max-width: 1200px;
+  }
+
+  /* ─────────────────────── comparison section ─────────────────────── */
+  .comparison {
+    padding: clamp(56px, 8vw, 96px) clamp(24px, 5vw, 80px);
+    background: var(--linen-200);
+  }
+
+  .comparison__inner {
+    max-width: 1440px;
+    margin: 0 auto;
+  }
+
+  .comparison__header {
+    margin-bottom: clamp(40px, 5vw, 64px);
+  }
+
+  .comparison__eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .comparison__title {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    color: var(--ink-warm);
+    margin-bottom: 8px;
+  }
+
+  .comparison__sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.6vw, 1.3125rem);
+    color: var(--ink-mute);
+  }
+
+  .comparison__rule {
+    width: 56px;
+    height: 2px;
+    background: var(--ink-faint);
+    margin-top: 20px;
+    border-radius: 1px;
+    opacity: 0.55;
+  }
+
+  .comparison__grid {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(32px, 4vw, 52px);
+  }
+
+  .comparison__row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2.5vw, 32px);
+  }
+
+  @media (max-width: 640px) {
+    .comparison__row { grid-template-columns: 1fr; }
+  }
+
+  .comparison__cell {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .comparison__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+  .comparison__label--modern { color: var(--a-clay); }
+  .comparison__label--classic { color: var(--a-brass); }
+
+  .comparison__img-wrap {
+    display: block;
+    border-radius: 2px;
+    overflow: hidden;
+    box-shadow:
+      0 1px 0 rgba(42,38,33,0.06),
+      0 16px 40px -20px rgba(42,38,33,0.26);
+    transition: transform 480ms var(--ease-out), box-shadow 480ms var(--ease-out);
+  }
+  .comparison__img-wrap:hover,
+  .comparison__img-wrap:focus-visible {
+    transform: translateY(-3px);
+    box-shadow:
+      0 1px 0 rgba(42,38,33,0.08),
+      0 28px 52px -20px rgba(42,38,33,0.36);
+    outline: none;
+  }
+  .comparison__img-wrap img {
+    width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* ─────────────────────── considerations ─────────────────────── */
+  .considerations {
+    padding: clamp(56px, 8vw, 96px) clamp(24px, 5vw, 80px);
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  .considerations__eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    display: block;
+    margin-bottom: 12px;
+  }
+
+  .considerations__title {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 700;
+    font-size: clamp(2rem, 4vw, 3.25rem);
+    color: var(--ink-warm);
+    margin-bottom: 20px;
+  }
+
+  .considerations__rule {
+    width: 56px;
+    height: 2px;
+    background: var(--a-clay);
+    border-radius: 1px;
+    margin-bottom: clamp(36px, 5vw, 56px);
+  }
+
+  .considerations__cols {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(32px, 5vw, 72px);
+  }
+
+  @media (max-width: 720px) {
+    .considerations__cols { grid-template-columns: 1fr; }
+  }
+
+  .considerations__col-title {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--a-clay);
+    margin-bottom: 24px;
+    display: block;
+  }
+  .considerations__col--right .considerations__col-title {
+    color: var(--a-brass);
+  }
+
+  .considerations__list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .considerations__list li {
+    display: flex;
+    gap: 14px;
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+    color: var(--ink-soft);
+    line-height: 1.6;
+  }
+
+  .considerations__list li::before {
+    content: '\2014';
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.75rem;
+    color: var(--ink-faint);
+    flex-shrink: 0;
+    margin-top: 0.2em;
+  }
+
+  .considerations__steps {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    counter-reset: steps;
+  }
+
+  .considerations__steps li {
+    display: flex;
+    gap: 14px;
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.9375rem, 1.2vw, 1.0625rem);
+    color: var(--ink-soft);
+    line-height: 1.6;
+    counter-increment: steps;
+  }
+
+  .considerations__steps li::before {
+    content: counter(steps, decimal-leading-zero);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    color: var(--a-brass);
+    flex-shrink: 0;
+    margin-top: 0.3em;
+    letter-spacing: 0.14em;
+  }
+
+  /* ─────────────────────── footer ─────────────────────── */
+  footer {
+    margin-top: auto;
+    padding: clamp(24px, 4vh, 48px) clamp(24px, 5vw, 80px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    border-top: 1px solid rgba(42,38,33,0.09);
+  }
+
+  .copyright {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .poweredby__img {
+    display: block;
+    height: 64px;
+    width: auto;
+  }
+
+  /* ─────────────────────── fade-up reveal ─────────────────────── */
+  .reveal {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.75s var(--ease-out), transform 0.75s var(--ease-out);
+  }
+  .reveal.is-visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ─────────────────────── keyframes ─────────────────────── */
+  @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fadeUp  { from { opacity: 0; transform: translateY(24px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+    .reveal { opacity: 1; transform: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="page">
+
+  <!-- ─────────────── Header ─────────────── -->
+  <header class="site-header">
+    <div class="mark">
+      <span class="mark__ar">العليـــــاء</span>
+      <span class="mark__en"><strong class="al">ALALYAA</strong> · DEVELOPMENTS</span>
+    </div>
+    <div class="header-right">
+      <div class="meta">
+        Billboard Trials<br/>
+        MMXXVI
+      </div>
+      <button type="button" class="fs-toggle" id="fsToggle"
+              aria-label="Toggle full-screen" title="Toggle full-screen (F)">
+        <svg class="icon-enter" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/>
+        </svg>
+        <svg class="icon-exit" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 2v4H2M10 2v4h4M6 14v-4H2M10 14v-4h4"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─────────────── Hero ─────────────── -->
+  <section class="hero" aria-label="Page hero">
+    <span class="hero__eyebrow">OUTDOOR · LOGO DIRECTION TRIALS</span>
+    <h1 class="hero__title">Logo, in the wild.</h1>
+    <p class="hero__ar">العلياء على الطريق.</p>
+    <p class="hero__lede">
+      Two logo directions, six mockups, three lighting conditions.
+      The same campaign — applied as outdoor communication — to assess
+      presence, legibility, and emotional register at billboard scale.
+    </p>
+  </section>
+
+  <div class="section-divider" aria-hidden="true"></div>
+
+  <!-- ─────────────── Direction A — Modern ─────────────── -->
+  <section class="direction direction--a" aria-label="Direction A — Modern">
+    <div class="direction__header reveal">
+      <span class="direction__eyebrow">DIRECTION A</span>
+      <h2 class="direction__title">Modern</h2>
+      <p class="direction__subtitle">Vertical · Stylized · Architectural</p>
+      <div class="direction__rule" aria-hidden="true"></div>
+    </div>
+
+    <div class="billboard-stack">
+
+      <div class="billboard-item reveal">
+        <a class="billboard-item__link"
+           href="assets/billboards/ALALYAA_1.png"
+           target="_blank" rel="noopener"
+           aria-label="A1 — Daytime Mountain Setting, open full size">
+          <img src="assets/billboards/ALALYAA_1.png"
+               alt="Modern logo direction — daytime billboard mockup, mountain setting"
+               loading="lazy"/>
+        </a>
+        <span class="billboard-item__caption">A1 · Daytime · Mountain Setting</span>
+      </div>
+
+      <div class="billboard-item reveal">
+        <a class="billboard-item__link"
+           href="assets/billboards/ALALYAA_4.png"
+           target="_blank" rel="noopener"
+           aria-label="A2 — Daytime Palm Setting, open full size">
+          <img src="assets/billboards/ALALYAA_4.png"
+               alt="Modern logo direction — daytime billboard mockup, palm setting"
+               loading="lazy"/>
+        </a>
+        <span class="billboard-item__caption">A2 · Daytime · Palm Setting</span>
+      </div>
+
+      <div class="billboard-item reveal">
+        <a class="billboard-item__link"
+           href="assets/billboards/ALALYAA_5.png"
+           target="_blank" rel="noopener"
+           aria-label="A3 — Sunset Clay Background, open full size">
+          <img src="assets/billboards/ALALYAA_5.png"
+               alt="Modern logo direction — sunset billboard mockup, clay background"
+               loading="lazy"/>
+        </a>
+        <span class="billboard-item__caption">A3 · Sunset · Clay Background</span>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="section-divider" aria-hidden="true"></div>
+
+  <!-- ─────────────── Direction B — Classic ─────────────── -->
+  <section class="direction direction--b" aria-label="Direction B — Classic">
+    <div class="direction__header reveal">
+      <span class="direction__eyebrow">DIRECTION B</span>
+      <h2 class="direction__title">Classic</h2>
+      <p class="direction__subtitle">Horizontal · Editorial · Modern Serif</p>
+      <div class="direction__rule" aria-hidden="true"></div>
+    </div>
+
+    <div class="billboard-stack">
+
+      <div class="billboard-item reveal">
+        <a class="billboard-item__link"
+           href="assets/billboards/ALALYAA_2.png"
+           target="_blank" rel="noopener"
+           aria-label="B1 — Daytime City Skyline, open full size">
+          <img src="assets/billboards/ALALYAA_2.png"
+               alt="Classic logo direction — daytime billboard mockup, city skyline"
+               loading="lazy"/>
+        </a>
+        <span class="billboard-item__caption">B1 · Daytime · City Skyline</span>
+      </div>
+
+      <div class="billboard-item reveal">
+        <a class="billboard-item__link"
+           href="assets/billboards/ALALYAA_3.png"
+           target="_blank" rel="noopener"
+           aria-label="B2 — Daytime Mountain Setting, open full size">
+          <img src="assets/billboards/ALALYAA_3.png"
+               alt="Classic logo direction — daytime billboard mockup, mountain setting"
+               loading="lazy"/>
+        </a>
+        <span class="billboard-item__caption">B2 · Daytime · Mountain Setting</span>
+      </div>
+
+      <div class="billboard-item reveal">
+        <a class="billboard-item__link"
+           href="assets/billboards/ALALYAA_6.png"
+           target="_blank" rel="noopener"
+           aria-label="B3 — Sunset Clay Background, open full size">
+          <img src="assets/billboards/ALALYAA_6.png"
+               alt="Classic logo direction — sunset billboard mockup, clay background"
+               loading="lazy"/>
+        </a>
+        <span class="billboard-item__caption">B3 · Sunset · Clay Background</span>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ─────────────── Side-by-Side Comparison ─────────────── -->
+  <section class="comparison" aria-label="Side-by-side comparison">
+    <div class="comparison__inner">
+      <div class="comparison__header reveal">
+        <span class="comparison__eyebrow">SIDE BY SIDE</span>
+        <h2 class="comparison__title">Side by Side</h2>
+        <p class="comparison__sub">Matched lighting conditions — direct comparison</p>
+        <div class="comparison__rule" aria-hidden="true"></div>
+      </div>
+
+      <div class="comparison__grid">
+
+        <div class="comparison__row reveal">
+          <div class="comparison__cell">
+            <span class="comparison__label comparison__label--modern">MODERN — Daytime</span>
+            <a class="comparison__img-wrap"
+               href="assets/billboards/ALALYAA_1.png"
+               target="_blank" rel="noopener"
+               aria-label="Modern logo, daytime — open full size">
+              <img src="assets/billboards/ALALYAA_1.png"
+                   alt="Modern logo direction — daytime"
+                   loading="lazy"/>
+            </a>
+          </div>
+          <div class="comparison__cell">
+            <span class="comparison__label comparison__label--classic">CLASSIC — Daytime</span>
+            <a class="comparison__img-wrap"
+               href="assets/billboards/ALALYAA_3.png"
+               target="_blank" rel="noopener"
+               aria-label="Classic logo, daytime — open full size">
+              <img src="assets/billboards/ALALYAA_3.png"
+                   alt="Classic logo direction — daytime"
+                   loading="lazy"/>
+            </a>
+          </div>
+        </div>
+
+        <div class="comparison__row reveal">
+          <div class="comparison__cell">
+            <span class="comparison__label comparison__label--modern">MODERN — Sunset</span>
+            <a class="comparison__img-wrap"
+               href="assets/billboards/ALALYAA_5.png"
+               target="_blank" rel="noopener"
+               aria-label="Modern logo, sunset — open full size">
+              <img src="assets/billboards/ALALYAA_5.png"
+                   alt="Modern logo direction — sunset"
+                   loading="lazy"/>
+            </a>
+          </div>
+          <div class="comparison__cell">
+            <span class="comparison__label comparison__label--classic">CLASSIC — Sunset</span>
+            <a class="comparison__img-wrap"
+               href="assets/billboards/ALALYAA_6.png"
+               target="_blank" rel="noopener"
+               aria-label="Classic logo, sunset — open full size">
+              <img src="assets/billboards/ALALYAA_6.png"
+                   alt="Classic logo direction — sunset"
+                   loading="lazy"/>
+            </a>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── Considerations ─────────────── -->
+  <section class="considerations" aria-label="Choosing a direction">
+    <span class="considerations__eyebrow reveal">BRAND DIRECTION</span>
+    <h2 class="considerations__title reveal">Choosing a Direction</h2>
+    <div class="considerations__rule reveal" aria-hidden="true"></div>
+
+    <div class="considerations__cols">
+      <div class="considerations__col considerations__col--left reveal">
+        <span class="considerations__col-title">Considerations</span>
+        <ul class="considerations__list">
+          <li>Recognition at distance — Which mark reads first at 50m+?</li>
+          <li>Brand register — Does it feel like a developer, a foundation, or a museum?</li>
+          <li>Scalability — How does the logo perform on smaller assets (signage, stationery, digital)?</li>
+          <li>Bilingual balance — Arabic-English coherence in the lockup.</li>
+        </ul>
+      </div>
+      <div class="considerations__col considerations__col--right reveal">
+        <span class="considerations__col-title">Next Steps</span>
+        <ol class="considerations__steps">
+          <li>Board indicates preferred direction (A or B)</li>
+          <li>Strike Media finalizes brand guidelines for the chosen mark</li>
+          <li>Production launches across outdoor + digital + on-site signage</li>
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─────────────── Footer ─────────────── -->
+  <footer>
+    <span class="copyright">&copy; MMXXVI STRIKE MEDIA &middot; All Rights Reserved</span>
+    <div class="poweredby">
+      <img class="poweredby__img"
+           src="assets/Powered%20By.png"
+           alt="Powered by Strike Media — PR & Advertising Agency"/>
+    </div>
+  </footer>
+
+</div><!-- /.page -->
+
+<script>
+  (function () {
+    const docEl = document.documentElement;
+    const body  = document.body;
+    const btn   = document.getElementById('fsToggle');
+
+    function fsElement() {
+      return document.fullscreenElement || document.webkitFullscreenElement || null;
+    }
+    function requestFs(el) {
+      const fn = el.requestFullscreen || el.webkitRequestFullscreen;
+      return fn ? fn.call(el) : Promise.reject(new Error('Fullscreen unsupported'));
+    }
+    function exitFs() {
+      const fn = document.exitFullscreen || document.webkitExitFullscreen;
+      return fn ? fn.call(document) : Promise.reject(new Error('Fullscreen unsupported'));
+    }
+    function syncBodyState() {
+      body.classList.toggle('is-fs', !!fsElement());
+    }
+
+    if (btn) {
+      btn.addEventListener('click', () => {
+        if (fsElement()) {
+          exitFs().catch(() => {});
+        } else {
+          requestFs(docEl).catch(() => {});
+        }
+      });
+    }
+
+    window.addEventListener('keydown', (e) => {
+      const t = e.target;
+      if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+      if (e.metaKey || e.ctrlKey || e.altKey) return;
+      if (e.key === 'f' || e.key === 'F') {
+        e.preventDefault();
+        if (fsElement()) exitFs().catch(() => {});
+        else requestFs(docEl).catch(() => {});
+      }
+    });
+
+    document.addEventListener('fullscreenchange', syncBodyState);
+    document.addEventListener('webkitfullscreenchange', syncBodyState);
+
+    // Auto-enter fullscreen when ?fs=1 is present (triggered by parent hub)
+    if (new URLSearchParams(location.search).get('fs') === '1') {
+      window.addEventListener('click', function onFirstClick() {
+        window.removeEventListener('click', onFirstClick);
+        requestFs(docEl).catch(() => {});
+      }, { once: true });
+    }
+
+    // Intersection Observer — fade-up reveal on scroll
+    const revealEls = document.querySelectorAll('.reveal');
+    if ('IntersectionObserver' in window) {
+      const obs = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('is-visible');
+            obs.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealEls.forEach((el) => obs.observe(el));
+    } else {
+      revealEls.forEach((el) => el.classList.add('is-visible'));
+    }
+  })();
+</script>
+
+</body>
+</html>
