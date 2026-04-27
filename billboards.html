@@ -1,0 +1,1083 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1"/>
+<title>Billboard Trials · ALALYAA Developments</title>
+<meta name="description" content="ALALYAA Developments — outdoor billboard trials. Two logo directions tested across daytime and sunset environments."/>
+<link rel="icon" type="image/svg+xml" href="assets/favicon.svg"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cairo+Play:wght@300;400;500;600;700&family=Alexandria:wght@200;300;400;500;600;700&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  /* ───────────────────── tokens ───────────────────── */
+  :root {
+    --linen-50:   #FDFAF3;
+    --linen-100:  #FBF6EE;
+    --linen-200:  #F7EEE0;
+    --linen-300:  #F3ECDC;
+    --linen-400:  #E7DCC3;
+
+    --ink-warm:   #2A2621;
+    --ink-soft:   #3A3630;
+    --ink-mute:   #5F574C;
+    --ink-faint:  #7A7262;
+
+    --a-ink:      #141028;
+    --a-ink-2:    #2A2448;
+    --a-paper:    #F3ECDC;
+    --a-paper-2:  #E7DCC3;
+    --a-brass:    #B8823A;
+    --a-brass-lt: #C89A5B;
+    --a-clay:     #B24A2C;
+
+    --ease-out:   cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { min-height: 100dvh; }
+  img, svg { display: block; max-width: 100%; }
+  a { color: inherit; text-decoration: none; }
+  .al { font-weight: 700; }
+
+  body {
+    font-family: 'Alexandria', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+    font-weight: 300;
+    background:
+      radial-gradient(ellipse at 18% 0%, #FFFDF7 0%, transparent 55%),
+      radial-gradient(ellipse at 90% 100%, #F1E7D5 0%, transparent 55%),
+      linear-gradient(180deg, var(--linen-100) 0%, var(--linen-300) 100%);
+    color: var(--ink-soft);
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  .page {
+    position: relative;
+    z-index: 1;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    padding: clamp(24px, 4vw, 56px) clamp(20px, 5vw, 80px);
+    gap: clamp(48px, 6vh, 80px);
+    max-width: 1440px;
+    width: 100%;
+    margin: 0 auto;
+  }
+
+  /* ───────────────────── header ───────────────────── */
+  header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 24px;
+    flex-wrap: wrap;
+    animation: fadeIn 1s var(--ease-out) both;
+  }
+
+  .mark { display: flex; flex-direction: column; gap: 4px; }
+  .mark__ar {
+    font-family: 'Cairo Play', sans-serif;
+    font-weight: 400;
+    font-size: clamp(1.125rem, 1.8vw, 1.5rem);
+    direction: rtl;
+    color: var(--ink-warm);
+    letter-spacing: 0.02em;
+  }
+  .mark__en {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 500;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+  }
+
+  .header-right {
+    display: inline-flex;
+    align-items: flex-start;
+    gap: 16px;
+  }
+
+  .meta {
+    text-align: right;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    line-height: 1.8;
+  }
+
+  .back-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    padding: 8px 14px;
+    border: 1px solid rgba(42,38,33,0.18);
+    border-radius: 999px;
+    background: rgba(255,253,247,0.55);
+    backdrop-filter: blur(4px);
+    transition: background 240ms var(--ease-out), color 240ms var(--ease-out), border-color 240ms var(--ease-out);
+  }
+  .back-link:hover, .back-link:focus-visible {
+    background: var(--ink-warm);
+    color: var(--linen-100);
+    border-color: var(--ink-warm);
+    outline: none;
+  }
+
+  .fs-toggle {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 1px solid rgba(42,38,33,0.18);
+    border-radius: 999px;
+    background: rgba(255,253,247,0.55);
+    color: var(--ink-soft);
+    cursor: pointer;
+    transition: background 240ms var(--ease-out), border-color 240ms var(--ease-out), color 240ms var(--ease-out);
+    -webkit-appearance: none;
+    appearance: none;
+    padding: 0;
+    backdrop-filter: blur(4px);
+  }
+  .fs-toggle:hover, .fs-toggle:focus-visible {
+    background: var(--ink-warm);
+    color: var(--linen-100);
+    border-color: var(--ink-warm);
+    outline: none;
+  }
+  .fs-toggle svg { width: 16px; height: 16px; display: block; }
+  .fs-toggle .icon-exit { display: none; }
+  body.is-fs .fs-toggle .icon-enter { display: none; }
+  body.is-fs .fs-toggle .icon-exit  { display: block; }
+
+  /* ───────────────────── hero ───────────────────── */
+  .hero {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: clamp(12px, 1.6vh, 20px);
+    padding: clamp(8px, 2vh, 24px) 0 clamp(4px, 1vh, 16px);
+  }
+
+  .hero__eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    animation: fadeUp 0.9s var(--ease-out) 0.1s both;
+    display: inline-flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .hero__eyebrow::before,
+  .hero__eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 38px;
+    height: 1px;
+    background: var(--ink-faint);
+    opacity: 0.55;
+  }
+
+  .hero__title {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 700;
+    font-size: clamp(3rem, 9vw, 7.25rem);
+    line-height: 0.94;
+    letter-spacing: 0.06em;
+    color: var(--ink-warm);
+    animation: fadeUp 1.2s var(--ease-out) 0.2s both;
+  }
+
+  .hero__sub {
+    font-family: 'Cairo Play', sans-serif;
+    font-weight: 300;
+    font-size: clamp(1.125rem, 2.4vw, 1.75rem);
+    direction: rtl;
+    color: var(--ink-soft);
+    animation: fadeUp 1.2s var(--ease-out) 0.35s both;
+  }
+
+  .hero__lede {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(1rem, 1.4vw, 1.1875rem);
+    color: var(--ink-mute);
+    line-height: 1.65;
+    max-width: 56ch;
+    margin: 0 auto;
+    animation: fadeUp 1.2s var(--ease-out) 0.5s both;
+  }
+
+  /* ───────────────────── section scaffolding ───────────────────── */
+  .bb-section {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(28px, 3.5vw, 48px);
+    animation: fadeUp 1s var(--ease-out) 0.3s both;
+  }
+
+  .section-head {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+  .section-head__eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--a-brass);
+    display: inline-flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .section-head__eyebrow::after {
+    content: '';
+    display: inline-block;
+    width: 32px;
+    height: 1px;
+    background: var(--a-brass);
+    opacity: 0.55;
+  }
+  .section-head__title {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 4vw, 3rem);
+    color: var(--ink-warm);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+  .section-head__sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(0.9375rem, 1.3vw, 1.125rem);
+    color: var(--ink-mute);
+    line-height: 1.5;
+  }
+  .section-head__rule {
+    width: 48px;
+    height: 1px;
+    background: var(--a-brass);
+    opacity: 0.5;
+    margin-top: 10px;
+  }
+
+  /* ───────────────────── billboard grid ───────────────────── */
+  .bb-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(16px, 2vw, 28px);
+  }
+  @media (max-width: 900px) {
+    .bb-grid { grid-template-columns: 1fr 1fr; }
+  }
+  @media (max-width: 560px) {
+    .bb-grid { grid-template-columns: 1fr; }
+  }
+
+  .bb-card {
+    display: flex;
+    flex-direction: column;
+    background: rgba(255,253,247,0.55);
+    border: 1px solid rgba(42,38,33,0.08);
+    border-radius: 3px;
+    overflow: hidden;
+    cursor: zoom-in;
+    box-shadow:
+      0 1px 0 rgba(42,38,33,0.04),
+      0 12px 32px -20px rgba(42,38,33,0.14);
+    transition:
+      transform 460ms var(--ease-out),
+      box-shadow 460ms var(--ease-out);
+  }
+  .bb-card:hover {
+    transform: translateY(-6px);
+    box-shadow:
+      0 1px 0 rgba(42,38,33,0.06),
+      0 28px 56px -24px rgba(42,38,33,0.26);
+  }
+  .bb-card__img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1773 / 887;
+    background: var(--linen-400);
+  }
+  .bb-card__img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 720ms var(--ease-out);
+  }
+  .bb-card:hover .bb-card__img-wrap img {
+    transform: scale(1.02);
+  }
+  .bb-card__caption {
+    padding: 10px 14px 12px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-mute);
+    border-top: 1px solid rgba(42,38,33,0.07);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 8px;
+  }
+  .bb-card__caption .caption-hint {
+    color: var(--ink-faint);
+    opacity: 0.6;
+    font-size: 0.5625rem;
+    letter-spacing: 0.2em;
+  }
+
+  /* ───────────────────── side-by-side comparison ───────────────────── */
+  .sbs-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(16px, 2vw, 28px);
+  }
+  @media (max-width: 640px) {
+    .sbs-grid { grid-template-columns: 1fr; }
+  }
+
+  .sbs-row {
+    display: contents;
+  }
+
+  .sbs-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .sbs-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--a-brass);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .sbs-label::after {
+    content: '';
+    display: inline-block;
+    flex: 1;
+    height: 1px;
+    background: var(--a-brass);
+    opacity: 0.35;
+    min-width: 20px;
+  }
+
+  .sbs-pair-label {
+    grid-column: 1 / -1;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    text-align: center;
+    padding: clamp(8px, 1.2vw, 14px) 0 0;
+    opacity: 0.7;
+  }
+  .sbs-pair-label:first-child { padding-top: 0; }
+
+  .sbs-img-wrap {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 1773 / 887;
+    border-radius: 3px;
+    background: var(--linen-400);
+    cursor: zoom-in;
+    box-shadow:
+      0 1px 0 rgba(42,38,33,0.06),
+      0 16px 40px -24px rgba(42,38,33,0.18);
+    transition:
+      transform 460ms var(--ease-out),
+      box-shadow 460ms var(--ease-out);
+  }
+  .sbs-img-wrap:hover {
+    transform: translateY(-4px);
+    box-shadow:
+      0 1px 0 rgba(42,38,33,0.08),
+      0 28px 56px -24px rgba(42,38,33,0.28);
+  }
+  .sbs-img-wrap img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 720ms var(--ease-out);
+  }
+  .sbs-img-wrap:hover img {
+    transform: scale(1.02);
+  }
+  .sbs-img-caption {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    opacity: 0.75;
+    text-align: center;
+    padding-top: 4px;
+  }
+
+  /* ───────────────────── decision section ───────────────────── */
+  .decision-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: clamp(28px, 4vw, 56px);
+  }
+  @media (max-width: 700px) {
+    .decision-grid { grid-template-columns: 1fr; }
+  }
+
+  .decision-col__label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.38em;
+    text-transform: uppercase;
+    color: var(--a-brass);
+    margin-bottom: 22px;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .decision-col__label::after {
+    content: '';
+    display: inline-block;
+    width: 24px;
+    height: 1px;
+    background: var(--a-brass);
+    opacity: 0.5;
+  }
+
+  .decision-list {
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+  }
+  .decision-list li {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+  }
+  .decision-list__num {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.22em;
+    color: var(--a-brass);
+    opacity: 0.85;
+    min-width: 20px;
+    padding-top: 3px;
+    flex-shrink: 0;
+  }
+  .decision-list__text {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 300;
+    font-size: clamp(0.875rem, 1.1vw, 1rem);
+    color: var(--ink-soft);
+    line-height: 1.65;
+  }
+  .decision-list__text strong {
+    font-weight: 500;
+    color: var(--ink-warm);
+  }
+
+  /* divider between sections */
+  .bb-divider {
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(42,38,33,0.12) 30%, rgba(42,38,33,0.12) 70%, transparent);
+  }
+
+  /* ───────────────────── footer ───────────────────── */
+  footer {
+    margin-top: auto;
+    padding-top: clamp(24px, 4vh, 48px);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    animation: fadeIn 1.4s var(--ease-out) 1.0s both;
+  }
+
+  .copyright {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+  }
+
+  .poweredby {
+    display: inline-flex;
+    align-items: center;
+  }
+  .poweredby__img {
+    display: block;
+    height: 64px;
+    width: auto;
+  }
+
+  /* ───────────────────── lightbox ───────────────────── */
+  .lb-dialog {
+    border: none;
+    padding: 0;
+    background: transparent;
+    max-width: 100vw;
+    max-height: 100dvh;
+    width: 100vw;
+    height: 100dvh;
+  }
+  .lb-dialog::backdrop {
+    background: rgba(20, 16, 28, 0.92);
+    backdrop-filter: blur(6px);
+  }
+  .lb-dialog[open] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .lb-inner {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    padding: clamp(24px, 4vw, 56px);
+  }
+  .lb-img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain;
+    display: block;
+    border-radius: 2px;
+    box-shadow: 0 32px 96px -24px rgba(0,0,0,0.6);
+  }
+  .lb-close {
+    position: absolute;
+    top: clamp(14px, 2vw, 24px);
+    right: clamp(14px, 2vw, 24px);
+    width: 40px;
+    height: 40px;
+    border-radius: 999px;
+    border: 1px solid rgba(255,253,247,0.22);
+    background: rgba(255,253,247,0.08);
+    color: rgba(255,253,247,0.75);
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    line-height: 1;
+    transition: background 200ms, color 200ms;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .lb-close:hover {
+    background: rgba(255,253,247,0.18);
+    color: #fff;
+  }
+  .lb-caption {
+    position: absolute;
+    bottom: clamp(14px, 2vw, 24px);
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.32em;
+    text-transform: uppercase;
+    color: rgba(255,253,247,0.45);
+    white-space: nowrap;
+  }
+
+  /* ───────────────────── keyframes ───────────────────── */
+  @keyframes fadeIn  { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes fadeUp  { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+
+  @media (prefers-reduced-motion: reduce) {
+    * { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<main class="page">
+
+  <!-- ───────── HEADER ───────── -->
+  <header>
+    <div class="mark">
+      <span class="mark__ar">العليـــــاء</span>
+      <span class="mark__en"><strong class="al">ALALYAA</strong> · DEVELOPMENTS</span>
+    </div>
+    <div class="header-right">
+      <div class="meta">
+        Outdoor Trials<br/>
+        MMXXVI
+      </div>
+      <a href="index.html" class="back-link" aria-label="Back to brand book hub">
+        ← Hub
+      </a>
+      <button type="button" class="fs-toggle" id="fsToggle"
+              aria-label="Toggle full-screen" title="Toggle full-screen (F)">
+        <svg class="icon-enter" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M2 6V2h4M14 6V2h-4M2 10v4h4M14 10v4h-4"/>
+        </svg>
+        <svg class="icon-exit" viewBox="0 0 16 16" fill="none" stroke="currentColor"
+             stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M6 2v4H2M10 2v4h4M6 14v-4H2M10 14v-4h4"/>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <!-- ───────── HERO ───────── -->
+  <section class="hero" aria-labelledby="hero-title">
+    <span class="hero__eyebrow">Brand Identity Review</span>
+    <h1 class="hero__title" id="hero-title">Billboard Trials</h1>
+    <p class="hero__sub">تجـربـة لافتـات الطـرق</p>
+    <p class="hero__lede">
+      Two logo directions for <strong class="al">ALALYAA</strong> Developments, applied to the same
+      outdoor communication campaign across daylight and sunset settings. Compare the two
+      directions and choose a path.
+    </p>
+  </section>
+
+  <div class="bb-divider" aria-hidden="true"></div>
+
+  <!-- ───────── DIRECTION A ───────── -->
+  <section class="bb-section" aria-labelledby="dir-a-title">
+    <div class="section-head">
+      <span class="section-head__eyebrow">Direction A</span>
+      <h2 class="section-head__title" id="dir-a-title">Modern</h2>
+      <p class="section-head__sub">Vertical · Stylized · Architectural</p>
+      <div class="section-head__rule" aria-hidden="true"></div>
+    </div>
+
+    <div class="bb-grid" role="list">
+
+      <figure class="bb-card" role="listitem"
+              data-src="assets/billboards/ALALYAA_1.png"
+              data-caption="A1 · Direction A · Daytime / Mountains"
+              tabindex="0" aria-label="Open A1 full size — Direction A, Daytime, Mountains">
+        <div class="bb-card__img-wrap">
+          <img src="assets/billboards/ALALYAA_1.png"
+               alt="Direction A — Modern logo, daytime billboard against mountain backdrop"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <figcaption class="bb-card__caption">
+          <span>A1 · Daytime / Mountains</span>
+          <span class="caption-hint">Tap to expand</span>
+        </figcaption>
+      </figure>
+
+      <figure class="bb-card" role="listitem"
+              data-src="assets/billboards/ALALYAA_4.png"
+              data-caption="A2 · Direction A · Daytime / Palms"
+              tabindex="0" aria-label="Open A2 full size — Direction A, Daytime, Palm trees">
+        <div class="bb-card__img-wrap">
+          <img src="assets/billboards/ALALYAA_4.png"
+               alt="Direction A — Modern logo, daytime billboard with palm tree setting"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <figcaption class="bb-card__caption">
+          <span>A2 · Daytime / Palms</span>
+          <span class="caption-hint">Tap to expand</span>
+        </figcaption>
+      </figure>
+
+      <figure class="bb-card" role="listitem"
+              data-src="assets/billboards/ALALYAA_5.png"
+              data-caption="A3 · Direction A · Sunset"
+              tabindex="0" aria-label="Open A3 full size — Direction A, Sunset, Clay background">
+        <div class="bb-card__img-wrap">
+          <img src="assets/billboards/ALALYAA_5.png"
+               alt="Direction A — Modern logo, sunset billboard with clay-toned background"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <figcaption class="bb-card__caption">
+          <span>A3 · Sunset</span>
+          <span class="caption-hint">Tap to expand</span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <div class="bb-divider" aria-hidden="true"></div>
+
+  <!-- ───────── DIRECTION B ───────── -->
+  <section class="bb-section" aria-labelledby="dir-b-title">
+    <div class="section-head">
+      <span class="section-head__eyebrow">Direction B</span>
+      <h2 class="section-head__title" id="dir-b-title">Classic</h2>
+      <p class="section-head__sub">Horizontal · Editorial · Modern Serif</p>
+      <div class="section-head__rule" aria-hidden="true"></div>
+    </div>
+
+    <div class="bb-grid" role="list">
+
+      <figure class="bb-card" role="listitem"
+              data-src="assets/billboards/ALALYAA_2.png"
+              data-caption="B1 · Direction B · Daytime / City"
+              tabindex="0" aria-label="Open B1 full size — Direction B, Daytime, City skyline">
+        <div class="bb-card__img-wrap">
+          <img src="assets/billboards/ALALYAA_2.png"
+               alt="Direction B — Classic logo, daytime billboard against city skyline"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <figcaption class="bb-card__caption">
+          <span>B1 · Daytime / City</span>
+          <span class="caption-hint">Tap to expand</span>
+        </figcaption>
+      </figure>
+
+      <figure class="bb-card" role="listitem"
+              data-src="assets/billboards/ALALYAA_3.png"
+              data-caption="B2 · Direction B · Daytime / Mountains"
+              tabindex="0" aria-label="Open B2 full size — Direction B, Daytime, Mountains">
+        <div class="bb-card__img-wrap">
+          <img src="assets/billboards/ALALYAA_3.png"
+               alt="Direction B — Classic logo, daytime billboard against mountain backdrop"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <figcaption class="bb-card__caption">
+          <span>B2 · Daytime / Mountains</span>
+          <span class="caption-hint">Tap to expand</span>
+        </figcaption>
+      </figure>
+
+      <figure class="bb-card" role="listitem"
+              data-src="assets/billboards/ALALYAA_6.png"
+              data-caption="B3 · Direction B · Sunset"
+              tabindex="0" aria-label="Open B3 full size — Direction B, Sunset, Clay background">
+        <div class="bb-card__img-wrap">
+          <img src="assets/billboards/ALALYAA_6.png"
+               alt="Direction B — Classic logo, sunset billboard with clay-toned background"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <figcaption class="bb-card__caption">
+          <span>B3 · Sunset</span>
+          <span class="caption-hint">Tap to expand</span>
+        </figcaption>
+      </figure>
+
+    </div>
+  </section>
+
+  <div class="bb-divider" aria-hidden="true"></div>
+
+  <!-- ───────── SIDE BY SIDE ───────── -->
+  <section class="bb-section" aria-labelledby="sbs-title">
+    <div class="section-head">
+      <span class="section-head__eyebrow">Comparison</span>
+      <h2 class="section-head__title" id="sbs-title">Side by Side</h2>
+      <p class="section-head__sub">Matched lighting conditions — same environment, two marks</p>
+      <div class="section-head__rule" aria-hidden="true"></div>
+    </div>
+
+    <div class="sbs-grid">
+
+      <!-- Row 1 label -->
+      <p class="sbs-pair-label" style="grid-column:1/-1;">Daytime · Mountains</p>
+
+      <!-- Row 1: A1 vs B2 -->
+      <div class="sbs-cell">
+        <span class="sbs-label">Modern</span>
+        <div class="sbs-img-wrap"
+             data-src="assets/billboards/ALALYAA_1.png"
+             data-caption="A1 · Direction A · Modern · Daytime / Mountains"
+             tabindex="0" aria-label="Open A1 full size">
+          <img src="assets/billboards/ALALYAA_1.png"
+               alt="Direction A Modern — daytime mountains"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <p class="sbs-img-caption">A1 · Modern / Mountains</p>
+      </div>
+
+      <div class="sbs-cell">
+        <span class="sbs-label">Classic</span>
+        <div class="sbs-img-wrap"
+             data-src="assets/billboards/ALALYAA_3.png"
+             data-caption="B2 · Direction B · Classic · Daytime / Mountains"
+             tabindex="0" aria-label="Open B2 full size">
+          <img src="assets/billboards/ALALYAA_3.png"
+               alt="Direction B Classic — daytime mountains"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <p class="sbs-img-caption">B2 · Classic / Mountains</p>
+      </div>
+
+      <!-- Row 2 label -->
+      <p class="sbs-pair-label" style="grid-column:1/-1; padding-top: clamp(20px, 2.5vw, 36px);">Sunset</p>
+
+      <!-- Row 2: A3 vs B3 -->
+      <div class="sbs-cell">
+        <span class="sbs-label">Modern</span>
+        <div class="sbs-img-wrap"
+             data-src="assets/billboards/ALALYAA_5.png"
+             data-caption="A3 · Direction A · Modern · Sunset"
+             tabindex="0" aria-label="Open A3 full size">
+          <img src="assets/billboards/ALALYAA_5.png"
+               alt="Direction A Modern — sunset"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <p class="sbs-img-caption">A3 · Modern / Sunset</p>
+      </div>
+
+      <div class="sbs-cell">
+        <span class="sbs-label">Classic</span>
+        <div class="sbs-img-wrap"
+             data-src="assets/billboards/ALALYAA_6.png"
+             data-caption="B3 · Direction B · Classic · Sunset"
+             tabindex="0" aria-label="Open B3 full size">
+          <img src="assets/billboards/ALALYAA_6.png"
+               alt="Direction B Classic — sunset"
+               width="1773" height="887"
+               loading="lazy" decoding="async"/>
+        </div>
+        <p class="sbs-img-caption">B3 · Classic / Sunset</p>
+      </div>
+
+    </div>
+  </section>
+
+  <div class="bb-divider" aria-hidden="true"></div>
+
+  <!-- ───────── DECISION CRITERIA ───────── -->
+  <section class="bb-section" aria-labelledby="decision-title">
+    <div class="section-head">
+      <span class="section-head__eyebrow">Evaluation</span>
+      <h2 class="section-head__title" id="decision-title">Choosing a Direction</h2>
+      <p class="section-head__sub">Criteria for the Board's review</p>
+      <div class="section-head__rule" aria-hidden="true"></div>
+    </div>
+
+    <div class="decision-grid">
+
+      <div>
+        <p class="decision-col__label">Considerations</p>
+        <ol class="decision-list">
+          <li>
+            <span class="decision-list__num">01</span>
+            <span class="decision-list__text">
+              <strong>Recognition at distance</strong> — which mark reads first at 50&thinsp;m+?
+            </span>
+          </li>
+          <li>
+            <span class="decision-list__num">02</span>
+            <span class="decision-list__text">
+              <strong>Brand register</strong> — does it feel like a developer, a foundation, or a museum?
+            </span>
+          </li>
+          <li>
+            <span class="decision-list__num">03</span>
+            <span class="decision-list__text">
+              <strong>Scalability</strong> — performance on smaller assets (signage, stationery, digital)
+            </span>
+          </li>
+          <li>
+            <span class="decision-list__num">04</span>
+            <span class="decision-list__text">
+              <strong>Bilingual balance</strong> — Arabic–English coherence in the lockup
+            </span>
+          </li>
+        </ol>
+      </div>
+
+      <div>
+        <p class="decision-col__label">Next Steps</p>
+        <ol class="decision-list">
+          <li>
+            <span class="decision-list__num">01</span>
+            <span class="decision-list__text">
+              Board indicates preferred direction (A or B)
+            </span>
+          </li>
+          <li>
+            <span class="decision-list__num">02</span>
+            <span class="decision-list__text">
+              Strike Media finalizes brand guidelines for the chosen mark
+            </span>
+          </li>
+          <li>
+            <span class="decision-list__num">03</span>
+            <span class="decision-list__text">
+              Production launches across outdoor + digital + on-site signage
+            </span>
+          </li>
+        </ol>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ───────── FOOTER ───────── -->
+  <footer>
+    <span class="copyright">© MMXXVI STRIKE MEDIA · All Rights Reserved</span>
+    <div class="poweredby">
+      <img class="poweredby__img"
+           src="assets/Powered%20By.png"
+           alt="Powered by Strike Media — PR &amp; Advertising Agency"/>
+    </div>
+  </footer>
+
+</main>
+
+<!-- ───────── LIGHTBOX ───────── -->
+<dialog class="lb-dialog" id="lightbox" aria-label="Billboard image lightbox">
+  <div class="lb-inner">
+    <img class="lb-img" src="" alt="" id="lbImg"/>
+    <button type="button" class="lb-close" id="lbClose" aria-label="Close lightbox">✕</button>
+    <p class="lb-caption" id="lbCaption"></p>
+  </div>
+</dialog>
+
+<script>
+(function () {
+  /* ── Fullscreen toggle ── */
+  const docEl = document.documentElement;
+  const body  = document.body;
+  const btn   = document.getElementById('fsToggle');
+
+  function fsElement() {
+    return document.fullscreenElement || document.webkitFullscreenElement || null;
+  }
+  function requestFs(el) {
+    const fn = el.requestFullscreen || el.webkitRequestFullscreen;
+    return fn ? fn.call(el) : Promise.reject(new Error('Fullscreen unsupported'));
+  }
+  function exitFs() {
+    const fn = document.exitFullscreen || document.webkitExitFullscreen;
+    return fn ? fn.call(document) : Promise.reject(new Error('Fullscreen unsupported'));
+  }
+  function syncBodyState() {
+    body.classList.toggle('is-fs', !!fsElement());
+  }
+
+  if (btn) {
+    btn.addEventListener('click', () => {
+      if (fsElement()) exitFs().catch(() => {});
+      else requestFs(docEl).catch(() => {});
+    });
+  }
+  window.addEventListener('keydown', (e) => {
+    const t = e.target;
+    if (t && (t.isContentEditable || /^(INPUT|TEXTAREA|SELECT)$/.test(t.tagName))) return;
+    if (e.metaKey || e.ctrlKey || e.altKey) return;
+    if (e.key === 'f' || e.key === 'F') {
+      e.preventDefault();
+      if (fsElement()) exitFs().catch(() => {});
+      else requestFs(docEl).catch(() => {});
+    }
+  });
+  document.addEventListener('fullscreenchange', syncBodyState);
+  document.addEventListener('webkitfullscreenchange', syncBodyState);
+
+  /* ── Auto fullscreen if ?fs=1 ── */
+  if (new URLSearchParams(location.search).get('fs') === '1') {
+    document.addEventListener('click', function onFirstClick() {
+      document.removeEventListener('click', onFirstClick);
+      requestFs(docEl).catch(() => {});
+    }, { once: true });
+  }
+
+  /* ── Lightbox ── */
+  const dialog  = document.getElementById('lightbox');
+  const lbImg   = document.getElementById('lbImg');
+  const lbClose = document.getElementById('lbClose');
+  const lbCap   = document.getElementById('lbCaption');
+
+  function openLightbox(src, alt, caption) {
+    lbImg.src = src;
+    lbImg.alt = alt || '';
+    lbCap.textContent = caption || '';
+    dialog.showModal();
+    document.body.style.overflow = 'hidden';
+  }
+
+  function closeLightbox() {
+    dialog.close();
+    lbImg.src = '';
+    document.body.style.overflow = '';
+  }
+
+  lbClose.addEventListener('click', closeLightbox);
+
+  dialog.addEventListener('click', (e) => {
+    if (e.target === dialog) closeLightbox();
+  });
+
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && dialog.open) closeLightbox();
+  });
+
+  /* Attach to .bb-card figures */
+  document.querySelectorAll('.bb-card[data-src]').forEach((card) => {
+    const trigger = () => {
+      const src     = card.dataset.src;
+      const caption = card.dataset.caption;
+      const alt     = card.querySelector('img')?.alt || '';
+      openLightbox(src, alt, caption);
+    };
+    card.addEventListener('click', trigger);
+    card.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger(); }
+    });
+  });
+
+  /* Attach to .sbs-img-wrap elements */
+  document.querySelectorAll('.sbs-img-wrap[data-src]').forEach((wrap) => {
+    const trigger = () => {
+      const src     = wrap.dataset.src;
+      const caption = wrap.dataset.caption;
+      const alt     = wrap.querySelector('img')?.alt || '';
+      openLightbox(src, alt, caption);
+    };
+    wrap.addEventListener('click', trigger);
+    wrap.addEventListener('keydown', (e) => {
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); trigger(); }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

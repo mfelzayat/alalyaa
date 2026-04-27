@@ -944,6 +944,213 @@
     .card--c { min-height: auto; }
   }
 
+  /* ════════════════════════════════════════════════════════
+     CARD D — Billboard Trials
+     Linen + brass palette · outdoor campaign comparison
+     Full-width banner with thumbnail preview strip
+     Distinct from indigo (A), charcoal (B) and midnight (C)
+     ════════════════════════════════════════════════════════ */
+
+  .trials-row { width: 100%; }
+
+  .card--d {
+    width: 100%;
+    min-height: 320px;
+    padding: 0;
+    background:
+      radial-gradient(ellipse at 80% 50%, rgba(184,130,58,0.08) 0%, transparent 60%),
+      linear-gradient(135deg, var(--linen-50) 0%, var(--a-paper) 55%, var(--a-paper-2) 100%);
+    color: var(--ink-warm);
+    overflow: hidden;
+    font-family: 'Alexandria', sans-serif;
+    animation-delay: 1.05s;
+    border: 1px solid rgba(184,130,58,0.16);
+    position: relative;
+  }
+  /* Brass accent stripe along top */
+  .card--d::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, var(--a-brass) 28%, var(--a-brass-lt) 50%, var(--a-brass) 72%, transparent 100%);
+    opacity: 0.65;
+    z-index: 2;
+    pointer-events: none;
+  }
+
+  .card--d .card__newtab {
+    color: var(--a-brass);
+    background: rgba(184,130,58,0.08);
+    border: 1px solid rgba(184,130,58,0.24);
+  }
+
+  .card--d__content {
+    position: relative;
+    z-index: 1;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: clamp(24px, 3.5vw, 48px);
+    align-items: center;
+    padding: clamp(36px, 4vw, 52px) clamp(36px, 5vw, 64px);
+    min-height: inherit;
+  }
+  @media (max-width: 820px) {
+    .card--d__content {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .card--d__left {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .card--d__eyebrow {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.625rem;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--a-brass);
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+  }
+  .card--d__eyebrow::before {
+    content: '';
+    display: inline-block;
+    width: 22px;
+    height: 1px;
+    background: var(--a-brass);
+    opacity: 0.65;
+  }
+
+  .card--d__title {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 700;
+    font-size: clamp(1.75rem, 4vw, 3.25rem);
+    color: var(--ink-warm);
+    letter-spacing: 0.04em;
+    line-height: 1;
+  }
+
+  .card--d__sub {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-weight: 300;
+    font-size: clamp(0.9375rem, 1.2vw, 1.125rem);
+    color: var(--ink-mute);
+    line-height: 1.55;
+    max-width: 54ch;
+  }
+
+  .card--d__specs {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 28px;
+    margin-top: 4px;
+  }
+  .card--d__spec {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+  .card--d__spec-label {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.5625rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--ink-faint);
+    opacity: 0.75;
+  }
+  .card--d__spec-value {
+    font-family: 'Alexandria', sans-serif;
+    font-weight: 500;
+    font-size: 0.8125rem;
+    color: var(--ink-soft);
+    letter-spacing: 0.02em;
+  }
+
+  .card--d__cta-row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-top: 8px;
+  }
+  .card--d .cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 11px 22px;
+    border: 1px solid var(--a-brass);
+    border-radius: 999px;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.6875rem;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--a-brass);
+    background: transparent;
+    transition: all 320ms var(--ease-out);
+  }
+  .card--d:hover .cta,
+  .card--d:focus-visible .cta {
+    background: var(--a-brass);
+    color: var(--a-paper);
+    border-color: var(--a-brass);
+  }
+
+  /* Thumbnail strip */
+  .card--d__thumbs {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(8px, 1vw, 12px);
+    align-items: stretch;
+    flex-shrink: 0;
+  }
+  @media (max-width: 820px) {
+    .card--d__thumbs {
+      flex-direction: row;
+      align-items: flex-start;
+    }
+  }
+
+  .card--d__thumb {
+    width: clamp(120px, 14vw, 200px);
+    aspect-ratio: 1773 / 887;
+    border-radius: 2px;
+    overflow: hidden;
+    border: 1px solid rgba(184,130,58,0.2);
+    box-shadow:
+      0 2px 0 rgba(42,38,33,0.04),
+      0 6px 20px -8px rgba(42,38,33,0.16);
+    flex-shrink: 0;
+    transition: transform 460ms var(--ease-out), box-shadow 460ms var(--ease-out);
+  }
+  .card--d:hover .card--d__thumb,
+  .card--d:focus-visible .card--d__thumb {
+    transform: translateY(-3px) scale(1.015);
+    box-shadow: 0 10px 30px -10px rgba(42,38,33,0.28);
+  }
+  .card--d__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 720ms var(--ease-out);
+  }
+  .card--d:hover .card--d__thumb img,
+  .card--d:focus-visible .card--d__thumb img {
+    transform: scale(1.04);
+  }
+  @media (max-width: 820px) {
+    .card--d__thumb { width: clamp(80px, 22vw, 140px); }
+  }
+  @media (max-width: 520px) {
+    .card--d__thumb { width: clamp(72px, 28vw, 110px); }
+    .card--d { min-height: auto; }
+  }
+
   /* ───────────────────── footer ───────────────────── */
   footer {
     margin-top: auto;
@@ -1130,6 +1337,68 @@
     </a>
   </section>
 
+  <!-- ───────── OPTION D · Billboard Trials (banner row) ───────── -->
+  <section class="trials-row" aria-label="Billboard trials">
+    <a class="card card--d" href="billboards.html" target="_blank" rel="noopener"
+       aria-label="Open the Billboard Trials presentation in a new tab">
+      <span class="card__newtab">↗ New tab</span>
+
+      <div class="card--d__content">
+
+        <div class="card--d__left">
+          <span class="card--d__eyebrow">Brand Identity Review</span>
+          <h2 class="card--d__title">Billboard Trials</h2>
+          <p class="card--d__sub">Outdoor communication — two logo directions across daytime and sunset settings</p>
+
+          <div class="card--d__specs">
+            <div class="card--d__spec">
+              <span class="card--d__spec-label">Trials</span>
+              <span class="card--d__spec-value">6</span>
+            </div>
+            <div class="card--d__spec">
+              <span class="card--d__spec-label">Directions</span>
+              <span class="card--d__spec-value">2</span>
+            </div>
+            <div class="card--d__spec">
+              <span class="card--d__spec-label">Settings</span>
+              <span class="card--d__spec-value">Daytime + Sunset</span>
+            </div>
+            <div class="card--d__spec">
+              <span class="card--d__spec-label">Logos</span>
+              <span class="card--d__spec-value">Modern + Classic</span>
+            </div>
+          </div>
+
+          <div class="card--d__cta-row">
+            <span class="cta">Open Trials <span class="cta__arrow">→</span></span>
+          </div>
+        </div>
+
+        <div class="card--d__thumbs" aria-hidden="true">
+          <div class="card--d__thumb">
+            <img src="assets/billboards/ALALYAA_1.png"
+                 alt=""
+                 width="1773" height="887"
+                 loading="lazy" decoding="async"/>
+          </div>
+          <div class="card--d__thumb">
+            <img src="assets/billboards/ALALYAA_3.png"
+                 alt=""
+                 width="1773" height="887"
+                 loading="lazy" decoding="async"/>
+          </div>
+          <div class="card--d__thumb">
+            <img src="assets/billboards/ALALYAA_5.png"
+                 alt=""
+                 width="1773" height="887"
+                 loading="lazy" decoding="async"/>
+          </div>
+        </div>
+
+      </div>
+    </a>
+  </section>
+
   <footer>
     <span class="copyright">© MMXXVI STRIKE MEDIA · All Rights Reserved</span>
     <div class="poweredby">
@@ -1191,7 +1460,7 @@
     // Option cards: append ?fs=1 so the new tab knows to auto-enter
     // fullscreen on its first user gesture (browsers won't grant
     // fullscreen to a tab that has no gesture of its own yet).
-    document.querySelectorAll('.choices a.card, .concept-row a.card').forEach((a) => {
+    document.querySelectorAll('.choices a.card, .concept-row a.card, .trials-row a.card').forEach((a) => {
       a.addEventListener('click', (e) => {
         // Allow modifier-clicks (cmd/ctrl/middle) to behave normally.
         if (e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || e.button === 1) return;
